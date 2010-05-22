@@ -1,0 +1,6 @@
+uRPC (read: micro-RPC) is a thin layer of glue that provides a cross-language 
+remote procedure call library built on Google's Protocol Buffers and iMatrix's 
+ØMQ message queue. It is designed to be as thin, fast, light, and simple as 
+possible, in order to retain efficency and simplicity found in its component 
+parts.
+

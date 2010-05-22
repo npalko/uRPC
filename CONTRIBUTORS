@@ -1,0 +1,8 @@
+The uRPC builds on the shoulders of giants
+
+  Google Protocol Buffers         http://code.google.com/p/protobuf
+  iMatrix ØMQ                     http://www.zeromq.org
+
+Specific contributors to uRPC
+
+  Nicholas Palko                  npalko@tepper.cmu.edu

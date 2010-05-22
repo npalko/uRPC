@@ -1,0 +1,11 @@
+// Data types found in Microsoft .NET and not in the current protobuf 
+// definition.
+//
+// http://code.google.com/p/protobuf-net/wiki/DotNetTypes
+
+
+message Decimal {
+    optional uint64 mantissa_msb = 1;
+    optional uint32 mantissa_lsb = 2;
+    required sint32 exponent_and_sign = 3;
+}

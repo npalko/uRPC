@@ -1,0 +1,18 @@
+// Apache Log4j-compliant log messages
+
+
+message Log {
+	enum Level {
+		FATAL = 0;
+		ERROR = 1;
+		WARN = 2;
+		INFO = 3;
+		DEBUG = 4;
+		TRACE = 5;
+	}
+	optional string message = 1; 
+	optional int32 number = 2;			// log level number
+	optional int64 time = 3;			// time since ...
+}
+
+
