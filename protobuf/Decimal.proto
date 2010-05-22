@@ -5,7 +5,7 @@
 
 
 message Decimal {
-    optional uint64 mantissa_msb = 1;
-    optional uint32 mantissa_lsb = 2;
-    required sint32 exponent_and_sign = 3;
+  optional uint64 mantissa_msb = 1;
+  optional uint32 mantissa_lsb = 2;
+  required sint32 exponent_and_sign = 3;
 }
