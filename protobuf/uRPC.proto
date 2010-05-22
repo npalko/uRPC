@@ -6,28 +6,28 @@ import "Log.proto";
 package urpc;
 
 // ZMQ Request-reply pattern
-// 	single-part: ZMQ_REQ, ZMQ_REP
-// 	multi-part: ZMQ_SNDMORE, ZMQ_RCVMORE
+//  single-part: ZMQ_REQ, ZMQ_REP
+//  multi-part: ZMQ_SNDMORE, ZMQ_RCVMORE
 
 message Request {
-	optional string service = 1;			// Serivce called
-	optional int32 version = 2;				// Version of the api
-	optional bytes message = 3;				// Protobuf for service's request
+  optional string service = 1;      // Serivce called
+  optional int32 version = 2;       // Version of the api
+  optional bytes message = 3;       // Protobuf for service's request
 }
 message Response {
-	optional bool error = 1;				// True if error occured
-	repeated bytes message = 2;				// Protobuf of selected response
-	repeated Log log = 3;					// Any additional error messages
+  optional bool error = 1;          // True if error occured
+  optional bytes message = 2;       // Protobuf of selected response
+  repeated Log log = 3;             // Any additional error messages
 }
 
 // ZMQ Publish-subscribe pattern
-//	ZMQ_PUB, ZMQ_SUB
+//  ZMQ_PUB, ZMQ_SUB
 
 // ZMQ Peer to Peer pattern
-//	ZMQ_P2P
+//  ZMQ_P2P
 
 // ZMQ Parallelized pipeline pattern
-//	ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
+//  ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
 
 
 
