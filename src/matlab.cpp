@@ -38,11 +38,10 @@ EXPORTED_FUNCTION mxArray *request(const char *service, int version,
 
 // Small demos of functionality
 
-EXPORTED_FUNCTION mxArray *zeros(int m, int n)
+EXPORTED_FUNCTION mxArray *zeros(mwSize m, mwSize n)
 {
   // rough replica of MATLAB zeros() function
   
-  mxArray *zeroArray = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
-    mxDOUBLE_CLASS, mxREAL);
+  mxArray *zeroArray = mxCreateNumericMatrix(m, n, mxDOUBLE_CLASS, mxREAL);
   return zeroArray;
 }

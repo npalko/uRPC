@@ -69,7 +69,7 @@ extern "C" {
 #endif
 
 EXPORTED_FUNCTION mxArray *request(const char *, int, const mxArray *);
-EXPORTED_FUNCTION mxArray *zeros(int, int);
+EXPORTED_FUNCTION mxArray *zeros(mwSize, mwSize);
 
 #ifdef __cplusplus
 }
