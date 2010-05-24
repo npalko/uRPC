@@ -15,6 +15,8 @@
       argument passed by reference when the external function prototype defines
       the argument as a pointer.
     * MATLAB string equivalent to char *
+    * Exported function arguments passed by reference to calllib() functions
+      will appear as output. This is messy, and unfortunate. 
 
   Interaction with MATLAB enviroment
   
@@ -38,6 +40,8 @@
   
     * how does the mexFunction(nlhs,mxArray,nrhs,mxArray) functionality 
       translate into calllib()? is it even available?
+    * how to return multiple output arguments?
+    * can we read a nested struct if it's presented as a mxArray
       
     
 
@@ -48,8 +52,8 @@
 #ifndef URPC_MATLAB_HPP
 #define URPC_MATLAB_HPP
 
-// Decoration required by Microsoft compiler only
-// _WIN32 is also defined for WIN64. What a country!
+// Decoration required by Microsoft compiler only. _WIN32 is also defined for 
+// WIN64 enviroment. What a country!
 
 #ifdef _WIN32 
 #define EXPORTED_FUNCTION __declspec(dllexport)
@@ -57,15 +61,15 @@
 #define EXPORTED_FUNCTION
 #endif
 
-// MATLAB calls the C preprocessor on this file, which is why we need the 
-// guard
+// loadlibrary() calls the C preprocessor on this file w, which is why we need
+// the __cplusplus guard
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-EXPORTED_FUNCTION void multDoubleArray(double *, int);
-EXPORTED_FUNCTION mxArray* zeros(int, int);
+EXPORTED_FUNCTION mxArray *request(const char *, int, const mxArray *);
+EXPORTED_FUNCTION mxArray *zeros(int, int);
 
 #ifdef __cplusplus
 }
