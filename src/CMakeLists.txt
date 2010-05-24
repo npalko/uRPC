@@ -3,13 +3,13 @@
 protoc (cpp file1.proto file2.proto)
 include_directories (${PROTOBUF_INCLUDE_DIR})
 link_directories (${PROTOBUF_LIBRARY})
-add_library (libprotobuf.lib STATIC IMPORTED)
+add_library (libprotobuf${CMAKE_STATIC_LIBRARY_SUFFIX} STATIC IMPORTED)
 
 # ZeroMQ
 
 include_directories (${ZMQ_INCLUDE_DIR})
 link_directories (${ZMQ_LIBRARY})
-add_library (libzmq.dll SHARED IMPORTED)
+add_library (libzmq${CMAKE_SHARED_LIBRARY_SUFFIX} SHARED IMPORTED)
 
 # Executable
 
