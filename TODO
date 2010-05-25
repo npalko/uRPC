@@ -1,0 +1,47 @@
+TODO
+
+  * Zero Copy
+    - figure out how to use for ZMQ
+    - figure out how to use for Protobuf
+
+  * client C++ wrapper
+    - how do we want to return the message byte blob as a protobuf? how does
+      the typing work in this case? is there a protobuf superclass?
+    - hooks for authenticaton / authorization
+      
+  * python server wrapper
+    - how can we package up the basic functionality to make writing a server 
+      easier?
+      
+  * C++ DNS
+    - compile/verify windows API example works
+    - is /etc/resolv.conf the best way for unix?
+    - cmake: compile win/getdns only if win platform
+    - write boost::asio wrapper to get SRV records from DNS server
+  
+  * CMake
+    - change libraries linked to based on build type
+    - get protobufs generated
+    - write Find scripts for Matlab, ZMQ, PB
+    
+  * MATLAB
+    - refactor to use client C++ wraper
+    - need functionality to convert from mxArray to protobuf. 
+    - need routine to convert from protobuf array to 2d mxArray. Most likely
+      will be specific to TimeSeries as it's performance/memory critical. 
+      opportunity to autogenerate code?
+    - generic protobuf array to mxArray. what are the reflection capabilities
+      of the C++ api?
+      
+  * Kerberos / LDAP
+    - best way to integrate these would be though the client/server wrapper
+    - implement as stub functions for now in wrapper 
+    - figure out linker / libraries needed for this functionality
+    
+  * Excel, C#
+    - what will the API look like from Excel? Single commands? Sending bulk 
+      data? RTD subscriptions?
+    - get basic CLR working for ZeroMQ
+    - dotnet protobufs - take for a spin
+    
+    
