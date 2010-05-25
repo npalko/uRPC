@@ -1,6 +1,5 @@
 // Apache Log4j-compliant log messages
 
-
 message Log {
   enum Level {
     FATAL = 0;
@@ -11,8 +10,9 @@ message Log {
     TRACE = 5;
   }
   optional string message = 1; 
-  optional int32 number = 2;              // log level number
-  optional int64 time = 3;                // time since ...
+  optional int32 number = 2;    // log level number
+  optional int64 time = 3;      // nanoseconds since the Unix epoch
+                                //  January 1, 1970 00:00:00 UTC
 }
 
 
