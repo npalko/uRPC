@@ -35,6 +35,8 @@ void protobuf_ShutdownFile_uRPC_2eproto();
 
 class Request;
 class Response;
+class ServerList;
+class ServerList_Server;
 
 // ===================================================================
 
@@ -263,6 +265,211 @@ class Response : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static Response* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class ServerList_Server : public ::google::protobuf::Message {
+ public:
+  ServerList_Server();
+  virtual ~ServerList_Server();
+  
+  ServerList_Server(const ServerList_Server& from);
+  
+  inline ServerList_Server& operator=(const ServerList_Server& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ServerList_Server& default_instance();
+  
+  void Swap(ServerList_Server* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ServerList_Server* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ServerList_Server& from);
+  void MergeFrom(const ServerList_Server& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string name = 1;
+  inline bool has_name() const;
+  inline void clear_name();
+  static const int kNameFieldNumber = 1;
+  inline const ::std::string& name() const;
+  inline void set_name(const ::std::string& value);
+  inline void set_name(const char* value);
+  inline void set_name(const char* value, size_t size);
+  inline ::std::string* mutable_name();
+  
+  // optional int32 port = 2;
+  inline bool has_port() const;
+  inline void clear_port();
+  static const int kPortFieldNumber = 2;
+  inline ::google::protobuf::int32 port() const;
+  inline void set_port(::google::protobuf::int32 value);
+  
+  // optional int32 priority = 3;
+  inline bool has_priority() const;
+  inline void clear_priority();
+  static const int kPriorityFieldNumber = 3;
+  inline ::google::protobuf::int32 priority() const;
+  inline void set_priority(::google::protobuf::int32 value);
+  
+  // @@protoc_insertion_point(class_scope:urpc.ServerList.Server)
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* name_;
+  static const ::std::string _default_name_;
+  ::google::protobuf::int32 port_;
+  ::google::protobuf::int32 priority_;
+  friend void  protobuf_AddDesc_uRPC_2eproto();
+  friend void protobuf_AssignDesc_uRPC_2eproto();
+  friend void protobuf_ShutdownFile_uRPC_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static ServerList_Server* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class ServerList : public ::google::protobuf::Message {
+ public:
+  ServerList();
+  virtual ~ServerList();
+  
+  ServerList(const ServerList& from);
+  
+  inline ServerList& operator=(const ServerList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const ServerList& default_instance();
+  
+  void Swap(ServerList* other);
+  
+  // implements Message ----------------------------------------------
+  
+  ServerList* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const ServerList& from);
+  void MergeFrom(const ServerList& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  typedef ServerList_Server Server;
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated .urpc.ServerList.Server server = 1;
+  inline int server_size() const;
+  inline void clear_server();
+  static const int kServerFieldNumber = 1;
+  inline const ::urpc::ServerList_Server& server(int index) const;
+  inline ::urpc::ServerList_Server* mutable_server(int index);
+  inline ::urpc::ServerList_Server* add_server();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >&
+      server() const;
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >*
+      mutable_server();
+  
+  // @@protoc_insertion_point(class_scope:urpc.ServerList)
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server > server_;
+  friend void  protobuf_AddDesc_uRPC_2eproto();
+  friend void protobuf_AssignDesc_uRPC_2eproto();
+  friend void protobuf_ShutdownFile_uRPC_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static ServerList* default_instance_;
+};
 // ===================================================================
 
 
@@ -455,6 +662,113 @@ Response::log() const {
 inline ::google::protobuf::RepeatedPtrField< ::Log >*
 Response::mutable_log() {
   return &log_;
+}
+
+// -------------------------------------------------------------------
+
+// ServerList_Server
+
+// optional string name = 1;
+inline bool ServerList_Server::has_name() const {
+  return _has_bit(0);
+}
+inline void ServerList_Server::clear_name() {
+  if (name_ != &_default_name_) {
+    name_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& ServerList_Server::name() const {
+  return *name_;
+}
+inline void ServerList_Server::set_name(const ::std::string& value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void ServerList_Server::set_name(const char* value) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(value);
+}
+inline void ServerList_Server::set_name(const char* value, size_t size) {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  name_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* ServerList_Server::mutable_name() {
+  _set_bit(0);
+  if (name_ == &_default_name_) {
+    name_ = new ::std::string;
+  }
+  return name_;
+}
+
+// optional int32 port = 2;
+inline bool ServerList_Server::has_port() const {
+  return _has_bit(1);
+}
+inline void ServerList_Server::clear_port() {
+  port_ = 0;
+  _clear_bit(1);
+}
+inline ::google::protobuf::int32 ServerList_Server::port() const {
+  return port_;
+}
+inline void ServerList_Server::set_port(::google::protobuf::int32 value) {
+  _set_bit(1);
+  port_ = value;
+}
+
+// optional int32 priority = 3;
+inline bool ServerList_Server::has_priority() const {
+  return _has_bit(2);
+}
+inline void ServerList_Server::clear_priority() {
+  priority_ = 0;
+  _clear_bit(2);
+}
+inline ::google::protobuf::int32 ServerList_Server::priority() const {
+  return priority_;
+}
+inline void ServerList_Server::set_priority(::google::protobuf::int32 value) {
+  _set_bit(2);
+  priority_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ServerList
+
+// repeated .urpc.ServerList.Server server = 1;
+inline int ServerList::server_size() const {
+  return server_.size();
+}
+inline void ServerList::clear_server() {
+  server_.Clear();
+}
+inline const ::urpc::ServerList_Server& ServerList::server(int index) const {
+  return server_.Get(index);
+}
+inline ::urpc::ServerList_Server* ServerList::mutable_server(int index) {
+  return server_.Mutable(index);
+}
+inline ::urpc::ServerList_Server* ServerList::add_server() {
+  return server_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >&
+ServerList::server() const {
+  return server_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >*
+ServerList::mutable_server() {
+  return &server_;
 }
 
 
