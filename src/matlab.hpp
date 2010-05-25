@@ -61,8 +61,8 @@
 #define EXPORTED_FUNCTION
 #endif
 
-// loadlibrary() calls the C preprocessor on this file w, which is why we need
-// the __cplusplus guard
+// loadlibrary() calls the C preprocessor on this file which is why we need the
+// __cplusplus guard
 
 #ifdef __cplusplus
 extern "C" {

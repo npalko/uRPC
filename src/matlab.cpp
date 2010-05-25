@@ -28,8 +28,7 @@ EXPORTED_FUNCTION mxArray *request(const char *service, int version,
   urpc::Response response;
   zmq::message_t resultset;
   socket.recv (&resultset);
-  const char *resultset_string = (const char *) resultset.data();  
-  response.ParseFromString(resultset_string);
+  response.ParseFromString((const char *) resultset.data());
   mexPrintf("got response: %s\n", response.message().c_str());
 
   mxArray *mxResponse = mxCreateNumericMatrix(1, 1, mxDOUBLE_CLASS, mxREAL);
