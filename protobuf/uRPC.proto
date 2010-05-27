@@ -22,6 +22,10 @@ message Response {
 
 // ZMQ Publish-subscribe pattern
 //  ZMQ_PUB, ZMQ_SUB
+message Subscribe {
+  optional int32 version = 1;
+
+}
 
 // ZMQ Peer to Peer pattern
 //  ZMQ_P2P

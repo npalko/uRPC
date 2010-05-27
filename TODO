@@ -14,8 +14,6 @@ TODO
       easier?
       
   * C++ DNS
-    - compile/verify windows API example works
-    - is /etc/resolv.conf the best way for unix?
     - cmake: compile win/getdns only if win platform
     - write boost::asio wrapper to get SRV records from DNS server
   
