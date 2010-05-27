@@ -1,0 +1,9 @@
+package randexample;
+
+message Request {
+  optional int32 m = 1;
+  optional int32 n = 2;
+}
+message Response {
+  repeated double r = 1;
+}
