@@ -50,8 +50,9 @@ void protobuf_AssignDesc_randexample_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Request));
   Response_descriptor_ = file->message_type(1);
-  static const int Response_offsets_[1] = {
+  static const int Response_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, r_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, tt_),
   };
   Response_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -99,8 +100,8 @@ void protobuf_AddDesc_randexample_2eproto() {
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\021randexample.proto\022\013randexample\"\037\n\007Requ"
-    "est\022\t\n\001m\030\001 \001(\005\022\t\n\001n\030\002 \001(\005\"\025\n\010Response\022\t\n"
-    "\001r\030\001 \003(\001", 88);
+    "est\022\t\n\001m\030\001 \001(\005\022\t\n\001n\030\002 \001(\005\"!\n\010Response\022\t\n"
+    "\001r\030\001 \003(\001\022\n\n\002tt\030\002 \001(\001", 100);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "randexample.proto", &protobuf_RegisterTypes);
   Request::default_instance_ = new Request();
@@ -369,6 +370,7 @@ void Request::Swap(Request* other) {
 
 #ifndef _MSC_VER
 const int Response::kRFieldNumber;
+const int Response::kTtFieldNumber;
 #endif  // !_MSC_VER
 
 Response::Response()
@@ -387,6 +389,7 @@ Response::Response(const Response& from)
 
 void Response::SharedCtor() {
   _cached_size_ = 0;
+  tt_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -420,6 +423,9 @@ Response* Response::New() const {
 }
 
 void Response::Clear() {
+  if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
+    tt_ = 0;
+  }
   r_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -449,6 +455,22 @@ bool Response::MergePartialFromCodedStream(
           goto handle_uninterpreted;
         }
         if (input->ExpectTag(9)) goto parse_r;
+        if (input->ExpectTag(17)) goto parse_tt;
+        break;
+      }
+      
+      // optional double tt = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_tt:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &tt_)));
+          _set_bit(1);
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -477,6 +499,11 @@ void Response::SerializeWithCachedSizes(
       1, this->r(i), output);
   }
   
+  // optional double tt = 2;
+  if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->tt(), output);
+  }
+  
   if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
@@ -491,6 +518,11 @@ void Response::SerializeWithCachedSizes(
       WriteDoubleToArray(1, this->r(i), target);
   }
   
+  // optional double tt = 2;
+  if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->tt(), target);
+  }
+  
   if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
@@ -501,6 +533,13 @@ void Response::SerializeWithCachedSizes(
 int Response::ByteSize() const {
   int total_size = 0;
   
+  if (_has_bits_[1 / 32] & (0xffu << (1 % 32))) {
+    // optional double tt = 2;
+    if (has_tt()) {
+      total_size += 1 + 8;
+    }
+    
+  }
   // repeated double r = 1;
   {
     int data_size = 0;
@@ -534,6 +573,11 @@ void Response::MergeFrom(const ::google::protobuf::Message& from) {
 void Response::MergeFrom(const Response& from) {
   GOOGLE_CHECK_NE(&from, this);
   r_.MergeFrom(from.r_);
+  if (from._has_bits_[1 / 32] & (0xffu << (1 % 32))) {
+    if (from._has_bit(1)) {
+      set_tt(from.tt());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -557,6 +601,7 @@ bool Response::IsInitialized() const {
 void Response::Swap(Response* other) {
   if (other != this) {
     r_.Swap(&other->r_);
+    std::swap(tt_, other->tt_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
