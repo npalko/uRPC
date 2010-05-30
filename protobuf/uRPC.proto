@@ -46,3 +46,16 @@ message ServerList {
   }
   repeated Server server = 1;
 }
+
+message KeyValueSeries {
+  message KeyValue {
+    enum valueType {
+      STRING = 1;
+      DOUBLE = 2;
+      INT32 = 3;
+    }
+    optional string key = 1;
+    optional bytes value = 2;
+  }
+  repeated KeyValue keyValue = 1;
+}
