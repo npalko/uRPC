@@ -2,7 +2,7 @@
 #define URPC_CLIENT_HPP
 
 #include <cstdio>
-#include <iostream>
+#include <string>
 #include <boost/shared_ptr.hpp>
 
 #include "Log.pb.h"
@@ -18,14 +18,11 @@ namespace urpc {
 class Client {
   public:
     Client ();
-    void connect ();
-    // pg 89 - slicing problem? will this need to be a templated function?
     void sendRequest (const std::string &, int, const google::protobuf::Message &);
-    bool getResponse (google::protobuf::Message &);
-    void close ();
+    void getResponse (google::protobuf::Message &);
   private:
-    zmq::socket_t *socket;
-    //shared_ptr<zmq::socket_t> socket;
+    boost::shared_ptr<zmq::context_t> context;
+    boost::shared_ptr<zmq::socket_t> socket;
 };
 
 
