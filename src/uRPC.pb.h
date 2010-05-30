@@ -35,9 +35,32 @@ void protobuf_ShutdownFile_uRPC_2eproto();
 
 class Request;
 class Response;
+class Subscribe;
 class ServerList;
 class ServerList_Server;
+class KeyValueSeries;
+class KeyValueSeries_KeyValue;
 
+enum KeyValueSeries_KeyValue_valueType {
+  KeyValueSeries_KeyValue_valueType_STRING = 1,
+  KeyValueSeries_KeyValue_valueType_DOUBLE = 2,
+  KeyValueSeries_KeyValue_valueType_INT32 = 3
+};
+bool KeyValueSeries_KeyValue_valueType_IsValid(int value);
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MIN = KeyValueSeries_KeyValue_valueType_STRING;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MAX = KeyValueSeries_KeyValue_valueType_INT32;
+const int KeyValueSeries_KeyValue_valueType_valueType_ARRAYSIZE = KeyValueSeries_KeyValue_valueType_valueType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* KeyValueSeries_KeyValue_valueType_descriptor();
+inline const ::std::string& KeyValueSeries_KeyValue_valueType_Name(KeyValueSeries_KeyValue_valueType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    KeyValueSeries_KeyValue_valueType_descriptor(), value);
+}
+inline bool KeyValueSeries_KeyValue_valueType_Parse(
+    const ::std::string& name, KeyValueSeries_KeyValue_valueType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<KeyValueSeries_KeyValue_valueType>(
+    KeyValueSeries_KeyValue_valueType_descriptor(), name, value);
+}
 // ===================================================================
 
 class Request : public ::google::protobuf::Message {
@@ -267,6 +290,95 @@ class Response : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
+class Subscribe : public ::google::protobuf::Message {
+ public:
+  Subscribe();
+  virtual ~Subscribe();
+  
+  Subscribe(const Subscribe& from);
+  
+  inline Subscribe& operator=(const Subscribe& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Subscribe& default_instance();
+  
+  void Swap(Subscribe* other);
+  
+  // implements Message ----------------------------------------------
+  
+  Subscribe* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Subscribe& from);
+  void MergeFrom(const Subscribe& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // optional int32 version = 1;
+  inline bool has_version() const;
+  inline void clear_version();
+  static const int kVersionFieldNumber = 1;
+  inline ::google::protobuf::int32 version() const;
+  inline void set_version(::google::protobuf::int32 value);
+  
+  // @@protoc_insertion_point(class_scope:urpc.Subscribe)
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::int32 version_;
+  friend void  protobuf_AddDesc_uRPC_2eproto();
+  friend void protobuf_AssignDesc_uRPC_2eproto();
+  friend void protobuf_ShutdownFile_uRPC_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static Subscribe* default_instance_;
+};
+// -------------------------------------------------------------------
+
 class ServerList_Server : public ::google::protobuf::Message {
  public:
   ServerList_Server();
@@ -470,6 +582,232 @@ class ServerList : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static ServerList* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class KeyValueSeries_KeyValue : public ::google::protobuf::Message {
+ public:
+  KeyValueSeries_KeyValue();
+  virtual ~KeyValueSeries_KeyValue();
+  
+  KeyValueSeries_KeyValue(const KeyValueSeries_KeyValue& from);
+  
+  inline KeyValueSeries_KeyValue& operator=(const KeyValueSeries_KeyValue& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const KeyValueSeries_KeyValue& default_instance();
+  
+  void Swap(KeyValueSeries_KeyValue* other);
+  
+  // implements Message ----------------------------------------------
+  
+  KeyValueSeries_KeyValue* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const KeyValueSeries_KeyValue& from);
+  void MergeFrom(const KeyValueSeries_KeyValue& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  typedef KeyValueSeries_KeyValue_valueType valueType;
+  static const valueType STRING = KeyValueSeries_KeyValue_valueType_STRING;
+  static const valueType DOUBLE = KeyValueSeries_KeyValue_valueType_DOUBLE;
+  static const valueType INT32 = KeyValueSeries_KeyValue_valueType_INT32;
+  static inline bool valueType_IsValid(int value) {
+    return KeyValueSeries_KeyValue_valueType_IsValid(value);
+  }
+  static const valueType valueType_MIN =
+    KeyValueSeries_KeyValue_valueType_valueType_MIN;
+  static const valueType valueType_MAX =
+    KeyValueSeries_KeyValue_valueType_valueType_MAX;
+  static const int valueType_ARRAYSIZE =
+    KeyValueSeries_KeyValue_valueType_valueType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  valueType_descriptor() {
+    return KeyValueSeries_KeyValue_valueType_descriptor();
+  }
+  static inline const ::std::string& valueType_Name(valueType value) {
+    return KeyValueSeries_KeyValue_valueType_Name(value);
+  }
+  static inline bool valueType_Parse(const ::std::string& name,
+      valueType* value) {
+    return KeyValueSeries_KeyValue_valueType_Parse(name, value);
+  }
+  
+  // accessors -------------------------------------------------------
+  
+  // optional string key = 1;
+  inline bool has_key() const;
+  inline void clear_key();
+  static const int kKeyFieldNumber = 1;
+  inline const ::std::string& key() const;
+  inline void set_key(const ::std::string& value);
+  inline void set_key(const char* value);
+  inline void set_key(const char* value, size_t size);
+  inline ::std::string* mutable_key();
+  
+  // optional bytes value = 2;
+  inline bool has_value() const;
+  inline void clear_value();
+  static const int kValueFieldNumber = 2;
+  inline const ::std::string& value() const;
+  inline void set_value(const ::std::string& value);
+  inline void set_value(const char* value);
+  inline void set_value(const void* value, size_t size);
+  inline ::std::string* mutable_value();
+  
+  // @@protoc_insertion_point(class_scope:urpc.KeyValueSeries.KeyValue)
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::std::string* key_;
+  static const ::std::string _default_key_;
+  ::std::string* value_;
+  static const ::std::string _default_value_;
+  friend void  protobuf_AddDesc_uRPC_2eproto();
+  friend void protobuf_AssignDesc_uRPC_2eproto();
+  friend void protobuf_ShutdownFile_uRPC_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static KeyValueSeries_KeyValue* default_instance_;
+};
+// -------------------------------------------------------------------
+
+class KeyValueSeries : public ::google::protobuf::Message {
+ public:
+  KeyValueSeries();
+  virtual ~KeyValueSeries();
+  
+  KeyValueSeries(const KeyValueSeries& from);
+  
+  inline KeyValueSeries& operator=(const KeyValueSeries& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const KeyValueSeries& default_instance();
+  
+  void Swap(KeyValueSeries* other);
+  
+  // implements Message ----------------------------------------------
+  
+  KeyValueSeries* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const KeyValueSeries& from);
+  void MergeFrom(const KeyValueSeries& from);
+  void Clear();
+  bool IsInitialized() const;
+  
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+  
+  ::google::protobuf::Metadata GetMetadata() const;
+  
+  // nested types ----------------------------------------------------
+  
+  typedef KeyValueSeries_KeyValue KeyValue;
+  
+  // accessors -------------------------------------------------------
+  
+  // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+  inline int keyvalue_size() const;
+  inline void clear_keyvalue();
+  static const int kKeyValueFieldNumber = 1;
+  inline const ::urpc::KeyValueSeries_KeyValue& keyvalue(int index) const;
+  inline ::urpc::KeyValueSeries_KeyValue* mutable_keyvalue(int index);
+  inline ::urpc::KeyValueSeries_KeyValue* add_keyvalue();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >&
+      keyvalue() const;
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >*
+      mutable_keyvalue();
+  
+  // @@protoc_insertion_point(class_scope:urpc.KeyValueSeries)
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue > keyvalue_;
+  friend void  protobuf_AddDesc_uRPC_2eproto();
+  friend void protobuf_AssignDesc_uRPC_2eproto();
+  friend void protobuf_ShutdownFile_uRPC_2eproto();
+  
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static KeyValueSeries* default_instance_;
+};
 // ===================================================================
 
 
@@ -666,6 +1004,26 @@ Response::mutable_log() {
 
 // -------------------------------------------------------------------
 
+// Subscribe
+
+// optional int32 version = 1;
+inline bool Subscribe::has_version() const {
+  return _has_bit(0);
+}
+inline void Subscribe::clear_version() {
+  version_ = 0;
+  _clear_bit(0);
+}
+inline ::google::protobuf::int32 Subscribe::version() const {
+  return version_;
+}
+inline void Subscribe::set_version(::google::protobuf::int32 value) {
+  _set_bit(0);
+  version_ = value;
+}
+
+// -------------------------------------------------------------------
+
 // ServerList_Server
 
 // optional string name = 1;
@@ -771,6 +1129,123 @@ ServerList::mutable_server() {
   return &server_;
 }
 
+// -------------------------------------------------------------------
+
+// KeyValueSeries_KeyValue
+
+// optional string key = 1;
+inline bool KeyValueSeries_KeyValue::has_key() const {
+  return _has_bit(0);
+}
+inline void KeyValueSeries_KeyValue::clear_key() {
+  if (key_ != &_default_key_) {
+    key_->clear();
+  }
+  _clear_bit(0);
+}
+inline const ::std::string& KeyValueSeries_KeyValue::key() const {
+  return *key_;
+}
+inline void KeyValueSeries_KeyValue::set_key(const ::std::string& value) {
+  _set_bit(0);
+  if (key_ == &_default_key_) {
+    key_ = new ::std::string;
+  }
+  key_->assign(value);
+}
+inline void KeyValueSeries_KeyValue::set_key(const char* value) {
+  _set_bit(0);
+  if (key_ == &_default_key_) {
+    key_ = new ::std::string;
+  }
+  key_->assign(value);
+}
+inline void KeyValueSeries_KeyValue::set_key(const char* value, size_t size) {
+  _set_bit(0);
+  if (key_ == &_default_key_) {
+    key_ = new ::std::string;
+  }
+  key_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* KeyValueSeries_KeyValue::mutable_key() {
+  _set_bit(0);
+  if (key_ == &_default_key_) {
+    key_ = new ::std::string;
+  }
+  return key_;
+}
+
+// optional bytes value = 2;
+inline bool KeyValueSeries_KeyValue::has_value() const {
+  return _has_bit(1);
+}
+inline void KeyValueSeries_KeyValue::clear_value() {
+  if (value_ != &_default_value_) {
+    value_->clear();
+  }
+  _clear_bit(1);
+}
+inline const ::std::string& KeyValueSeries_KeyValue::value() const {
+  return *value_;
+}
+inline void KeyValueSeries_KeyValue::set_value(const ::std::string& value) {
+  _set_bit(1);
+  if (value_ == &_default_value_) {
+    value_ = new ::std::string;
+  }
+  value_->assign(value);
+}
+inline void KeyValueSeries_KeyValue::set_value(const char* value) {
+  _set_bit(1);
+  if (value_ == &_default_value_) {
+    value_ = new ::std::string;
+  }
+  value_->assign(value);
+}
+inline void KeyValueSeries_KeyValue::set_value(const void* value, size_t size) {
+  _set_bit(1);
+  if (value_ == &_default_value_) {
+    value_ = new ::std::string;
+  }
+  value_->assign(reinterpret_cast<const char*>(value), size);
+}
+inline ::std::string* KeyValueSeries_KeyValue::mutable_value() {
+  _set_bit(1);
+  if (value_ == &_default_value_) {
+    value_ = new ::std::string;
+  }
+  return value_;
+}
+
+// -------------------------------------------------------------------
+
+// KeyValueSeries
+
+// repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+inline int KeyValueSeries::keyvalue_size() const {
+  return keyvalue_.size();
+}
+inline void KeyValueSeries::clear_keyvalue() {
+  keyvalue_.Clear();
+}
+inline const ::urpc::KeyValueSeries_KeyValue& KeyValueSeries::keyvalue(int index) const {
+  return keyvalue_.Get(index);
+}
+inline ::urpc::KeyValueSeries_KeyValue* KeyValueSeries::mutable_keyvalue(int index) {
+  return keyvalue_.Mutable(index);
+}
+inline ::urpc::KeyValueSeries_KeyValue* KeyValueSeries::add_keyvalue() {
+  return keyvalue_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >&
+KeyValueSeries::keyvalue() const {
+  return keyvalue_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >*
+KeyValueSeries::mutable_keyvalue() {
+  return &keyvalue_;
+}
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -780,6 +1255,10 @@ ServerList::mutable_server() {
 namespace google {
 namespace protobuf {
 
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::urpc::KeyValueSeries_KeyValue_valueType>() {
+  return ::urpc::KeyValueSeries_KeyValue_valueType_descriptor();
+}
 
 }  // namespace google
 }  // namespace protobuf
