@@ -12,10 +12,10 @@
 #include <vector>
 
 
-std::vector<std::string> getdns()
+std::vector<urpc::dns::Server> getDNSServer()
 {
   std::ofstream resolv;
-  std::vector <std::string> server;
+  std::vector <urpce::dns::Server> server;
   
   resolv.open("/etc/resolv.conf");
   

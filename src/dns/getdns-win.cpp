@@ -9,7 +9,10 @@
 #include <string>
 #include <vector>
 
-std::vector<std::string> getdns()
+namespace urpc {
+namespace dns {
+
+void getDNSServer(std::vector<std::string> &server)
 {
   FIXED_INFO *pFixedInfo;
   ULONG ulOutBufLen;
@@ -26,7 +29,6 @@ std::vector<std::string> getdns()
   pFixedInfo = (FIXED_INFO *) malloc(ulOutBufLen);
   GetNetworkParams(pFixedInfo, &ulOutBufLen);
 
-  std::vector<std::string> server;
   server.push_back(pFixedInfo->DnsServerList.IpAddress.String);  
   pIPAddr = pFixedInfo->DnsServerList.Next;
   while (pIPAddr) 
@@ -35,10 +37,8 @@ std::vector<std::string> getdns()
     pIPAddr = pIPAddr->Next;
   }
   free(pFixedInfo);
+}
 
-  //std::vector<std::string>::iterator it = server.begin();
-  //for(; it != server.end(); ++it)
-  //  std::cout << *it << std::endl;
 
-  return server;
+}
 }

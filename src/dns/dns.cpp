@@ -3,24 +3,24 @@
 
 #include <string>
 #include <vector>
-#include <boost/asio.hpp>
+//#include <boost/asio.hpp>
 
 #include "dns.hpp"
 
-std::vector<std::string> getsrv()
-{
-  std::vector<std::string> srv = getdns()
+namespace urpc {
+namespace dns {
+
+void getServer(std::vector<std::string> &server) {
+
+  
+  urpc::dns::getDNSServer(server);
 
 
   //boost::asio::ip::udp::resolver resolver(io_service);
   //boost::asio::ip::udp::resolver::query query(argv[1], "dns");
 
 
-
-  return srv;
 }
 
-
-  
-  
-  
+}
+}
