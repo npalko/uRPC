@@ -13,6 +13,9 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
+namespace urpc {
+namespace pb {
+
 namespace {
 
 const ::google::protobuf::Descriptor* Decimal_descriptor_ = NULL;
@@ -75,9 +78,9 @@ void protobuf_AddDesc_Decimal_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\rDecimal.proto\"P\n\007Decimal\022\024\n\014mantissa_m"
-    "sb\030\001 \001(\004\022\024\n\014mantissa_lsb\030\002 \001(\r\022\031\n\021expone"
-    "nt_and_sign\030\003 \002(\021", 97);
+    "\n\rDecimal.proto\022\007urpc.pb\"P\n\007Decimal\022\024\n\014m"
+    "antissa_msb\030\001 \001(\004\022\024\n\014mantissa_lsb\030\002 \001(\r\022"
+    "\031\n\021exponent_and_sign\030\003 \002(\021", 106);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Decimal.proto", &protobuf_RegisterTypes);
   Decimal::default_instance_ = new Decimal();
@@ -382,5 +385,8 @@ void Decimal::Swap(Decimal* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace pb
+}  // namespace urpc
 
 // @@protoc_insertion_point(global_scope)

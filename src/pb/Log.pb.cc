@@ -13,6 +13,9 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
+namespace urpc {
+namespace pb {
+
 namespace {
 
 const ::google::protobuf::Descriptor* Log_descriptor_ = NULL;
@@ -77,10 +80,10 @@ void protobuf_AddDesc_Log_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tLog.proto\"}\n\003Log\022\017\n\007message\030\001 \001(\t\022\016\n\006n"
-    "umber\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\"G\n\005Level\022\t\n\005FA"
-    "TAL\020\000\022\t\n\005ERROR\020\001\022\010\n\004WARN\020\002\022\010\n\004INFO\020\003\022\t\n\005"
-    "DEBUG\020\004\022\t\n\005TRACE\020\005", 138);
+    "\n\tLog.proto\022\007urpc.pb\"}\n\003Log\022\017\n\007message\030\001"
+    " \001(\t\022\016\n\006number\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\"G\n\005Le"
+    "vel\022\t\n\005FATAL\020\000\022\t\n\005ERROR\020\001\022\010\n\004WARN\020\002\022\010\n\004I"
+    "NFO\020\003\022\t\n\005DEBUG\020\004\022\t\n\005TRACE\020\005", 147);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Log.proto", &protobuf_RegisterTypes);
   Log::default_instance_ = new Log();
@@ -431,5 +434,8 @@ void Log::Swap(Log* other) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace pb
+}  // namespace urpc
 
 // @@protoc_insertion_point(global_scope)

@@ -25,6 +25,9 @@
 #include <google/protobuf/generated_message_reflection.h>
 // @@protoc_insertion_point(includes)
 
+namespace urpc {
+namespace pb {
+
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_Log_2eproto();
 void protobuf_AssignDesc_Log_2eproto();
@@ -163,7 +166,7 @@ class Log : public ::google::protobuf::Message {
   inline ::google::protobuf::int64 time() const;
   inline void set_time(::google::protobuf::int64 value);
   
-  // @@protoc_insertion_point(class_scope:Log)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Log)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -276,13 +279,16 @@ inline void Log::set_time(::google::protobuf::int64 value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace pb
+}  // namespace urpc
+
 #ifndef SWIG
 namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::Log_Level>() {
-  return ::Log_Level_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::urpc::pb::Log_Level>() {
+  return ::urpc::pb::Log_Level_descriptor();
 }
 
 }  // namespace google

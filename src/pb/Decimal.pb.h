@@ -25,6 +25,9 @@
 #include <google/protobuf/generated_message_reflection.h>
 // @@protoc_insertion_point(includes)
 
+namespace urpc {
+namespace pb {
+
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_Decimal_2eproto();
 void protobuf_AssignDesc_Decimal_2eproto();
@@ -109,7 +112,7 @@ class Decimal : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 exponent_and_sign() const;
   inline void set_exponent_and_sign(::google::protobuf::int32 value);
   
-  // @@protoc_insertion_point(class_scope:Decimal)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Decimal)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -194,6 +197,9 @@ inline void Decimal::set_exponent_and_sign(::google::protobuf::int32 value) {
 
 
 // @@protoc_insertion_point(namespace_scope)
+
+}  // namespace pb
+}  // namespace urpc
 
 #ifndef SWIG
 namespace google {

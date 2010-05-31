@@ -14,6 +14,7 @@
 // @@protoc_insertion_point(includes)
 
 namespace urpc {
+namespace pb {
 
 namespace {
 
@@ -215,20 +216,20 @@ void protobuf_AddDesc_uRPC_2eproto() {
   already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  ::protobuf_AddDesc_Log_2eproto();
+  ::urpc::pb::protobuf_AddDesc_Log_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\nuRPC.proto\022\004urpc\032\tLog.proto\"<\n\007Request"
-    "\022\017\n\007service\030\001 \001(\t\022\017\n\007version\030\002 \001(\005\022\017\n\007me"
-    "ssage\030\003 \001(\014\"=\n\010Response\022\r\n\005error\030\001 \001(\010\022\017"
-    "\n\007message\030\002 \001(\014\022\021\n\003log\030\003 \003(\0132\004.Log\"\034\n\tSu"
-    "bscribe\022\017\n\007version\030\001 \001(\005\"m\n\nServerList\022\'"
-    "\n\006server\030\001 \003(\0132\027.urpc.ServerList.Server\032"
-    "6\n\006Server\022\014\n\004name\030\001 \001(\t\022\014\n\004port\030\002 \001(\005\022\020\n"
-    "\010priority\030\003 \001(\005\"\231\001\n\016KeyValueSeries\022/\n\010ke"
-    "yValue\030\001 \003(\0132\035.urpc.KeyValueSeries.KeyVa"
-    "lue\032V\n\010KeyValue\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
-    "\001(\014\".\n\tvalueType\022\n\n\006STRING\020\001\022\n\n\006DOUBLE\020\002"
-    "\022\t\n\005INT32\020\003", 451);
+    "\n\nuRPC.proto\022\007urpc.pb\032\tLog.proto\"<\n\007Requ"
+    "est\022\017\n\007service\030\001 \001(\t\022\017\n\007version\030\002 \001(\005\022\017\n"
+    "\007message\030\003 \001(\014\"E\n\010Response\022\r\n\005error\030\001 \001("
+    "\010\022\017\n\007message\030\002 \001(\014\022\031\n\003log\030\003 \003(\0132\014.urpc.p"
+    "b.Log\"\034\n\tSubscribe\022\017\n\007version\030\001 \001(\005\"p\n\nS"
+    "erverList\022*\n\006server\030\001 \003(\0132\032.urpc.pb.Serv"
+    "erList.Server\0326\n\006Server\022\014\n\004name\030\001 \001(\t\022\014\n"
+    "\004port\030\002 \001(\005\022\020\n\010priority\030\003 \001(\005\"\234\001\n\016KeyVal"
+    "ueSeries\0222\n\010keyValue\030\001 \003(\0132 .urpc.pb.Key"
+    "ValueSeries.KeyValue\032V\n\010KeyValue\022\013\n\003key\030"
+    "\001 \001(\t\022\r\n\005value\030\002 \001(\014\".\n\tvalueType\022\n\n\006STR"
+    "ING\020\001\022\n\n\006DOUBLE\020\002\022\t\n\005INT32\020\003", 468);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "uRPC.proto", &protobuf_RegisterTypes);
   Request::default_instance_ = new Request();
@@ -681,7 +682,7 @@ bool Response::MergePartialFromCodedStream(
         break;
       }
       
-      // repeated .Log log = 3;
+      // repeated .urpc.pb.Log log = 3;
       case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -725,7 +726,7 @@ void Response::SerializeWithCachedSizes(
       2, this->message(), output);
   }
   
-  // repeated .Log log = 3;
+  // repeated .urpc.pb.Log log = 3;
   for (int i = 0; i < this->log_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       3, this->log(i), output);
@@ -751,7 +752,7 @@ void Response::SerializeWithCachedSizes(
         2, this->message(), target);
   }
   
-  // repeated .Log log = 3;
+  // repeated .urpc.pb.Log log = 3;
   for (int i = 0; i < this->log_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -782,7 +783,7 @@ int Response::ByteSize() const {
     }
     
   }
-  // repeated .Log log = 3;
+  // repeated .urpc.pb.Log log = 3;
   total_size += 1 * this->log_size();
   for (int i = 0; i < this->log_size(); i++) {
     total_size +=
@@ -1442,7 +1443,7 @@ bool ServerList::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .urpc.ServerList.Server server = 1;
+      // repeated .urpc.pb.ServerList.Server server = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1475,7 +1476,7 @@ bool ServerList::MergePartialFromCodedStream(
 
 void ServerList::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .urpc.ServerList.Server server = 1;
+  // repeated .urpc.pb.ServerList.Server server = 1;
   for (int i = 0; i < this->server_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->server(i), output);
@@ -1489,7 +1490,7 @@ void ServerList::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* ServerList::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .urpc.ServerList.Server server = 1;
+  // repeated .urpc.pb.ServerList.Server server = 1;
   for (int i = 0; i < this->server_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -1506,7 +1507,7 @@ void ServerList::SerializeWithCachedSizes(
 int ServerList::ByteSize() const {
   int total_size = 0;
   
-  // repeated .urpc.ServerList.Server server = 1;
+  // repeated .urpc.pb.ServerList.Server server = 1;
   total_size += 1 * this->server_size();
   for (int i = 0; i < this->server_size(); i++) {
     total_size +=
@@ -1941,7 +1942,7 @@ bool KeyValueSeries::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+      // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -1974,7 +1975,7 @@ bool KeyValueSeries::MergePartialFromCodedStream(
 
 void KeyValueSeries::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
   for (int i = 0; i < this->keyvalue_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->keyvalue(i), output);
@@ -1988,7 +1989,7 @@ void KeyValueSeries::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* KeyValueSeries::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
   for (int i = 0; i < this->keyvalue_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -2005,7 +2006,7 @@ void KeyValueSeries::SerializeWithCachedSizes(
 int KeyValueSeries::ByteSize() const {
   int total_size = 0;
   
-  // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
   total_size += 1 * this->keyvalue_size();
   for (int i = 0; i < this->keyvalue_size(); i++) {
     total_size +=
@@ -2079,6 +2080,7 @@ void KeyValueSeries::Swap(KeyValueSeries* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace pb
 }  // namespace urpc
 
 // @@protoc_insertion_point(global_scope)

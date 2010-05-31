@@ -27,6 +27,7 @@
 // @@protoc_insertion_point(includes)
 
 namespace urpc {
+namespace pb {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_uRPC_2eproto();
@@ -144,7 +145,7 @@ class Request : public ::google::protobuf::Message {
   inline void set_message(const void* value, size_t size);
   inline ::std::string* mutable_message();
   
-  // @@protoc_insertion_point(class_scope:urpc.Request)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Request)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -247,19 +248,19 @@ class Response : public ::google::protobuf::Message {
   inline void set_message(const void* value, size_t size);
   inline ::std::string* mutable_message();
   
-  // repeated .Log log = 3;
+  // repeated .urpc.pb.Log log = 3;
   inline int log_size() const;
   inline void clear_log();
   static const int kLogFieldNumber = 3;
-  inline const ::Log& log(int index) const;
-  inline ::Log* mutable_log(int index);
-  inline ::Log* add_log();
-  inline const ::google::protobuf::RepeatedPtrField< ::Log >&
+  inline const ::urpc::pb::Log& log(int index) const;
+  inline ::urpc::pb::Log* mutable_log(int index);
+  inline ::urpc::pb::Log* add_log();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >&
       log() const;
-  inline ::google::protobuf::RepeatedPtrField< ::Log >*
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
       mutable_log();
   
-  // @@protoc_insertion_point(class_scope:urpc.Response)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Response)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -267,7 +268,7 @@ class Response : public ::google::protobuf::Message {
   bool error_;
   ::std::string* message_;
   static const ::std::string _default_message_;
-  ::google::protobuf::RepeatedPtrField< ::Log > log_;
+  ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log > log_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
@@ -351,7 +352,7 @@ class Subscribe : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 version() const;
   inline void set_version(::google::protobuf::int32 value);
   
-  // @@protoc_insertion_point(class_scope:urpc.Subscribe)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Subscribe)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -457,7 +458,7 @@ class ServerList_Server : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 priority() const;
   inline void set_priority(::google::protobuf::int32 value);
   
-  // @@protoc_insertion_point(class_scope:urpc.ServerList.Server)
+  // @@protoc_insertion_point(class_scope:urpc.pb.ServerList.Server)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -544,24 +545,24 @@ class ServerList : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .urpc.ServerList.Server server = 1;
+  // repeated .urpc.pb.ServerList.Server server = 1;
   inline int server_size() const;
   inline void clear_server();
   static const int kServerFieldNumber = 1;
-  inline const ::urpc::ServerList_Server& server(int index) const;
-  inline ::urpc::ServerList_Server* mutable_server(int index);
-  inline ::urpc::ServerList_Server* add_server();
-  inline const ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >&
+  inline const ::urpc::pb::ServerList_Server& server(int index) const;
+  inline ::urpc::pb::ServerList_Server* mutable_server(int index);
+  inline ::urpc::pb::ServerList_Server* add_server();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::ServerList_Server >&
       server() const;
-  inline ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >*
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::ServerList_Server >*
       mutable_server();
   
-  // @@protoc_insertion_point(class_scope:urpc.ServerList)
+  // @@protoc_insertion_point(class_scope:urpc.pb.ServerList)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server > server_;
+  ::google::protobuf::RepeatedPtrField< ::urpc::pb::ServerList_Server > server_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
@@ -683,7 +684,7 @@ class KeyValueSeries_KeyValue : public ::google::protobuf::Message {
   inline void set_value(const void* value, size_t size);
   inline ::std::string* mutable_value();
   
-  // @@protoc_insertion_point(class_scope:urpc.KeyValueSeries.KeyValue)
+  // @@protoc_insertion_point(class_scope:urpc.pb.KeyValueSeries.KeyValue)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -770,24 +771,24 @@ class KeyValueSeries : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
   inline int keyvalue_size() const;
   inline void clear_keyvalue();
   static const int kKeyValueFieldNumber = 1;
-  inline const ::urpc::KeyValueSeries_KeyValue& keyvalue(int index) const;
-  inline ::urpc::KeyValueSeries_KeyValue* mutable_keyvalue(int index);
-  inline ::urpc::KeyValueSeries_KeyValue* add_keyvalue();
-  inline const ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >&
+  inline const ::urpc::pb::KeyValueSeries_KeyValue& keyvalue(int index) const;
+  inline ::urpc::pb::KeyValueSeries_KeyValue* mutable_keyvalue(int index);
+  inline ::urpc::pb::KeyValueSeries_KeyValue* add_keyvalue();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::KeyValueSeries_KeyValue >&
       keyvalue() const;
-  inline ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >*
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::KeyValueSeries_KeyValue >*
       mutable_keyvalue();
   
-  // @@protoc_insertion_point(class_scope:urpc.KeyValueSeries)
+  // @@protoc_insertion_point(class_scope:urpc.pb.KeyValueSeries)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue > keyvalue_;
+  ::google::protobuf::RepeatedPtrField< ::urpc::pb::KeyValueSeries_KeyValue > keyvalue_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
@@ -977,27 +978,27 @@ inline ::std::string* Response::mutable_message() {
   return message_;
 }
 
-// repeated .Log log = 3;
+// repeated .urpc.pb.Log log = 3;
 inline int Response::log_size() const {
   return log_.size();
 }
 inline void Response::clear_log() {
   log_.Clear();
 }
-inline const ::Log& Response::log(int index) const {
+inline const ::urpc::pb::Log& Response::log(int index) const {
   return log_.Get(index);
 }
-inline ::Log* Response::mutable_log(int index) {
+inline ::urpc::pb::Log* Response::mutable_log(int index) {
   return log_.Mutable(index);
 }
-inline ::Log* Response::add_log() {
+inline ::urpc::pb::Log* Response::add_log() {
   return log_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::Log >&
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >&
 Response::log() const {
   return log_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::Log >*
+inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
 Response::mutable_log() {
   return &log_;
 }
@@ -1104,27 +1105,27 @@ inline void ServerList_Server::set_priority(::google::protobuf::int32 value) {
 
 // ServerList
 
-// repeated .urpc.ServerList.Server server = 1;
+// repeated .urpc.pb.ServerList.Server server = 1;
 inline int ServerList::server_size() const {
   return server_.size();
 }
 inline void ServerList::clear_server() {
   server_.Clear();
 }
-inline const ::urpc::ServerList_Server& ServerList::server(int index) const {
+inline const ::urpc::pb::ServerList_Server& ServerList::server(int index) const {
   return server_.Get(index);
 }
-inline ::urpc::ServerList_Server* ServerList::mutable_server(int index) {
+inline ::urpc::pb::ServerList_Server* ServerList::mutable_server(int index) {
   return server_.Mutable(index);
 }
-inline ::urpc::ServerList_Server* ServerList::add_server() {
+inline ::urpc::pb::ServerList_Server* ServerList::add_server() {
   return server_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >&
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::ServerList_Server >&
 ServerList::server() const {
   return server_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::urpc::ServerList_Server >*
+inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::ServerList_Server >*
 ServerList::mutable_server() {
   return &server_;
 }
@@ -1221,27 +1222,27 @@ inline ::std::string* KeyValueSeries_KeyValue::mutable_value() {
 
 // KeyValueSeries
 
-// repeated .urpc.KeyValueSeries.KeyValue keyValue = 1;
+// repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
 inline int KeyValueSeries::keyvalue_size() const {
   return keyvalue_.size();
 }
 inline void KeyValueSeries::clear_keyvalue() {
   keyvalue_.Clear();
 }
-inline const ::urpc::KeyValueSeries_KeyValue& KeyValueSeries::keyvalue(int index) const {
+inline const ::urpc::pb::KeyValueSeries_KeyValue& KeyValueSeries::keyvalue(int index) const {
   return keyvalue_.Get(index);
 }
-inline ::urpc::KeyValueSeries_KeyValue* KeyValueSeries::mutable_keyvalue(int index) {
+inline ::urpc::pb::KeyValueSeries_KeyValue* KeyValueSeries::mutable_keyvalue(int index) {
   return keyvalue_.Mutable(index);
 }
-inline ::urpc::KeyValueSeries_KeyValue* KeyValueSeries::add_keyvalue() {
+inline ::urpc::pb::KeyValueSeries_KeyValue* KeyValueSeries::add_keyvalue() {
   return keyvalue_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >&
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::KeyValueSeries_KeyValue >&
 KeyValueSeries::keyvalue() const {
   return keyvalue_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::urpc::KeyValueSeries_KeyValue >*
+inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::KeyValueSeries_KeyValue >*
 KeyValueSeries::mutable_keyvalue() {
   return &keyvalue_;
 }
@@ -1249,6 +1250,7 @@ KeyValueSeries::mutable_keyvalue() {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace pb
 }  // namespace urpc
 
 #ifndef SWIG
@@ -1256,8 +1258,8 @@ namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::urpc::KeyValueSeries_KeyValue_valueType>() {
-  return ::urpc::KeyValueSeries_KeyValue_valueType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::urpc::pb::KeyValueSeries_KeyValue_valueType>() {
+  return ::urpc::pb::KeyValueSeries_KeyValue_valueType_descriptor();
 }
 
 }  // namespace google
