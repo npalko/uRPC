@@ -1,5 +1,5 @@
 #!/bin/bash
-protoc --cpp_out=src --python_out=python/urpc --proto_path=protobuf protobuf/*.proto
+protoc --cpp_out=src/pb --python_out=python/urpc --proto_path=protobuf protobuf/*.proto
 protoc --cpp_out=examples/cpp --python_out=examples/python --proto_path=examples/protobuf examples/protobuf/*.proto
 cd build && cmake .. \
   -DCMAKE_MODULE_PATH="C:/Users/Nicholas Palko/Documents/Development/cmake-modules" \
