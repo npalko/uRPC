@@ -9,7 +9,9 @@ add_dependencies(cmdclient client)
 target_link_libraries (cmdclient client)
 
 # MATLAB plugin client
-file (GLOB matlabclientSource matlabclient.* randexample.*)
-add_library (matlabclient SHARED ${matlabclientSource})
-add_dependencies(matlabclient client)
-target_link_libraries (matlabclient client libmx libmex libmat)
+if (BUILD_MATLAB)
+  file (GLOB matlabclientSource matlabclient.* randexample.*)
+  add_library (matlabclient SHARED ${matlabclientSource})
+  add_dependencies(matlabclient client)
+  target_link_libraries (matlabclient client libmx libmex libmat)
+endif (BUILD_MATLAB)

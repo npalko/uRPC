@@ -5,6 +5,8 @@
 cmake_minimum_required (VERSION 2.8)
 project (uRPC)
 
+option (BUILD_MATLAB "Build the MATLAB C++ client plugin" ON) 
+
 set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTITHREADED ON)
 find_package (Boost REQUIRED) #memory
@@ -34,12 +36,15 @@ add_library (libzmq${CMAKE_SHARED_LIBRARY_SUFFIX} SHARED IMPORTED)
 set (EXTRA_LIBS ${EXTRA_LIBS} libzmq)
 
 # Matlab
-include_directories (${MATLAB_INCLUDE_DIR})
-link_directories (${MATLAB_LIBRARY})
+if (BUILD_MATLAB)
+  include_directories (${MATLAB_INCLUDE_DIR})
+  link_directories (${MATLAB_LIBRARY})
+endif (BUILD_MATLAB)
 
 
 # INTERNAL 
 include_directories (src)
+
 
 # DNS 
 add_subdirectory (src/dns)
@@ -52,7 +57,9 @@ endif (WIN32)
 add_subdirectory (src/kerberos)
 set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
 
-
+# LDAP
+#add_subdirectory (src/ldap)
+#set (EXTRA_LIBS ${EXTRA_LIBS} ldap)
 
 add_subdirectory (src)
 
