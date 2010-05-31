@@ -12,7 +12,7 @@
 namespace urpc {
 namespace dns {
 
-void getDNSServer(std::vector<std::string> &server)
+void getServer(std::vector<std::string> &server)
 {
   FIXED_INFO *pFixedInfo;
   ULONG ulOutBufLen;
