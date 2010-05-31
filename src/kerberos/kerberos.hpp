@@ -13,3 +13,18 @@
     //    session ticket expires
     
     
+    
+#ifndef URPC_KERBEROS_HPP
+#define URPC_KERBEROS_HPP
+
+namespace urpc {
+namespace kerberos {
+
+void clientServiceRequest();
+
+
+}
+}
+
+
+#endif // URPC_KERBEROS_HPP
