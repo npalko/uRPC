@@ -9,14 +9,14 @@ from google.protobuf import descriptor_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='Log.proto',
-  package='',
-  serialized_pb='\n\tLog.proto\"}\n\x03Log\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06number\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\x03\"G\n\x05Level\x12\t\n\x05\x46\x41TAL\x10\x00\x12\t\n\x05\x45RROR\x10\x01\x12\x08\n\x04WARN\x10\x02\x12\x08\n\x04INFO\x10\x03\x12\t\n\x05\x44\x45\x42UG\x10\x04\x12\t\n\x05TRACE\x10\x05')
+  package='urpc.pb',
+  serialized_pb='\n\tLog.proto\x12\x07urpc.pb\"}\n\x03Log\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06number\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\x03\"G\n\x05Level\x12\t\n\x05\x46\x41TAL\x10\x00\x12\t\n\x05\x45RROR\x10\x01\x12\x08\n\x04WARN\x10\x02\x12\x08\n\x04INFO\x10\x03\x12\t\n\x05\x44\x45\x42UG\x10\x04\x12\t\n\x05TRACE\x10\x05')
 
 
 
 _LOG_LEVEL = descriptor.EnumDescriptor(
   name='Level',
-  full_name='Log.Level',
+  full_name='urpc.pb.Log.Level',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -47,34 +47,34 @@ _LOG_LEVEL = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=67,
-  serialized_end=138,
+  serialized_start=76,
+  serialized_end=147,
 )
 
 
 _LOG = descriptor.Descriptor(
   name='Log',
-  full_name='Log',
+  full_name='urpc.pb.Log',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='message', full_name='Log.message', index=0,
+      name='message', full_name='urpc.pb.Log.message', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='number', full_name='Log.number', index=1,
+      name='number', full_name='urpc.pb.Log.number', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='time', full_name='Log.time', index=2,
+      name='time', full_name='urpc.pb.Log.time', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -90,8 +90,8 @@ _LOG = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=13,
-  serialized_end=138,
+  serialized_start=22,
+  serialized_end=147,
 )
 
 
@@ -101,6 +101,6 @@ class Log(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _LOG
   
-  # @@protoc_insertion_point(class_scope:Log)
+  # @@protoc_insertion_point(class_scope:urpc.pb.Log)
 
 # @@protoc_insertion_point(module_scope)

@@ -9,14 +9,14 @@ from google.protobuf import descriptor_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='uRPC.proto',
-  package='urpc',
-  serialized_pb='\n\nuRPC.proto\x12\x04urpc\x1a\tLog.proto\"<\n\x07Request\x12\x0f\n\x07service\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x0f\n\x07message\x18\x03 \x01(\x0c\"=\n\x08Response\x12\r\n\x05\x65rror\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\x0c\x12\x11\n\x03log\x18\x03 \x03(\x0b\x32\x04.Log\"\x1c\n\tSubscribe\x12\x0f\n\x07version\x18\x01 \x01(\x05\"m\n\nServerList\x12\'\n\x06server\x18\x01 \x03(\x0b\x32\x17.urpc.ServerList.Server\x1a\x36\n\x06Server\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\x05\x12\x10\n\x08priority\x18\x03 \x01(\x05\"\x99\x01\n\x0eKeyValueSeries\x12/\n\x08keyValue\x18\x01 \x03(\x0b\x32\x1d.urpc.KeyValueSeries.KeyValue\x1aV\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c\".\n\tvalueType\x12\n\n\x06STRING\x10\x01\x12\n\n\x06\x44OUBLE\x10\x02\x12\t\n\x05INT32\x10\x03')
+  package='urpc.pb',
+  serialized_pb='\n\nuRPC.proto\x12\x07urpc.pb\x1a\tLog.proto\"<\n\x07Request\x12\x0f\n\x07service\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x0f\n\x07message\x18\x03 \x01(\x0c\"E\n\x08Response\x12\r\n\x05\x65rror\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\x0c\x12\x19\n\x03log\x18\x03 \x03(\x0b\x32\x0c.urpc.pb.Log\"\x1c\n\tSubscribe\x12\x0f\n\x07version\x18\x01 \x01(\x05\"p\n\nServerList\x12*\n\x06server\x18\x01 \x03(\x0b\x32\x1a.urpc.pb.ServerList.Server\x1a\x36\n\x06Server\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\x05\x12\x10\n\x08priority\x18\x03 \x01(\x05\"\x9c\x01\n\x0eKeyValueSeries\x12\x32\n\x08keyValue\x18\x01 \x03(\x0b\x32 .urpc.pb.KeyValueSeries.KeyValue\x1aV\n\x08KeyValue\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x0c\".\n\tvalueType\x12\n\n\x06STRING\x10\x01\x12\n\n\x06\x44OUBLE\x10\x02\x12\t\n\x05INT32\x10\x03')
 
 
 
 _KEYVALUESERIES_KEYVALUE_VALUETYPE = descriptor.EnumDescriptor(
   name='valueType',
-  full_name='urpc.KeyValueSeries.KeyValue.valueType',
+  full_name='urpc.pb.KeyValueSeries.KeyValue.valueType',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -35,34 +35,34 @@ _KEYVALUESERIES_KEYVALUE_VALUETYPE = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=405,
-  serialized_end=451,
+  serialized_start=422,
+  serialized_end=468,
 )
 
 
 _REQUEST = descriptor.Descriptor(
   name='Request',
-  full_name='urpc.Request',
+  full_name='urpc.pb.Request',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='service', full_name='urpc.Request.service', index=0,
+      name='service', full_name='urpc.pb.Request.service', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='version', full_name='urpc.Request.version', index=1,
+      name='version', full_name='urpc.pb.Request.version', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='message', full_name='urpc.Request.message', index=2,
+      name='message', full_name='urpc.pb.Request.message', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
@@ -77,34 +77,34 @@ _REQUEST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=31,
-  serialized_end=91,
+  serialized_start=34,
+  serialized_end=94,
 )
 
 
 _RESPONSE = descriptor.Descriptor(
   name='Response',
-  full_name='urpc.Response',
+  full_name='urpc.pb.Response',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='error', full_name='urpc.Response.error', index=0,
+      name='error', full_name='urpc.pb.Response.error', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='message', full_name='urpc.Response.message', index=1,
+      name='message', full_name='urpc.pb.Response.message', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='log', full_name='urpc.Response.log', index=2,
+      name='log', full_name='urpc.pb.Response.log', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -119,20 +119,20 @@ _RESPONSE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=93,
-  serialized_end=154,
+  serialized_start=96,
+  serialized_end=165,
 )
 
 
 _SUBSCRIBE = descriptor.Descriptor(
   name='Subscribe',
-  full_name='urpc.Subscribe',
+  full_name='urpc.pb.Subscribe',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='version', full_name='urpc.Subscribe.version', index=0,
+      name='version', full_name='urpc.pb.Subscribe.version', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -147,34 +147,34 @@ _SUBSCRIBE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=156,
-  serialized_end=184,
+  serialized_start=167,
+  serialized_end=195,
 )
 
 
 _SERVERLIST_SERVER = descriptor.Descriptor(
   name='Server',
-  full_name='urpc.ServerList.Server',
+  full_name='urpc.pb.ServerList.Server',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='name', full_name='urpc.ServerList.Server.name', index=0,
+      name='name', full_name='urpc.pb.ServerList.Server.name', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='port', full_name='urpc.ServerList.Server.port', index=1,
+      name='port', full_name='urpc.pb.ServerList.Server.port', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='priority', full_name='urpc.ServerList.Server.priority', index=2,
+      name='priority', full_name='urpc.pb.ServerList.Server.priority', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -189,19 +189,19 @@ _SERVERLIST_SERVER = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=241,
-  serialized_end=295,
+  serialized_start=255,
+  serialized_end=309,
 )
 
 _SERVERLIST = descriptor.Descriptor(
   name='ServerList',
-  full_name='urpc.ServerList',
+  full_name='urpc.pb.ServerList',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='server', full_name='urpc.ServerList.server', index=0,
+      name='server', full_name='urpc.pb.ServerList.server', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -216,27 +216,27 @@ _SERVERLIST = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=186,
-  serialized_end=295,
+  serialized_start=197,
+  serialized_end=309,
 )
 
 
 _KEYVALUESERIES_KEYVALUE = descriptor.Descriptor(
   name='KeyValue',
-  full_name='urpc.KeyValueSeries.KeyValue',
+  full_name='urpc.pb.KeyValueSeries.KeyValue',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='key', full_name='urpc.KeyValueSeries.KeyValue.key', index=0,
+      name='key', full_name='urpc.pb.KeyValueSeries.KeyValue.key', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='value', full_name='urpc.KeyValueSeries.KeyValue.value', index=1,
+      name='value', full_name='urpc.pb.KeyValueSeries.KeyValue.value', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
@@ -252,19 +252,19 @@ _KEYVALUESERIES_KEYVALUE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=365,
-  serialized_end=451,
+  serialized_start=382,
+  serialized_end=468,
 )
 
 _KEYVALUESERIES = descriptor.Descriptor(
   name='KeyValueSeries',
-  full_name='urpc.KeyValueSeries',
+  full_name='urpc.pb.KeyValueSeries',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='keyValue', full_name='urpc.KeyValueSeries.keyValue', index=0,
+      name='keyValue', full_name='urpc.pb.KeyValueSeries.keyValue', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -279,8 +279,8 @@ _KEYVALUESERIES = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=298,
-  serialized_end=451,
+  serialized_start=312,
+  serialized_end=468,
 )
 
 import Log_pb2
@@ -296,19 +296,19 @@ class Request(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _REQUEST
   
-  # @@protoc_insertion_point(class_scope:urpc.Request)
+  # @@protoc_insertion_point(class_scope:urpc.pb.Request)
 
 class Response(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _RESPONSE
   
-  # @@protoc_insertion_point(class_scope:urpc.Response)
+  # @@protoc_insertion_point(class_scope:urpc.pb.Response)
 
 class Subscribe(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _SUBSCRIBE
   
-  # @@protoc_insertion_point(class_scope:urpc.Subscribe)
+  # @@protoc_insertion_point(class_scope:urpc.pb.Subscribe)
 
 class ServerList(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -317,10 +317,10 @@ class ServerList(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _SERVERLIST_SERVER
     
-    # @@protoc_insertion_point(class_scope:urpc.ServerList.Server)
+    # @@protoc_insertion_point(class_scope:urpc.pb.ServerList.Server)
   DESCRIPTOR = _SERVERLIST
   
-  # @@protoc_insertion_point(class_scope:urpc.ServerList)
+  # @@protoc_insertion_point(class_scope:urpc.pb.ServerList)
 
 class KeyValueSeries(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
@@ -329,9 +329,9 @@ class KeyValueSeries(message.Message):
     __metaclass__ = reflection.GeneratedProtocolMessageType
     DESCRIPTOR = _KEYVALUESERIES_KEYVALUE
     
-    # @@protoc_insertion_point(class_scope:urpc.KeyValueSeries.KeyValue)
+    # @@protoc_insertion_point(class_scope:urpc.pb.KeyValueSeries.KeyValue)
   DESCRIPTOR = _KEYVALUESERIES
   
-  # @@protoc_insertion_point(class_scope:urpc.KeyValueSeries)
+  # @@protoc_insertion_point(class_scope:urpc.pb.KeyValueSeries)
 
 # @@protoc_insertion_point(module_scope)

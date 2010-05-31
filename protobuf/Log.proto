@@ -1,5 +1,7 @@
 // Apache Log4j-compliant log messages
 
+package urpc.pb;
+
 message Log {
   enum Level {
     FATAL = 0;

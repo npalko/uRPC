@@ -9,35 +9,35 @@ from google.protobuf import descriptor_pb2
 
 DESCRIPTOR = descriptor.FileDescriptor(
   name='Decimal.proto',
-  package='',
-  serialized_pb='\n\rDecimal.proto\"P\n\x07\x44\x65\x63imal\x12\x14\n\x0cmantissa_msb\x18\x01 \x01(\x04\x12\x14\n\x0cmantissa_lsb\x18\x02 \x01(\r\x12\x19\n\x11\x65xponent_and_sign\x18\x03 \x02(\x11')
+  package='urpc.pb',
+  serialized_pb='\n\rDecimal.proto\x12\x07urpc.pb\"P\n\x07\x44\x65\x63imal\x12\x14\n\x0cmantissa_msb\x18\x01 \x01(\x04\x12\x14\n\x0cmantissa_lsb\x18\x02 \x01(\r\x12\x19\n\x11\x65xponent_and_sign\x18\x03 \x02(\x11')
 
 
 
 
 _DECIMAL = descriptor.Descriptor(
   name='Decimal',
-  full_name='Decimal',
+  full_name='urpc.pb.Decimal',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='mantissa_msb', full_name='Decimal.mantissa_msb', index=0,
+      name='mantissa_msb', full_name='urpc.pb.Decimal.mantissa_msb', index=0,
       number=1, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='mantissa_lsb', full_name='Decimal.mantissa_lsb', index=1,
+      name='mantissa_lsb', full_name='urpc.pb.Decimal.mantissa_lsb', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='exponent_and_sign', full_name='Decimal.exponent_and_sign', index=2,
+      name='exponent_and_sign', full_name='urpc.pb.Decimal.exponent_and_sign', index=2,
       number=3, type=17, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -52,8 +52,8 @@ _DECIMAL = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=17,
-  serialized_end=97,
+  serialized_start=26,
+  serialized_end=106,
 )
 
 
@@ -62,6 +62,6 @@ class Decimal(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
   DESCRIPTOR = _DECIMAL
   
-  # @@protoc_insertion_point(class_scope:Decimal)
+  # @@protoc_insertion_point(class_scope:urpc.pb.Decimal)
 
 # @@protoc_insertion_point(module_scope)

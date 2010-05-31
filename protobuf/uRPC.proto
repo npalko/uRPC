@@ -3,7 +3,7 @@
 
 import "Log.proto";
 
-package urpc;
+package urpc.pb;
 
 // ZMQ Request-reply pattern
 //  single-part: ZMQ_REQ, ZMQ_REP

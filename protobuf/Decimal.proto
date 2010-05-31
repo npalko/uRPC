@@ -3,6 +3,7 @@
 //
 // http://code.google.com/p/protobuf-net/wiki/DotNetTypes
 
+package urpc.pb;
 
 message Decimal {
   optional uint64 mantissa_msb = 1;
