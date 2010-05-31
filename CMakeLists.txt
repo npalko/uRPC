@@ -19,7 +19,7 @@ find_package (Boost REQUIRED) #memory
 
 # EXTERNAL 
 # Boost
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories (${Boost_INCLUDE_DIRS})
 
 # Google Protobuf
 include_directories (${PROTOBUF_INCLUDE_DIR})
@@ -34,15 +34,14 @@ add_library (libzmq${CMAKE_SHARED_LIBRARY_SUFFIX} SHARED IMPORTED)
 set (EXTRA_LIBS ${EXTRA_LIBS} libzmq)
 
 # Matlab
-#include_directories (${MATLAB_INCLUDE_DIR})
-#link_directories (${MATLAB_LIBRARY})
+include_directories (${MATLAB_INCLUDE_DIR})
+link_directories (${MATLAB_LIBRARY})
 
 
 # INTERNAL 
-
+include_directories (src)
 
 # DNS 
-include_directories (${PROJECT_SOURCE_DIR}/src/dns)
 add_subdirectory (src/dns)
 set (EXTRA_LIBS ${EXTRA_LIBS} dns)
 if (WIN32)
@@ -50,12 +49,11 @@ if (WIN32)
 endif (WIN32)
 
 # Kerberos
-include_directories (${PROJECT_SOURCE_DIR}/src/kerberos)
 add_subdirectory (src/kerberos)
-#set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
+set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
 
 
-include_directories (src)
+
 add_subdirectory (src)
 
 # EXAMPLES

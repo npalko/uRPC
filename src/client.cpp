@@ -8,19 +8,27 @@
 namespace urpc {
 
 Client::Client () {
-  std::vector<std::string> server;
-  urpc::dns::getServer (server);
-  
-  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (1, 1));
+  const int nIOThread = 1;
+  const int nAppThread = 1;
+
+  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread, nAppThread));
   socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t (*context, ZMQ_REQ));
+  connect ();
+  urpc::kerberos::clientServiceRequest();
+}
+void Client::connect () {
+
+  //std::vector<std::string> server;
+  //urpc::dns::getServer (server);
+
+
   socket->connect ("tcp://127.0.0.1:5555");
-  //socket->connect (server[0].c_str());
   // TODO: catch connect error, try next server, error out when out of list
-  // TODO: AUTHENTICATE (Kerberos): request ticket here; throw if error
+
 }
 void Client::sendRequest (const std::string &service, int version, 
   const google::protobuf::Message &message) {
-  urpc::Request query;
+  urpc::pb::Request query;
   std::string messageString, queryString;
   
   query.set_service (service);
@@ -35,7 +43,7 @@ void Client::sendRequest (const std::string &service, int version,
   socket->send (requestFrame);
 }
 void Client::getResponse (google::protobuf::Message &message) {
-  urpc::Response response;
+  urpc::pb::Response response;
   zmq::message_t resultset;
  
   socket->recv (&resultset);

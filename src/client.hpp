@@ -5,8 +5,8 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
-#include "Log.pb.h"
-#include "uRPC.pb.h"
+#include "pb/Log.pb.h"
+#include "pb/uRPC.pb.h"
 #include "zmq.hpp"
 
 #include "dns/dns.hpp"
@@ -21,6 +21,7 @@ class Client {
     void sendRequest (const std::string &, int, const google::protobuf::Message &);
     void getResponse (google::protobuf::Message &);
   private:
+    void connect ();
     boost::shared_ptr<zmq::context_t> context;
     boost::shared_ptr<zmq::socket_t> socket;
 };
