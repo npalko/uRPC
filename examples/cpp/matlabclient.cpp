@@ -9,33 +9,39 @@
 #include "matlabclient.hpp"
 
 
-EXPORTED_FUNCTION mxArray *request(const char *service, int version, 
-  const mxArray *message)
+EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m, 
+  int n)
 {
+
+  // const mxArray *message
+
   urpc::Client client;
-  randexample::Request requst;
+  randexample::Request request;
   randexample::Response response;
   
-  requst.set_m(m);
-  requst.set_n(n);
-  
-  client.sendRequest(service, version, requst);
-  
+  request.set_m(m);
+  request.set_n(n);
+  client.sendRequest(service, version, request);
   client.getResponse(response);
+
+  
+  mxArray *mxResponse = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
+    mxDOUBLE_CLASS, mxREAL);
+  double *out = mxGetPr(mxResponse);
   for (int i = 0; i < response.r_size(); i++) {
-    response.r(i);
+    out[i] = response.r(i);
   }
 
-  mxArray *mxResponse = mxCreateNumericMatrix(1, 1, mxDOUBLE_CLASS, mxREAL);
   return mxResponse;
 }
 
 // Small demos of functionality
 
-EXPORTED_FUNCTION mxArray *zeros(mwSize m, mwSize n)
+EXPORTED_FUNCTION mxArray *zeros(int m, int n)
 {
   // rough replica of MATLAB zeros() function
   
-  mxArray *zeroArray = mxCreateNumericMatrix(m, n, mxDOUBLE_CLASS, mxREAL);
+  mxArray *zeroArray = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
+    mxDOUBLE_CLASS, mxREAL);
   return zeroArray;
 }

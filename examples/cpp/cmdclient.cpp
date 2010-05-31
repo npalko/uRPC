@@ -14,12 +14,12 @@ int main(int argc, char **argv) {
   int n = atoi(argv[2]);
 
   urpc::Client client;
-  randexample::Request requst;
+  randexample::Request request;
   randexample::Response response;
   
-  requst.set_m(m);
-  requst.set_n(n);
-  client.sendRequest("RandExampleRequest", 1, requst);
+  request.set_m(m);
+  request.set_n(n);
+  client.sendRequest("RandExampleRequest", 1, request);
   printf("[RandExampleRequest] (m=%d,n=%d)\n", m, n);
 
   client.getResponse(response);
