@@ -80,10 +80,11 @@ void protobuf_AddDesc_Log_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tLog.proto\022\007urpc.pb\"}\n\003Log\022\017\n\007message\030\001"
-    " \001(\t\022\016\n\006number\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\"G\n\005Le"
-    "vel\022\t\n\005FATAL\020\000\022\t\n\005ERROR\020\001\022\010\n\004WARN\020\002\022\010\n\004I"
-    "NFO\020\003\022\t\n\005DEBUG\020\004\022\t\n\005TRACE\020\005", 147);
+    "\n\tLog.proto\022\007urpc.pb\"\241\001\n\003Log\022\017\n\007message\030"
+    "\001 \001(\t\022\016\n\006number\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\"k\n\005L"
+    "evel\022\017\n\013LEVEL_FATAL\020\000\022\017\n\013LEVEL_ERROR\020\001\022\016"
+    "\n\nLEVEL_WARN\020\002\022\016\n\nLEVEL_INFO\020\003\022\017\n\013LEVEL_"
+    "DEBUG\020\004\022\017\n\013LEVEL_TRACE\020\005", 184);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Log.proto", &protobuf_RegisterTypes);
   Log::default_instance_ = new Log();
@@ -120,12 +121,12 @@ bool Log_Level_IsValid(int value) {
 }
 
 #ifndef _MSC_VER
-const Log_Level Log::FATAL;
-const Log_Level Log::ERROR;
-const Log_Level Log::WARN;
-const Log_Level Log::INFO;
-const Log_Level Log::DEBUG;
-const Log_Level Log::TRACE;
+const Log_Level Log::LEVEL_FATAL;
+const Log_Level Log::LEVEL_ERROR;
+const Log_Level Log::LEVEL_WARN;
+const Log_Level Log::LEVEL_INFO;
+const Log_Level Log::LEVEL_DEBUG;
+const Log_Level Log::LEVEL_TRACE;
 const Log_Level Log::Level_MIN;
 const Log_Level Log::Level_MAX;
 const int Log::Level_ARRAYSIZE;

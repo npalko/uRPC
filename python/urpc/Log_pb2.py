@@ -10,7 +10,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='Log.proto',
   package='urpc.pb',
-  serialized_pb='\n\tLog.proto\x12\x07urpc.pb\"}\n\x03Log\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06number\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\x03\"G\n\x05Level\x12\t\n\x05\x46\x41TAL\x10\x00\x12\t\n\x05\x45RROR\x10\x01\x12\x08\n\x04WARN\x10\x02\x12\x08\n\x04INFO\x10\x03\x12\t\n\x05\x44\x45\x42UG\x10\x04\x12\t\n\x05TRACE\x10\x05')
+  serialized_pb='\n\tLog.proto\x12\x07urpc.pb\"\xa1\x01\n\x03Log\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0e\n\x06number\x18\x02 \x01(\x05\x12\x0c\n\x04time\x18\x03 \x01(\x03\"k\n\x05Level\x12\x0f\n\x0bLEVEL_FATAL\x10\x00\x12\x0f\n\x0bLEVEL_ERROR\x10\x01\x12\x0e\n\nLEVEL_WARN\x10\x02\x12\x0e\n\nLEVEL_INFO\x10\x03\x12\x0f\n\x0bLEVEL_DEBUG\x10\x04\x12\x0f\n\x0bLEVEL_TRACE\x10\x05')
 
 
 
@@ -21,34 +21,34 @@ _LOG_LEVEL = descriptor.EnumDescriptor(
   file=DESCRIPTOR,
   values=[
     descriptor.EnumValueDescriptor(
-      name='FATAL', index=0, number=0,
+      name='LEVEL_FATAL', index=0, number=0,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='ERROR', index=1, number=1,
+      name='LEVEL_ERROR', index=1, number=1,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='WARN', index=2, number=2,
+      name='LEVEL_WARN', index=2, number=2,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='INFO', index=3, number=3,
+      name='LEVEL_INFO', index=3, number=3,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='DEBUG', index=4, number=4,
+      name='LEVEL_DEBUG', index=4, number=4,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='TRACE', index=5, number=5,
+      name='LEVEL_TRACE', index=5, number=5,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=76,
-  serialized_end=147,
+  serialized_start=77,
+  serialized_end=184,
 )
 
 
@@ -90,8 +90,8 @@ _LOG = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=22,
-  serialized_end=147,
+  serialized_start=23,
+  serialized_end=184,
 )
 
 
