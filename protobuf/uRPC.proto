@@ -22,10 +22,6 @@ message Response {
 
 // ZMQ Publish-subscribe pattern
 //  ZMQ_PUB, ZMQ_SUB
-message Subscribe {
-  optional int32 version = 1;
-
-}
 
 // ZMQ Peer to Peer pattern
 //  ZMQ_P2P
@@ -33,19 +29,26 @@ message Subscribe {
 // ZMQ Parallelized pipeline pattern
 //  ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
 
+// Server Record
 
-
-// RPC: Service Listing (service='GetServer', version=1, message=NULL)
-// Response: ServerList
-
-message ServerList {
-  message Server {
-    optional string name = 1;         // Fully qualified domain name
-    optional int32 port = 2;          // Port
-    optional int32 priority = 3;      // Prefer server with lowest priority
+message Server {
+  message Record {
+    optional string service = 1;  // symbolic name 
+    enum protocal {               // transport protocol 
+      TCP = 1;
+      UDP = 2;
+    }
+    optional string name = 2;     // domain name
+    optional int32 ttl = 3;       // time to live field
+    optional int32 priority = 4;  // target priority, lower is more preferred
+    optional int32 weight = 5;    // relative weight for given priority
+    optional int32 port = 6;      // service port
+    optional string target = 7;   // canonical hostname 
   }
-  repeated Server server = 1;
+  repeated Record record = 1;
 }
+
+// Generic Key-Value pairs: an experiment with an unspecified API
 
 message KeyValueSeries {
   message KeyValue {
