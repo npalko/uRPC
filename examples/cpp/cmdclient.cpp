@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv) {
   if (argc != 3) {
-    printf ("usage: %s <num_rows> <num_columns>\n", "clientcpp");
+    printf ("usage: %s <num_rows> <num_columns>\n", "cmdclient");
     return 1;
   }
   int m = atoi(argv[1]); 
