@@ -1,2 +1,9 @@
 *.pyc
+*.user
+*.suo
 build/
+
+Excel/Plugin/bin/
+Excel/Plugin/obj/
+Excel/RTD/bin/
+Excel/RTD/obj/
