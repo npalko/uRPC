@@ -14,7 +14,7 @@ def client():
   request.version = 8
   randRequest.m = 4
   randRequest.n = 3
-  request.message = randRequest.SerializeToString()  
+  request.message = randRequest.SerializeToString()
   socket.send(request.SerializeToString())
   
   response = uRPC_pb2.Response()
