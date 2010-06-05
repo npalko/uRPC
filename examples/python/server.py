@@ -1,5 +1,6 @@
 import random
-import Log_pb2, uRPC_pb2import randexample_pb2
+import Log_pb2, uRPC_pb2
+import randexample_pb2
 import zmq
 
 
