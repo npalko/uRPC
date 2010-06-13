@@ -12,9 +12,6 @@
 EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m, 
   int n)
 {
-
-  // const mxArray *message
-
   urpc::Client client;
   randexample::Request request;
   randexample::Response response;
@@ -23,7 +20,7 @@ EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m,
   request.set_n(n);
   client.sendRequest(service, version, request);
   client.getResponse(response);
-
+  
   
   mxArray *mxResponse = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
     mxDOUBLE_CLASS, mxREAL);
@@ -31,7 +28,7 @@ EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m,
   for (int i = 0; i < response.r_size(); i++) {
     out[i] = response.r(i);
   }
-
+  
   return mxResponse;
 }
 

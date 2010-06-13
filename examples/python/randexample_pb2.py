@@ -10,7 +10,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='randexample.proto',
   package='randexample',
-  serialized_pb='\n\x11randexample.proto\x12\x0brandexample\"\x1f\n\x07Request\x12\t\n\x01m\x18\x01 \x01(\x05\x12\t\n\x01n\x18\x02 \x01(\x05\"!\n\x08Response\x12\t\n\x01r\x18\x01 \x03(\x01\x12\n\n\x02tt\x18\x02 \x01(\x01')
+  serialized_pb='\n\x11randexample.proto\x12\x0brandexample\"\x1f\n\x07Request\x12\t\n\x01m\x18\x01 \x01(\x05\x12\t\n\x01n\x18\x02 \x01(\x05\"\x15\n\x08Response\x12\t\n\x01r\x18\x01 \x03(\x01')
 
 
 
@@ -64,13 +64,6 @@ _RESPONSE = descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    descriptor.FieldDescriptor(
-      name='tt', full_name='randexample.Response.tt', index=1,
-      number=2, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -81,7 +74,7 @@ _RESPONSE = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=67,
-  serialized_end=100,
+  serialized_end=88,
 )
 
 

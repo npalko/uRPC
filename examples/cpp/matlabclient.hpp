@@ -1,5 +1,5 @@
 // examples/cpp/matlabclient.hpp
-//
+// 
 // Example Usage: see matlabclient.m
 
 // EXPORTED_FUNCTION required by Microsoft compiler only. _WIN32 is also 

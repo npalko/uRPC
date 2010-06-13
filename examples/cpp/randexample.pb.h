@@ -200,25 +200,17 @@ class Response : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< double >*
       mutable_r();
   
-  // optional double tt = 2;
-  inline bool has_tt() const;
-  inline void clear_tt();
-  static const int kTtFieldNumber = 2;
-  inline double tt() const;
-  inline void set_tt(double value);
-  
   // @@protoc_insertion_point(class_scope:randexample.Response)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::RepeatedField< double > r_;
-  double tt_;
   friend void  protobuf_AddDesc_randexample_2eproto();
   friend void protobuf_AssignDesc_randexample_2eproto();
   friend void protobuf_ShutdownFile_randexample_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -300,22 +292,6 @@ Response::r() const {
 inline ::google::protobuf::RepeatedField< double >*
 Response::mutable_r() {
   return &r_;
-}
-
-// optional double tt = 2;
-inline bool Response::has_tt() const {
-  return _has_bit(1);
-}
-inline void Response::clear_tt() {
-  tt_ = 0;
-  _clear_bit(1);
-}
-inline double Response::tt() const {
-  return tt_;
-}
-inline void Response::set_tt(double value) {
-  _set_bit(1);
-  tt_ = value;
 }
 
 
