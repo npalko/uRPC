@@ -3,13 +3,13 @@
 package urpc.pb;
 
 message Log {
-  enum Level {                  // using r-tard LEVEL_*, as otherwise we clash
-    LEVEL_FATAL = 0;            // with C++ macros
-    LEVEL_ERROR = 1;
-    LEVEL_WARN = 2;
-    LEVEL_INFO = 3;
-    LEVEL_DEBUG = 4;
-    LEVEL_TRACE = 5;
+  enum Level {
+    Fatal = 0;
+    Error = 1;
+    Warn = 2;
+    Info = 3;
+    Debug = 4;
+    Trace = 5;
   }
   optional string message = 1; 
   optional int32 number = 2;    // log level number

@@ -61,13 +61,13 @@ inline bool Server_Record_protocal_Parse(
     Server_Record_protocal_descriptor(), name, value);
 }
 enum KeyValueSeries_KeyValue_valueType {
-  KeyValueSeries_KeyValue_valueType_STRING = 1,
-  KeyValueSeries_KeyValue_valueType_DOUBLE = 2,
-  KeyValueSeries_KeyValue_valueType_INT32 = 3
+  KeyValueSeries_KeyValue_valueType_String = 1,
+  KeyValueSeries_KeyValue_valueType_Double = 2,
+  KeyValueSeries_KeyValue_valueType_Int32 = 3
 };
 bool KeyValueSeries_KeyValue_valueType_IsValid(int value);
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MIN = KeyValueSeries_KeyValue_valueType_STRING;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MAX = KeyValueSeries_KeyValue_valueType_INT32;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MIN = KeyValueSeries_KeyValue_valueType_String;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue_valueType_valueType_MAX = KeyValueSeries_KeyValue_valueType_Int32;
 const int KeyValueSeries_KeyValue_valueType_valueType_ARRAYSIZE = KeyValueSeries_KeyValue_valueType_valueType_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* KeyValueSeries_KeyValue_valueType_descriptor();
@@ -631,9 +631,9 @@ class KeyValueSeries_KeyValue : public ::google::protobuf::Message {
   // nested types ----------------------------------------------------
   
   typedef KeyValueSeries_KeyValue_valueType valueType;
-  static const valueType STRING = KeyValueSeries_KeyValue_valueType_STRING;
-  static const valueType DOUBLE = KeyValueSeries_KeyValue_valueType_DOUBLE;
-  static const valueType INT32 = KeyValueSeries_KeyValue_valueType_INT32;
+  static const valueType String = KeyValueSeries_KeyValue_valueType_String;
+  static const valueType Double = KeyValueSeries_KeyValue_valueType_Double;
+  static const valueType Int32 = KeyValueSeries_KeyValue_valueType_Int32;
   static inline bool valueType_IsValid(int value) {
     return KeyValueSeries_KeyValue_valueType_IsValid(value);
   }

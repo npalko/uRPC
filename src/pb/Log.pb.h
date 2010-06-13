@@ -36,16 +36,16 @@ void protobuf_ShutdownFile_Log_2eproto();
 class Log;
 
 enum Log_Level {
-  Log_Level_LEVEL_FATAL = 0,
-  Log_Level_LEVEL_ERROR = 1,
-  Log_Level_LEVEL_WARN = 2,
-  Log_Level_LEVEL_INFO = 3,
-  Log_Level_LEVEL_DEBUG = 4,
-  Log_Level_LEVEL_TRACE = 5
+  Log_Level_Fatal = 0,
+  Log_Level_Error = 1,
+  Log_Level_Warn = 2,
+  Log_Level_Info = 3,
+  Log_Level_Debug = 4,
+  Log_Level_Trace = 5
 };
 bool Log_Level_IsValid(int value);
-const Log_Level Log_Level_Level_MIN = Log_Level_LEVEL_FATAL;
-const Log_Level Log_Level_Level_MAX = Log_Level_LEVEL_TRACE;
+const Log_Level Log_Level_Level_MIN = Log_Level_Fatal;
+const Log_Level Log_Level_Level_MAX = Log_Level_Trace;
 const int Log_Level_Level_ARRAYSIZE = Log_Level_Level_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Log_Level_descriptor();
@@ -113,12 +113,12 @@ class Log : public ::google::protobuf::Message {
   // nested types ----------------------------------------------------
   
   typedef Log_Level Level;
-  static const Level LEVEL_FATAL = Log_Level_LEVEL_FATAL;
-  static const Level LEVEL_ERROR = Log_Level_LEVEL_ERROR;
-  static const Level LEVEL_WARN = Log_Level_LEVEL_WARN;
-  static const Level LEVEL_INFO = Log_Level_LEVEL_INFO;
-  static const Level LEVEL_DEBUG = Log_Level_LEVEL_DEBUG;
-  static const Level LEVEL_TRACE = Log_Level_LEVEL_TRACE;
+  static const Level Fatal = Log_Level_Fatal;
+  static const Level Error = Log_Level_Error;
+  static const Level Warn = Log_Level_Warn;
+  static const Level Info = Log_Level_Info;
+  static const Level Debug = Log_Level_Debug;
+  static const Level Trace = Log_Level_Trace;
   static inline bool Level_IsValid(int value) {
     return Log_Level_IsValid(value);
   }

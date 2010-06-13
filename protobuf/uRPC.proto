@@ -33,7 +33,7 @@ message Response {
 
 message Server {
   message Record {
-    optional string service = 1;  // symbolic name 
+    optional string service = 1;  // symbolic name e.g. http
     enum protocal {               // transport protocol 
       TCP = 1;
       UDP = 2;
@@ -53,9 +53,9 @@ message Server {
 message KeyValueSeries {
   message KeyValue {
     enum valueType {
-      STRING = 1;
-      DOUBLE = 2;
-      INT32 = 3;
+      String = 1;
+      Double = 2;
+      Int32 = 3;
     }
     optional string key = 1;
     optional bytes value = 2;

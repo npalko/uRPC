@@ -214,7 +214,7 @@ void protobuf_AddDesc_uRPC_2eproto() {
     "UDP\020\002\"\234\001\n\016KeyValueSeries\0222\n\010keyValue\030\001 \003"
     "(\0132 .urpc.pb.KeyValueSeries.KeyValue\032V\n\010"
     "KeyValue\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014\".\n\t"
-    "valueType\022\n\n\006STRING\020\001\022\n\n\006DOUBLE\020\002\022\t\n\005INT"
+    "valueType\022\n\n\006String\020\001\022\n\n\006Double\020\002\022\t\n\005Int"
     "32\020\003", 524);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "uRPC.proto", &protobuf_RegisterTypes);
@@ -1591,9 +1591,9 @@ bool KeyValueSeries_KeyValue_valueType_IsValid(int value) {
 }
 
 #ifndef _MSC_VER
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::STRING;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::DOUBLE;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::INT32;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::String;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::Double;
+const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::Int32;
 const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::valueType_MIN;
 const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::valueType_MAX;
 const int KeyValueSeries_KeyValue::valueType_ARRAYSIZE;
