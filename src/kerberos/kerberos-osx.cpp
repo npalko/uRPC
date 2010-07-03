@@ -1,8 +1,7 @@
-// src/kerberos/kerberos-win.cpp
+// src/kerberos/kerberos-osx.cpp
 //
 //
 
-#include "kerberos/kerberos.hpp"
 
 namespace urpc {
 namespace kerberos {

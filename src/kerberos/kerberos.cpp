@@ -1,14 +1,15 @@
-
+// src/kerberos/kerberos.cpp
+//
+// 
+// FreeBSD Implementation
 
 #include "kerberos/kerberos.hpp"
-
 
 namespace urpc {
 namespace kerberos {
 
-void clientServiceRequest() {
-
-}
+void requestSessionTicket () {}
+void submitSessionTicketToServer () {}
 
 
 }

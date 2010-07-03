@@ -1,27 +1,32 @@
+// src/kerberos/kerberos.hpp
+//
+//
+
+// Kerberos Overview:
+//
+// Mac OS X, UNIX: GSS-API (shared files)
+// Windows: SSPI (Security Support Provider Interface) (call the OS)
+//
+// Client Authentication:
+//  1. Client login produces a Ticket-Granting-Ticket
+//  2. Obtain a Session-Ticket by sending the Ticket-Granting-Ticket and 
+//     application information to the KDC
+//  3. Client caches the Session-Ticket, and will not need another 
+//      Session-Ticket until it expires
 
 
-    // client login produces Ticket Granting Ticket
-    //    mac ox, unix: GSS-API
-    //    windows: doesn't support GSS-API
-    //    Microsoft SSPI (Security Support Provider Interface)
-    //     provided by the OS
-    //      unix: shared files
-    //      windows:
-    // obtain a session ticket
-    //    send Ticket Granting Ticket + application info to KDC
-    //    client caches session ticket, will not need another ticket until it
-    //    session ticket expires
-    
-    
-    
 #ifndef URPC_KERBEROS_HPP
 #define URPC_KERBEROS_HPP
 
 namespace urpc {
 namespace kerberos {
 
-void clientServiceRequest();
+// Use the Ticket-Granting-Ticket (obtained from the Authentication Server when 
+// the user logged in to the client system) to request a Session Ticket from 
+// the Ticket-Granting-Sever in order to authenticate to the uRPC server. 
 
+void requestSessionTicket ();
+void submitSessionTicketToServer ();
 
 }
 }
