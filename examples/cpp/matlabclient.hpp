@@ -9,7 +9,7 @@
 #ifndef URPC_MATLAB_HPP
 #define URPC_MATLAB_HPP
 
-#ifdef _WIN32 
+#ifdef _WIN32
 #define EXPORTED_FUNCTION __declspec(dllexport)
 #else
 #define EXPORTED_FUNCTION
@@ -19,7 +19,7 @@
 extern "C" {
 #endif
 
-EXPORTED_FUNCTION mxArray *request(const char *, int, int, int);
+EXPORTED_FUNCTION mxArray *request(const char * const, int, int, int);
 EXPORTED_FUNCTION mxArray *zeros(int, int);
 
 #ifdef __cplusplus

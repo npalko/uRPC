@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   int m = atoi(argv[1]); 
   int n = atoi(argv[2]);
 
-  urpc::Client client;
+  urpc::Client client("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Response response;
   

@@ -2,17 +2,16 @@
 //
 //
 
-#include "randexample.pb.h"
 #include "client.hpp"
-
 #include "mex.h"
 #include "matlabclient.hpp"
+#include "randexample.pb.h"
 
 
-EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m, 
-  int n)
+EXPORTED_FUNCTION mxArray *request(const char * const service, int version, 
+                                   int m, int n)
 {
-  urpc::Client client;
+  urpc::Client client("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Response response;
   
@@ -20,7 +19,6 @@ EXPORTED_FUNCTION mxArray *request(const char *service, int version, int m,
   request.set_n(n);
   client.sendRequest(service, version, request);
   client.getResponse(response);
-  
   
   mxArray *mxResponse = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
     mxDOUBLE_CLASS, mxREAL);

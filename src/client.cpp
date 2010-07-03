@@ -2,30 +2,23 @@
 //
 //
 
-
 #include "client.hpp"
 
 namespace urpc {
 
-Client::Client () {
+Client::Client (const std::string &connectionString) {
+
+  urpc::kerberos::requestSessionTicket ();
+  urpc::kerberos::submitSessionTicketToServer ();
+
   const int nIOThread = 1;
-  const int nAppThread = 1;
-
-  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread, nAppThread));
-  socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t (*context, ZMQ_REQ));
-  connect ();
-  urpc::kerberos::clientServiceRequest();
+  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t(nIOThread));
+  socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t (
+    *context, ZMQ_REQ));
+    
+  socket->connect (connectionString.c_str());
 }
-void Client::connect () {
 
-  //std::vector<std::string> server;
-  //urpc::dns::getServer (server);
-
-
-  socket->connect ("tcp://127.0.0.1:5555");
-  // TODO: catch connect error, try next server, error out when out of list
-
-}
 void Client::sendRequest (const std::string &service, int version, 
   const google::protobuf::Message &message) {
   urpc::pb::Request query;
@@ -36,20 +29,22 @@ void Client::sendRequest (const std::string &service, int version,
   message.SerializeToString (&messageString);
   query.set_message (messageString);
   query.SerializeToString (&queryString);
-
+  
   int length = strlen (queryString.c_str());
   zmq::message_t requestFrame (length);
   memcpy (requestFrame.data(), queryString.c_str(), length);
   socket->send (requestFrame);
 }
+
 void Client::getResponse (google::protobuf::Message &message) {
   urpc::pb::Response response;
   zmq::message_t resultset;
- 
+  
   socket->recv (&resultset);
   //printf("recieved %d bytes\n", resultset.size());
   response.ParseFromArray (resultset.data(), resultset.size());
   message.ParseFromString (response.message());
 }
+
 
 }
