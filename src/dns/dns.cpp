@@ -17,64 +17,54 @@ namespace dns {
 
 using boost::asio::ip::udp;
 
-std::string serverRecordToZMQString (const urpc::pb::Server_Record &record) {
-  // return null-terminated string for zmq
-  // tcp://host
+void getRecordFromAddress (const boost::asio::ip::address &address, 
+                           urpc::pb::Server &server)
+{
+  // append Server_Record to server based on SRV records obtained from DNS 
+  // server at address
 
-  //switch record.protocol
-
-  //return sprintf("%s://%s", record.name());
-  return std::string("tcp://127.0.0.1:5555");
-
-}
-char *serverRecordToSpecification (const urpc::pb::Server_Record &record) {
-  // _Service._Proto.Name   TTL   Class SRV Priority Weight Port Target
-  // _sip._tcp.example.com. 86400 IN    SRV 0        5      5060 sipserver.example.com.
-
-  //return sprintf("_%s._%s.%s.\t%d\t%s%d\t%d\t%d\t%s.",
-  //  record.service(),
-  //  record.priority(),
-  //  record.weight(),
-  //  record.port(),
-  //  record.target());
-  return "placeholder";
-}
-void getSRVRecord (urpc::pb::Server &server) {
-  // populate server with SRV serverRecords
   // look up "_urpc._tcp"
+
   const int DNSPort = 53;
-  
-  
-  
-  
-  std::vector<boost::asio::ip::address> DNSServer;
-  urpc::dns::getServer (DNSServer); // platform-specific
-  
-  
+
+
   const int max_length = 100;
   char request[max_length];
   char reply[max_length];
   
   boost::asio::io_service io_service;
+  udp::endpoint destination (address, DNSPort);
+  udp::socket socket (io_service, destination);
   
-  std::vector<boost::asio::ip::address>::iterator addr = DNSServer.begin();
-  for(; addr != DNSServer.end(); ++addr) {
+  socket.send_to (boost::asio::buffer (request, strlen(request)), destination);
     
-    udp::endpoint destination (*addr, DNSPort);
-    udp::socket socket (io_service, destination);
-    socket.send_to (boost::asio::buffer (request, strlen(request)), destination);
+  udp::endpoint sender_endpoint;
+  size_t reply_length = socket.receive_from ( 
+    boost::asio::buffer (reply, max_length), sender_endpoint);
     
-    udp::endpoint sender_endpoint;
-    size_t reply_length = socket.receive_from ( 
-      boost::asio::buffer (reply, max_length), sender_endpoint);
-    
-  }
-
-
-
-
-
 }
+std::string getConnectionStringFromRecord (const urpc::pb::Server_Record &record) {
+  // tcp://host:port
+
+  std::string connection;
+  
+  switch (record.protocol()) {
+    case urpc::pb::Server_Record::TCP:
+      connection += "tcp";
+      break;
+    case urpc::pb::Server_Record::UDP:
+      connection += "udp";
+      break;
+  }
+  connection += "://";
+  connection += record.name();
+  connection += ":";
+  connection += boost::lexical_cast<std::string>((int) record.port());
+
+  return connection;
+}
+
+
 
 }
 }

@@ -2,6 +2,9 @@
 //
 //
 
+// _Service._Proto.Name   TTL   Class SRV Priority Weight Port Target
+// _sip._tcp.example.com. 86400 IN    SRV 0        5      5060 sipserver.example.com.
+
 // Unix:     dig SRV _sip._tcp.example.com
 // Windows:  nslookup -type=srv _sip._tcp.example.com
 
@@ -14,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <boost/asio.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
@@ -22,10 +26,9 @@
 namespace urpc {
 namespace dns {
 
-char *serverRecordToZMQString (const urpc::pb::Server_Record &);
-char *serverRecordToSpecification (const urpc::pb::Server_Record &);
-void getSRVRecord (urpc::pb::Server &);
-void getServer (std::vector<boost::asio::ip::address> &);  
+void getAddress (std::vector<boost::asio::ip::address> &);                         
+void getRecordFromAddress (const boost::asio::ip::address &, urpc::pb::Server &);
+std::string getConnectionStringFromRecord(const urpc::pb::Server_Record &);
 
 }
 }

@@ -1,29 +1,33 @@
-/*
-
-  Targets: FreeBSD, OS X
-  return vector<string> of name servers from /etc/resolv.conf
-
-
-
-*/
+// src/dns/getdns.cpp
+//
+//
 
 #include <fstream>
 #include <string>
 #include <vector>
+#include <boost/asio.hpp>
+
+#include "dns/dns.hpp"
 
 
-std::vector<urpc::dns::Server> getDNSServer()
-{
+namespace urpc {
+namespace dns {
+
+void getAddress(std::vector<boost::asio::ip::address> &server) {
+
+
   std::ofstream resolv;
-  std::vector <urpce::dns::Server> server;
+  
   
   resolv.open("/etc/resolv.conf");
   
-  server.push_back("address");
+  
+  
+  
+  
   resolv.close();
   
   
   
-  return server;
 }
 
