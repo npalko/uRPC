@@ -30,14 +30,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 const ::google::protobuf::Descriptor* Server_Record_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Server_Record_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* Server_Record_protocal_descriptor_ = NULL;
-const ::google::protobuf::Descriptor* KeyValueSeries_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  KeyValueSeries_reflection_ = NULL;
-const ::google::protobuf::Descriptor* KeyValueSeries_KeyValue_descriptor_ = NULL;
-const ::google::protobuf::internal::GeneratedMessageReflection*
-  KeyValueSeries_KeyValue_reflection_ = NULL;
-const ::google::protobuf::EnumDescriptor* KeyValueSeries_KeyValue_valueType_descriptor_ = NULL;
+const ::google::protobuf::EnumDescriptor* Server_Record_Protocol_descriptor_ = NULL;
 
 }  // namespace
 
@@ -98,8 +91,9 @@ void protobuf_AssignDesc_uRPC_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Server));
   Server_Record_descriptor_ = Server_descriptor_->nested_type(0);
-  static const int Server_Record_offsets_[7] = {
+  static const int Server_Record_offsets_[8] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server_Record, service_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server_Record, protocol_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server_Record, name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server_Record, ttl_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server_Record, priority_),
@@ -118,39 +112,7 @@ void protobuf_AssignDesc_uRPC_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Server_Record));
-  Server_Record_protocal_descriptor_ = Server_Record_descriptor_->enum_type(0);
-  KeyValueSeries_descriptor_ = file->message_type(3);
-  static const int KeyValueSeries_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries, keyvalue_),
-  };
-  KeyValueSeries_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      KeyValueSeries_descriptor_,
-      KeyValueSeries::default_instance_,
-      KeyValueSeries_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(KeyValueSeries));
-  KeyValueSeries_KeyValue_descriptor_ = KeyValueSeries_descriptor_->nested_type(0);
-  static const int KeyValueSeries_KeyValue_offsets_[2] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries_KeyValue, key_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries_KeyValue, value_),
-  };
-  KeyValueSeries_KeyValue_reflection_ =
-    new ::google::protobuf::internal::GeneratedMessageReflection(
-      KeyValueSeries_KeyValue_descriptor_,
-      KeyValueSeries_KeyValue::default_instance_,
-      KeyValueSeries_KeyValue_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries_KeyValue, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(KeyValueSeries_KeyValue, _unknown_fields_),
-      -1,
-      ::google::protobuf::DescriptorPool::generated_pool(),
-      ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(KeyValueSeries_KeyValue));
-  KeyValueSeries_KeyValue_valueType_descriptor_ = KeyValueSeries_KeyValue_descriptor_->enum_type(0);
+  Server_Record_Protocol_descriptor_ = Server_Record_descriptor_->enum_type(0);
 }
 
 namespace {
@@ -171,10 +133,6 @@ void protobuf_RegisterTypes(const ::std::string&) {
     Server_descriptor_, &Server::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Server_Record_descriptor_, &Server_Record::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    KeyValueSeries_descriptor_, &KeyValueSeries::default_instance());
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    KeyValueSeries_KeyValue_descriptor_, &KeyValueSeries_KeyValue::default_instance());
 }
 
 }  // namespace
@@ -188,10 +146,6 @@ void protobuf_ShutdownFile_uRPC_2eproto() {
   delete Server_reflection_;
   delete Server_Record::default_instance_;
   delete Server_Record_reflection_;
-  delete KeyValueSeries::default_instance_;
-  delete KeyValueSeries_reflection_;
-  delete KeyValueSeries_KeyValue::default_instance_;
-  delete KeyValueSeries_KeyValue_reflection_;
 }
 
 void protobuf_AddDesc_uRPC_2eproto() {
@@ -206,30 +160,23 @@ void protobuf_AddDesc_uRPC_2eproto() {
     "est\022\017\n\007service\030\001 \001(\t\022\017\n\007version\030\002 \001(\005\022\017\n"
     "\007message\030\003 \001(\014\"E\n\010Response\022\r\n\005error\030\001 \001("
     "\010\022\017\n\007message\030\002 \001(\014\022\031\n\003log\030\003 \003(\0132\014.urpc.p"
-    "b.Log\"\305\001\n\006Server\022&\n\006record\030\001 \003(\0132\026.urpc."
-    "pb.Server.Record\032\222\001\n\006Record\022\017\n\007service\030\001"
-    " \001(\t\022\014\n\004name\030\002 \001(\t\022\013\n\003ttl\030\003 \001(\005\022\020\n\010prior"
-    "ity\030\004 \001(\005\022\016\n\006weight\030\005 \001(\005\022\014\n\004port\030\006 \001(\005\022"
-    "\016\n\006target\030\007 \001(\t\"\034\n\010protocal\022\007\n\003TCP\020\001\022\007\n\003"
-    "UDP\020\002\"\234\001\n\016KeyValueSeries\0222\n\010keyValue\030\001 \003"
-    "(\0132 .urpc.pb.KeyValueSeries.KeyValue\032V\n\010"
-    "KeyValue\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\014\".\n\t"
-    "valueType\022\n\n\006String\020\001\022\n\n\006Double\020\002\022\t\n\005Int"
-    "32\020\003", 524);
+    "b.Log\"\370\001\n\006Server\022&\n\006record\030\001 \003(\0132\026.urpc."
+    "pb.Server.Record\032\305\001\n\006Record\022\017\n\007service\030\001"
+    " \001(\t\0221\n\010protocol\030\002 \001(\0162\037.urpc.pb.Server."
+    "Record.Protocol\022\014\n\004name\030\003 \001(\t\022\013\n\003ttl\030\004 \001"
+    "(\005\022\020\n\010priority\030\005 \001(\005\022\016\n\006weight\030\006 \001(\005\022\014\n\004"
+    "port\030\007 \001(\005\022\016\n\006target\030\010 \001(\t\"\034\n\010Protocol\022\007"
+    "\n\003TCP\020\001\022\007\n\003UDP\020\002", 416);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "uRPC.proto", &protobuf_RegisterTypes);
   Request::default_instance_ = new Request();
   Response::default_instance_ = new Response();
   Server::default_instance_ = new Server();
   Server_Record::default_instance_ = new Server_Record();
-  KeyValueSeries::default_instance_ = new KeyValueSeries();
-  KeyValueSeries_KeyValue::default_instance_ = new KeyValueSeries_KeyValue();
   Request::default_instance_->InitAsDefaultInstance();
   Response::default_instance_->InitAsDefaultInstance();
   Server::default_instance_->InitAsDefaultInstance();
   Server_Record::default_instance_->InitAsDefaultInstance();
-  KeyValueSeries::default_instance_->InitAsDefaultInstance();
-  KeyValueSeries_KeyValue::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_uRPC_2eproto);
 }
 
@@ -851,11 +798,11 @@ void Response::Swap(Response* other) {
 
 // ===================================================================
 
-const ::google::protobuf::EnumDescriptor* Server_Record_protocal_descriptor() {
+const ::google::protobuf::EnumDescriptor* Server_Record_Protocol_descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return Server_Record_protocal_descriptor_;
+  return Server_Record_Protocol_descriptor_;
 }
-bool Server_Record_protocal_IsValid(int value) {
+bool Server_Record_Protocol_IsValid(int value) {
   switch(value) {
     case 1:
     case 2:
@@ -866,17 +813,18 @@ bool Server_Record_protocal_IsValid(int value) {
 }
 
 #ifndef _MSC_VER
-const Server_Record_protocal Server_Record::TCP;
-const Server_Record_protocal Server_Record::UDP;
-const Server_Record_protocal Server_Record::protocal_MIN;
-const Server_Record_protocal Server_Record::protocal_MAX;
-const int Server_Record::protocal_ARRAYSIZE;
+const Server_Record_Protocol Server_Record::TCP;
+const Server_Record_Protocol Server_Record::UDP;
+const Server_Record_Protocol Server_Record::Protocol_MIN;
+const Server_Record_Protocol Server_Record::Protocol_MAX;
+const int Server_Record::Protocol_ARRAYSIZE;
 #endif  // _MSC_VER
 const ::std::string Server_Record::_default_service_;
 const ::std::string Server_Record::_default_name_;
 const ::std::string Server_Record::_default_target_;
 #ifndef _MSC_VER
 const int Server_Record::kServiceFieldNumber;
+const int Server_Record::kProtocolFieldNumber;
 const int Server_Record::kNameFieldNumber;
 const int Server_Record::kTtlFieldNumber;
 const int Server_Record::kPriorityFieldNumber;
@@ -902,6 +850,7 @@ Server_Record::Server_Record(const Server_Record& from)
 void Server_Record::SharedCtor() {
   _cached_size_ = 0;
   service_ = const_cast< ::std::string*>(&_default_service_);
+  protocol_ = 1;
   name_ = const_cast< ::std::string*>(&_default_name_);
   ttl_ = 0;
   priority_ = 0;
@@ -956,7 +905,8 @@ void Server_Record::Clear() {
         service_->clear();
       }
     }
-    if (_has_bit(1)) {
+    protocol_ = 1;
+    if (_has_bit(2)) {
       if (name_ != &_default_name_) {
         name_->clear();
       }
@@ -965,7 +915,7 @@ void Server_Record::Clear() {
     priority_ = 0;
     weight_ = 0;
     port_ = 0;
-    if (_has_bit(6)) {
+    if (_has_bit(7)) {
       if (target_ != &_default_target_) {
         target_->clear();
       }
@@ -993,12 +943,33 @@ bool Server_Record::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(18)) goto parse_name;
+        if (input->ExpectTag(16)) goto parse_protocol;
         break;
       }
       
-      // optional string name = 2;
+      // optional .urpc.pb.Server.Record.Protocol protocol = 2;
       case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_protocol:
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::urpc::pb::Server_Record_Protocol_IsValid(value)) {
+            set_protocol(static_cast< ::urpc::pb::Server_Record_Protocol >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(2, value);
+          }
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(26)) goto parse_name;
+        break;
+      }
+      
+      // optional string name = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_name:
@@ -1010,76 +981,76 @@ bool Server_Record::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(24)) goto parse_ttl;
+        if (input->ExpectTag(32)) goto parse_ttl;
         break;
       }
       
-      // optional int32 ttl = 3;
-      case 3: {
+      // optional int32 ttl = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_ttl:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &ttl_)));
-          _set_bit(2);
+          _set_bit(3);
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(32)) goto parse_priority;
+        if (input->ExpectTag(40)) goto parse_priority;
         break;
       }
       
-      // optional int32 priority = 4;
-      case 4: {
+      // optional int32 priority = 5;
+      case 5: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_priority:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &priority_)));
-          _set_bit(3);
+          _set_bit(4);
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(40)) goto parse_weight;
+        if (input->ExpectTag(48)) goto parse_weight;
         break;
       }
       
-      // optional int32 weight = 5;
-      case 5: {
+      // optional int32 weight = 6;
+      case 6: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_weight:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &weight_)));
-          _set_bit(4);
+          _set_bit(5);
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(48)) goto parse_port;
+        if (input->ExpectTag(56)) goto parse_port;
         break;
       }
       
-      // optional int32 port = 6;
-      case 6: {
+      // optional int32 port = 7;
+      case 7: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_port:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &port_)));
-          _set_bit(5);
+          _set_bit(6);
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(58)) goto parse_target;
+        if (input->ExpectTag(66)) goto parse_target;
         break;
       }
       
-      // optional string target = 7;
-      case 7: {
+      // optional string target = 8;
+      case 8: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
          parse_target:
@@ -1122,42 +1093,48 @@ void Server_Record::SerializeWithCachedSizes(
       1, this->service(), output);
   }
   
-  // optional string name = 2;
+  // optional .urpc.pb.Server.Record.Protocol protocol = 2;
   if (_has_bit(1)) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      2, this->protocol(), output);
+  }
+  
+  // optional string name = 3;
+  if (_has_bit(2)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      2, this->name(), output);
+      3, this->name(), output);
   }
   
-  // optional int32 ttl = 3;
-  if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->ttl(), output);
-  }
-  
-  // optional int32 priority = 4;
+  // optional int32 ttl = 4;
   if (_has_bit(3)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->priority(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->ttl(), output);
   }
   
-  // optional int32 weight = 5;
+  // optional int32 priority = 5;
   if (_has_bit(4)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->weight(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->priority(), output);
   }
   
-  // optional int32 port = 6;
+  // optional int32 weight = 6;
   if (_has_bit(5)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->port(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->weight(), output);
   }
   
-  // optional string target = 7;
+  // optional int32 port = 7;
   if (_has_bit(6)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->port(), output);
+  }
+  
+  // optional string target = 8;
+  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->target().data(), this->target().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     ::google::protobuf::internal::WireFormatLite::WriteString(
-      7, this->target(), output);
+      8, this->target(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -1178,44 +1155,50 @@ void Server_Record::SerializeWithCachedSizes(
         1, this->service(), target);
   }
   
-  // optional string name = 2;
+  // optional .urpc.pb.Server.Record.Protocol protocol = 2;
   if (_has_bit(1)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      2, this->protocol(), target);
+  }
+  
+  // optional string name = 3;
+  if (_has_bit(2)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->name(), target);
+        3, this->name(), target);
   }
   
-  // optional int32 ttl = 3;
-  if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->ttl(), target);
-  }
-  
-  // optional int32 priority = 4;
+  // optional int32 ttl = 4;
   if (_has_bit(3)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->priority(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->ttl(), target);
   }
   
-  // optional int32 weight = 5;
+  // optional int32 priority = 5;
   if (_has_bit(4)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->weight(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->priority(), target);
   }
   
-  // optional int32 port = 6;
+  // optional int32 weight = 6;
   if (_has_bit(5)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->port(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->weight(), target);
   }
   
-  // optional string target = 7;
+  // optional int32 port = 7;
   if (_has_bit(6)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->port(), target);
+  }
+  
+  // optional string target = 8;
+  if (_has_bit(7)) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->target().data(), this->target().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        7, this->target(), target);
+        8, this->target(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -1236,42 +1219,48 @@ int Server_Record::ByteSize() const {
           this->service());
     }
     
-    // optional string name = 2;
+    // optional .urpc.pb.Server.Record.Protocol protocol = 2;
+    if (has_protocol()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->protocol());
+    }
+    
+    // optional string name = 3;
     if (has_name()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
           this->name());
     }
     
-    // optional int32 ttl = 3;
+    // optional int32 ttl = 4;
     if (has_ttl()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->ttl());
     }
     
-    // optional int32 priority = 4;
+    // optional int32 priority = 5;
     if (has_priority()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->priority());
     }
     
-    // optional int32 weight = 5;
+    // optional int32 weight = 6;
     if (has_weight()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->weight());
     }
     
-    // optional int32 port = 6;
+    // optional int32 port = 7;
     if (has_port()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->port());
     }
     
-    // optional string target = 7;
+    // optional string target = 8;
     if (has_target()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -1309,21 +1298,24 @@ void Server_Record::MergeFrom(const Server_Record& from) {
       set_service(from.service());
     }
     if (from._has_bit(1)) {
-      set_name(from.name());
+      set_protocol(from.protocol());
     }
     if (from._has_bit(2)) {
-      set_ttl(from.ttl());
+      set_name(from.name());
     }
     if (from._has_bit(3)) {
-      set_priority(from.priority());
+      set_ttl(from.ttl());
     }
     if (from._has_bit(4)) {
-      set_weight(from.weight());
+      set_priority(from.priority());
     }
     if (from._has_bit(5)) {
-      set_port(from.port());
+      set_weight(from.weight());
     }
     if (from._has_bit(6)) {
+      set_port(from.port());
+    }
+    if (from._has_bit(7)) {
       set_target(from.target());
     }
   }
@@ -1350,6 +1342,7 @@ bool Server_Record::IsInitialized() const {
 void Server_Record::Swap(Server_Record* other) {
   if (other != this) {
     std::swap(service_, other->service_);
+    std::swap(protocol_, other->protocol_);
     std::swap(name_, other->name_);
     std::swap(ttl_, other->ttl_);
     std::swap(priority_, other->priority_);
@@ -1569,505 +1562,6 @@ void Server::Swap(Server* other) {
   ::google::protobuf::Metadata metadata;
   metadata.descriptor = Server_descriptor_;
   metadata.reflection = Server_reflection_;
-  return metadata;
-}
-
-
-// ===================================================================
-
-const ::google::protobuf::EnumDescriptor* KeyValueSeries_KeyValue_valueType_descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return KeyValueSeries_KeyValue_valueType_descriptor_;
-}
-bool KeyValueSeries_KeyValue_valueType_IsValid(int value) {
-  switch(value) {
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#ifndef _MSC_VER
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::String;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::Double;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::Int32;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::valueType_MIN;
-const KeyValueSeries_KeyValue_valueType KeyValueSeries_KeyValue::valueType_MAX;
-const int KeyValueSeries_KeyValue::valueType_ARRAYSIZE;
-#endif  // _MSC_VER
-const ::std::string KeyValueSeries_KeyValue::_default_key_;
-const ::std::string KeyValueSeries_KeyValue::_default_value_;
-#ifndef _MSC_VER
-const int KeyValueSeries_KeyValue::kKeyFieldNumber;
-const int KeyValueSeries_KeyValue::kValueFieldNumber;
-#endif  // !_MSC_VER
-
-KeyValueSeries_KeyValue::KeyValueSeries_KeyValue()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-}
-
-void KeyValueSeries_KeyValue::InitAsDefaultInstance() {
-}
-
-KeyValueSeries_KeyValue::KeyValueSeries_KeyValue(const KeyValueSeries_KeyValue& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void KeyValueSeries_KeyValue::SharedCtor() {
-  _cached_size_ = 0;
-  key_ = const_cast< ::std::string*>(&_default_key_);
-  value_ = const_cast< ::std::string*>(&_default_value_);
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-KeyValueSeries_KeyValue::~KeyValueSeries_KeyValue() {
-  SharedDtor();
-}
-
-void KeyValueSeries_KeyValue::SharedDtor() {
-  if (key_ != &_default_key_) {
-    delete key_;
-  }
-  if (value_ != &_default_value_) {
-    delete value_;
-  }
-  if (this != default_instance_) {
-  }
-}
-
-void KeyValueSeries_KeyValue::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* KeyValueSeries_KeyValue::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return KeyValueSeries_KeyValue_descriptor_;
-}
-
-const KeyValueSeries_KeyValue& KeyValueSeries_KeyValue::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_uRPC_2eproto();  return *default_instance_;
-}
-
-KeyValueSeries_KeyValue* KeyValueSeries_KeyValue::default_instance_ = NULL;
-
-KeyValueSeries_KeyValue* KeyValueSeries_KeyValue::New() const {
-  return new KeyValueSeries_KeyValue;
-}
-
-void KeyValueSeries_KeyValue::Clear() {
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (key_ != &_default_key_) {
-        key_->clear();
-      }
-    }
-    if (_has_bit(1)) {
-      if (value_ != &_default_value_) {
-        value_->clear();
-      }
-    }
-  }
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool KeyValueSeries_KeyValue::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional string key = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_key()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-            this->key().data(), this->key().length(),
-            ::google::protobuf::internal::WireFormat::PARSE);
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(18)) goto parse_value;
-        break;
-      }
-      
-      // optional bytes value = 2;
-      case 2: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_value:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
-                input, this->mutable_value()));
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void KeyValueSeries_KeyValue::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional string key = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->key().data(), this->key().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    ::google::protobuf::internal::WireFormatLite::WriteString(
-      1, this->key(), output);
-  }
-  
-  // optional bytes value = 2;
-  if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteBytes(
-      2, this->value(), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* KeyValueSeries_KeyValue::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // optional string key = 1;
-  if (_has_bit(0)) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8String(
-      this->key().data(), this->key().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE);
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        1, this->key(), target);
-  }
-  
-  // optional bytes value = 2;
-  if (_has_bit(1)) {
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
-        2, this->value(), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int KeyValueSeries_KeyValue::ByteSize() const {
-  int total_size = 0;
-  
-  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional string key = 1;
-    if (has_key()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::StringSize(
-          this->key());
-    }
-    
-    // optional bytes value = 2;
-    if (has_value()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::BytesSize(
-          this->value());
-    }
-    
-  }
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void KeyValueSeries_KeyValue::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const KeyValueSeries_KeyValue* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const KeyValueSeries_KeyValue*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void KeyValueSeries_KeyValue::MergeFrom(const KeyValueSeries_KeyValue& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
-      set_key(from.key());
-    }
-    if (from._has_bit(1)) {
-      set_value(from.value());
-    }
-  }
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void KeyValueSeries_KeyValue::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void KeyValueSeries_KeyValue::CopyFrom(const KeyValueSeries_KeyValue& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool KeyValueSeries_KeyValue::IsInitialized() const {
-  
-  return true;
-}
-
-void KeyValueSeries_KeyValue::Swap(KeyValueSeries_KeyValue* other) {
-  if (other != this) {
-    std::swap(key_, other->key_);
-    std::swap(value_, other->value_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata KeyValueSeries_KeyValue::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = KeyValueSeries_KeyValue_descriptor_;
-  metadata.reflection = KeyValueSeries_KeyValue_reflection_;
-  return metadata;
-}
-
-
-// -------------------------------------------------------------------
-
-#ifndef _MSC_VER
-const int KeyValueSeries::kKeyValueFieldNumber;
-#endif  // !_MSC_VER
-
-KeyValueSeries::KeyValueSeries()
-  : ::google::protobuf::Message() {
-  SharedCtor();
-}
-
-void KeyValueSeries::InitAsDefaultInstance() {
-}
-
-KeyValueSeries::KeyValueSeries(const KeyValueSeries& from)
-  : ::google::protobuf::Message() {
-  SharedCtor();
-  MergeFrom(from);
-}
-
-void KeyValueSeries::SharedCtor() {
-  _cached_size_ = 0;
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-}
-
-KeyValueSeries::~KeyValueSeries() {
-  SharedDtor();
-}
-
-void KeyValueSeries::SharedDtor() {
-  if (this != default_instance_) {
-  }
-}
-
-void KeyValueSeries::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* KeyValueSeries::descriptor() {
-  protobuf_AssignDescriptorsOnce();
-  return KeyValueSeries_descriptor_;
-}
-
-const KeyValueSeries& KeyValueSeries::default_instance() {
-  if (default_instance_ == NULL) protobuf_AddDesc_uRPC_2eproto();  return *default_instance_;
-}
-
-KeyValueSeries* KeyValueSeries::default_instance_ = NULL;
-
-KeyValueSeries* KeyValueSeries::New() const {
-  return new KeyValueSeries;
-}
-
-void KeyValueSeries::Clear() {
-  keyvalue_.Clear();
-  ::memset(_has_bits_, 0, sizeof(_has_bits_));
-  mutable_unknown_fields()->Clear();
-}
-
-bool KeyValueSeries::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!(EXPRESSION)) return false
-  ::google::protobuf::uint32 tag;
-  while ((tag = input->ReadTag()) != 0) {
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
-      case 1: {
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
-         parse_keyValue:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
-                input, add_keyvalue()));
-        } else {
-          goto handle_uninterpreted;
-        }
-        if (input->ExpectTag(10)) goto parse_keyValue;
-        if (input->ExpectAtEnd()) return true;
-        break;
-      }
-      
-      default: {
-      handle_uninterpreted:
-        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
-          return true;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-  return true;
-#undef DO_
-}
-
-void KeyValueSeries::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
-  for (int i = 0; i < this->keyvalue_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->keyvalue(i), output);
-  }
-  
-  if (!unknown_fields().empty()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        unknown_fields(), output);
-  }
-}
-
-::google::protobuf::uint8* KeyValueSeries::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
-  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
-  for (int i = 0; i < this->keyvalue_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteMessageNoVirtualToArray(
-        1, this->keyvalue(i), target);
-  }
-  
-  if (!unknown_fields().empty()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        unknown_fields(), target);
-  }
-  return target;
-}
-
-int KeyValueSeries::ByteSize() const {
-  int total_size = 0;
-  
-  // repeated .urpc.pb.KeyValueSeries.KeyValue keyValue = 1;
-  total_size += 1 * this->keyvalue_size();
-  for (int i = 0; i < this->keyvalue_size(); i++) {
-    total_size +=
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        this->keyvalue(i));
-  }
-  
-  if (!unknown_fields().empty()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        unknown_fields());
-  }
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = total_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void KeyValueSeries::MergeFrom(const ::google::protobuf::Message& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  const KeyValueSeries* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const KeyValueSeries*>(
-      &from);
-  if (source == NULL) {
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-    MergeFrom(*source);
-  }
-}
-
-void KeyValueSeries::MergeFrom(const KeyValueSeries& from) {
-  GOOGLE_CHECK_NE(&from, this);
-  keyvalue_.MergeFrom(from.keyvalue_);
-  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
-}
-
-void KeyValueSeries::CopyFrom(const ::google::protobuf::Message& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void KeyValueSeries::CopyFrom(const KeyValueSeries& from) {
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool KeyValueSeries::IsInitialized() const {
-  
-  return true;
-}
-
-void KeyValueSeries::Swap(KeyValueSeries* other) {
-  if (other != this) {
-    keyvalue_.Swap(&other->keyvalue_);
-    std::swap(_has_bits_[0], other->_has_bits_[0]);
-    _unknown_fields_.Swap(&other->_unknown_fields_);
-    std::swap(_cached_size_, other->_cached_size_);
-  }
-}
-
-::google::protobuf::Metadata KeyValueSeries::GetMetadata() const {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::Metadata metadata;
-  metadata.descriptor = KeyValueSeries_descriptor_;
-  metadata.reflection = KeyValueSeries_reflection_;
   return metadata;
 }
 

@@ -12,8 +12,9 @@ message Log {
     Trace = 5;
   }
   optional string message = 1; 
-  optional int32 number = 2;    // log level number
-  optional int64 time = 3;      // nanoseconds since the Unix epoch January 1, 
+  optional Level level = 2;
+  optional int32 number = 3;    // log level number
+  optional int64 time = 4;      // nanoseconds since the Unix epoch January 1, 
                                 //  1970 00:00:00 UTC
 }
 

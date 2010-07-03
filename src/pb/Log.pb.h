@@ -152,17 +152,24 @@ class Log : public ::google::protobuf::Message {
   inline void set_message(const char* value, size_t size);
   inline ::std::string* mutable_message();
   
-  // optional int32 number = 2;
+  // optional .urpc.pb.Log.Level level = 2;
+  inline bool has_level() const;
+  inline void clear_level();
+  static const int kLevelFieldNumber = 2;
+  inline ::urpc::pb::Log_Level level() const;
+  inline void set_level(::urpc::pb::Log_Level value);
+  
+  // optional int32 number = 3;
   inline bool has_number() const;
   inline void clear_number();
-  static const int kNumberFieldNumber = 2;
+  static const int kNumberFieldNumber = 3;
   inline ::google::protobuf::int32 number() const;
   inline void set_number(::google::protobuf::int32 value);
   
-  // optional int64 time = 3;
+  // optional int64 time = 4;
   inline bool has_time() const;
   inline void clear_time();
-  static const int kTimeFieldNumber = 3;
+  static const int kTimeFieldNumber = 4;
   inline ::google::protobuf::int64 time() const;
   inline void set_time(::google::protobuf::int64 value);
   
@@ -173,13 +180,14 @@ class Log : public ::google::protobuf::Message {
   
   ::std::string* message_;
   static const ::std::string _default_message_;
+  int level_;
   ::google::protobuf::int32 number_;
   ::google::protobuf::int64 time_;
   friend void  protobuf_AddDesc_Log_2eproto();
   friend void protobuf_AssignDesc_Log_2eproto();
   friend void protobuf_ShutdownFile_Log_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -244,35 +252,52 @@ inline ::std::string* Log::mutable_message() {
   return message_;
 }
 
-// optional int32 number = 2;
-inline bool Log::has_number() const {
+// optional .urpc.pb.Log.Level level = 2;
+inline bool Log::has_level() const {
   return _has_bit(1);
+}
+inline void Log::clear_level() {
+  level_ = 0;
+  _clear_bit(1);
+}
+inline ::urpc::pb::Log_Level Log::level() const {
+  return static_cast< ::urpc::pb::Log_Level >(level_);
+}
+inline void Log::set_level(::urpc::pb::Log_Level value) {
+  GOOGLE_DCHECK(::urpc::pb::Log_Level_IsValid(value));
+  _set_bit(1);
+  level_ = value;
+}
+
+// optional int32 number = 3;
+inline bool Log::has_number() const {
+  return _has_bit(2);
 }
 inline void Log::clear_number() {
   number_ = 0;
-  _clear_bit(1);
+  _clear_bit(2);
 }
 inline ::google::protobuf::int32 Log::number() const {
   return number_;
 }
 inline void Log::set_number(::google::protobuf::int32 value) {
-  _set_bit(1);
+  _set_bit(2);
   number_ = value;
 }
 
-// optional int64 time = 3;
+// optional int64 time = 4;
 inline bool Log::has_time() const {
-  return _has_bit(2);
+  return _has_bit(3);
 }
 inline void Log::clear_time() {
   time_ = GOOGLE_LONGLONG(0);
-  _clear_bit(2);
+  _clear_bit(3);
 }
 inline ::google::protobuf::int64 Log::time() const {
   return time_;
 }
 inline void Log::set_time(::google::protobuf::int64 value) {
-  _set_bit(2);
+  _set_bit(3);
   time_ = value;
 }
 

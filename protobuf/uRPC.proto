@@ -33,32 +33,18 @@ message Response {
 
 message Server {
   message Record {
-    optional string service = 1;  // symbolic name e.g. http
-    enum protocal {               // transport protocol 
+    enum Protocol {
       TCP = 1;
       UDP = 2;
     }
-    optional string name = 2;     // domain name
-    optional int32 ttl = 3;       // time to live field
-    optional int32 priority = 4;  // target priority, lower is more preferred
-    optional int32 weight = 5;    // relative weight for given priority
-    optional int32 port = 6;      // service port
-    optional string target = 7;   // canonical hostname 
+    optional string service = 1;    // symbolic name e.g. http
+    optional Protocol protocol = 2; // transport protocol 
+    optional string name = 3;       // domain name
+    optional int32 ttl = 4;         // time to live field
+    optional int32 priority = 5;    // target priority, lower is more preferred
+    optional int32 weight = 6;      // relative weight for given priority
+    optional int32 port = 7;        // service port
+    optional string target = 8;     // canonical hostname 
   }
   repeated Record record = 1;
-}
-
-// Generic Key-Value pairs: an experiment with an unspecified API
-
-message KeyValueSeries {
-  message KeyValue {
-    enum valueType {
-      String = 1;
-      Double = 2;
-      Int32 = 3;
-    }
-    optional string key = 1;
-    optional bytes value = 2;
-  }
-  repeated KeyValue keyValue = 1;
 }

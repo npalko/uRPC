@@ -33,8 +33,9 @@ void protobuf_AssignDesc_Log_2eproto() {
       "Log.proto");
   GOOGLE_CHECK(file != NULL);
   Log_descriptor_ = file->message_type(0);
-  static const int Log_offsets_[3] = {
+  static const int Log_offsets_[4] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Log, message_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Log, level_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Log, number_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Log, time_),
   };
@@ -80,10 +81,11 @@ void protobuf_AddDesc_Log_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\tLog.proto\022\007urpc.pb\"}\n\003Log\022\017\n\007message\030\001"
-    " \001(\t\022\016\n\006number\030\002 \001(\005\022\014\n\004time\030\003 \001(\003\"G\n\005Le"
-    "vel\022\t\n\005Fatal\020\000\022\t\n\005Error\020\001\022\010\n\004Warn\020\002\022\010\n\004I"
-    "nfo\020\003\022\t\n\005Debug\020\004\022\t\n\005Trace\020\005", 147);
+    "\n\tLog.proto\022\007urpc.pb\"\240\001\n\003Log\022\017\n\007message\030"
+    "\001 \001(\t\022!\n\005level\030\002 \001(\0162\022.urpc.pb.Log.Level"
+    "\022\016\n\006number\030\003 \001(\005\022\014\n\004time\030\004 \001(\003\"G\n\005Level\022"
+    "\t\n\005Fatal\020\000\022\t\n\005Error\020\001\022\010\n\004Warn\020\002\022\010\n\004Info\020"
+    "\003\022\t\n\005Debug\020\004\022\t\n\005Trace\020\005", 183);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Log.proto", &protobuf_RegisterTypes);
   Log::default_instance_ = new Log();
@@ -133,6 +135,7 @@ const int Log::Level_ARRAYSIZE;
 const ::std::string Log::_default_message_;
 #ifndef _MSC_VER
 const int Log::kMessageFieldNumber;
+const int Log::kLevelFieldNumber;
 const int Log::kNumberFieldNumber;
 const int Log::kTimeFieldNumber;
 #endif  // !_MSC_VER
@@ -154,6 +157,7 @@ Log::Log(const Log& from)
 void Log::SharedCtor() {
   _cached_size_ = 0;
   message_ = const_cast< ::std::string*>(&_default_message_);
+  level_ = 0;
   number_ = 0;
   time_ = GOOGLE_LONGLONG(0);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
@@ -198,6 +202,7 @@ void Log::Clear() {
         message_->clear();
       }
     }
+    level_ = 0;
     number_ = 0;
     time_ = GOOGLE_LONGLONG(0);
   }
@@ -223,35 +228,56 @@ bool Log::MergePartialFromCodedStream(
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(16)) goto parse_number;
+        if (input->ExpectTag(16)) goto parse_level;
         break;
       }
       
-      // optional int32 number = 2;
+      // optional .urpc.pb.Log.Level level = 2;
       case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
+         parse_level:
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          if (::urpc::pb::Log_Level_IsValid(value)) {
+            set_level(static_cast< ::urpc::pb::Log_Level >(value));
+          } else {
+            mutable_unknown_fields()->AddVarint(2, value);
+          }
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(24)) goto parse_number;
+        break;
+      }
+      
+      // optional int32 number = 3;
+      case 3: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_number:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &number_)));
-          _set_bit(1);
+          _set_bit(2);
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(24)) goto parse_time;
+        if (input->ExpectTag(32)) goto parse_time;
         break;
       }
       
-      // optional int64 time = 3;
-      case 3: {
+      // optional int64 time = 4;
+      case 4: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
          parse_time:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &time_)));
-          _set_bit(2);
+          _set_bit(3);
         } else {
           goto handle_uninterpreted;
         }
@@ -286,14 +312,20 @@ void Log::SerializeWithCachedSizes(
       1, this->message(), output);
   }
   
-  // optional int32 number = 2;
+  // optional .urpc.pb.Log.Level level = 2;
   if (_has_bit(1)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->number(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      2, this->level(), output);
   }
   
-  // optional int64 time = 3;
+  // optional int32 number = 3;
   if (_has_bit(2)) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->time(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->number(), output);
+  }
+  
+  // optional int64 time = 4;
+  if (_has_bit(3)) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->time(), output);
   }
   
   if (!unknown_fields().empty()) {
@@ -314,14 +346,20 @@ void Log::SerializeWithCachedSizes(
         1, this->message(), target);
   }
   
-  // optional int32 number = 2;
+  // optional .urpc.pb.Log.Level level = 2;
   if (_has_bit(1)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->number(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      2, this->level(), target);
   }
   
-  // optional int64 time = 3;
+  // optional int32 number = 3;
   if (_has_bit(2)) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->time(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->number(), target);
+  }
+  
+  // optional int64 time = 4;
+  if (_has_bit(3)) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->time(), target);
   }
   
   if (!unknown_fields().empty()) {
@@ -342,14 +380,20 @@ int Log::ByteSize() const {
           this->message());
     }
     
-    // optional int32 number = 2;
+    // optional .urpc.pb.Log.Level level = 2;
+    if (has_level()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::EnumSize(this->level());
+    }
+    
+    // optional int32 number = 3;
     if (has_number()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int32Size(
           this->number());
     }
     
-    // optional int64 time = 3;
+    // optional int64 time = 4;
     if (has_time()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::Int64Size(
@@ -387,9 +431,12 @@ void Log::MergeFrom(const Log& from) {
       set_message(from.message());
     }
     if (from._has_bit(1)) {
-      set_number(from.number());
+      set_level(from.level());
     }
     if (from._has_bit(2)) {
+      set_number(from.number());
+    }
+    if (from._has_bit(3)) {
       set_time(from.time());
     }
   }
@@ -416,6 +463,7 @@ bool Log::IsInitialized() const {
 void Log::Swap(Log* other) {
   if (other != this) {
     std::swap(message_, other->message_);
+    std::swap(level_, other->level_);
     std::swap(number_, other->number_);
     std::swap(time_, other->time_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
