@@ -6,7 +6,7 @@ import zmq
 
 
 def server():
-  context = zmq.Context(1, 1)
+  context = zmq.Context()
   socket = context.socket(zmq.REP)
   socket.bind("tcp://127.0.0.1:5555")
   
