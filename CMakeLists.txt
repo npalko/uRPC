@@ -21,7 +21,11 @@ find_package (Boost REQUIRED) #memory
 
 # EXTERNAL 
 # Boost
+if (WIN32)
+  add_definitions (-D_WIN32_WINNT=0x0501)
+endif (WIN32)
 include_directories (${Boost_INCLUDE_DIRS})
+link_directories (${Boost_LIBRARY_DIRS})
 
 # Google Protobuf
 include_directories (${PROTOBUF_INCLUDE_DIR})
@@ -61,7 +65,11 @@ set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
 #add_subdirectory (src/ldap)
 #set (EXTRA_LIBS ${EXTRA_LIBS} ldap)
 
+# must be added last, even though we specify depenceny. odd
 add_subdirectory (src)
 
 # EXAMPLES
 add_subdirectory (examples/cpp)
+
+# TESTING
+add_subdirectory (test)
