@@ -54,7 +54,7 @@ include_directories (src)
 add_subdirectory (src/dns)
 set (EXTRA_LIBS ${EXTRA_LIBS} dns)
 if (WIN32)
-  set (EXTRA_LIBS ${EXTRA_LIBS} IPHLPAPI)
+  set (EXTRA_LIBS ${EXTRA_LIBS} IPHlpAPI)
 endif (WIN32)
 
 # Kerberos
@@ -62,8 +62,8 @@ add_subdirectory (src/kerberos)
 set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
 
 # LDAP
-#add_subdirectory (src/ldap)
-#set (EXTRA_LIBS ${EXTRA_LIBS} ldap)
+add_subdirectory (src/ldap)
+set (EXTRA_LIBS ${EXTRA_LIBS} ldap)
 
 # must be added last, even though we specify depenceny. odd
 add_subdirectory (src)

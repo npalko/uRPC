@@ -3,7 +3,7 @@
 *.suo
 build/
 
-Excel/Plugin/bin/
-Excel/Plugin/obj/
+Excel/AddIn/bin/
+Excel/AddIn/obj/
 Excel/RTD/bin/
 Excel/RTD/obj/
