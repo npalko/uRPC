@@ -1,9 +1,8 @@
-/*
+// src/ldap/ldap-unix.cpp
+//
+//
 
-  interface to OpenLDAP
-
-
-*/
+// interface to openLDAP?
 
 namespace urpc {
 namespace ldap {

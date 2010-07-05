@@ -1,13 +1,13 @@
-/*
+// src/ldap/ldap-win.cpp
+//
+//
+
+// http://msdn.microsoft.com/en-us/library/aa366938(v=VS.85).aspx
+// Header    Winldap.h
+// Library   Wldap32.lib
+// DLL       Wldap32.dll
 
 
-http://msdn.microsoft.com/en-us/library/aa366938(v=VS.85).aspx
-
-Header    Winldap.h
-Library   Wldap32.lib
-DLL       Wldap32.dll
-
-*/
 
 
 namespace urpc {
