@@ -6,7 +6,7 @@
 // _sip._tcp.example.com. 86400 IN    SRV 0        5      5060 sipserver.example.com.
 
 // Unix:     dig SRV _sip._tcp.example.com
-// Windows:  nslookup -type=srv _sip._tcp.example.com
+// Windows:  nslookup nslookup -q=SRV _sip._tls.microsoft.com
 
 
 
@@ -26,7 +26,7 @@
 namespace urpc {
 namespace dns {
 
-void getAddress (std::vector<boost::asio::ip::address> &);                         
+void getAddress (std::vector<boost::asio::ip::address> &);
 void getRecordFromAddress (const boost::asio::ip::address &, urpc::pb::Server &);
 std::string getConnectionStringFromRecord(const urpc::pb::Server_Record &);
 

@@ -12,16 +12,14 @@ TODO
     - use zero copy ZMQ api
     - use zero copy protobuf api
     - support for multi-part messages (send more, recieve more)
-  * src/dns
-    - write boost::asio utility to get SRV records from DNS server; look at 
-      xmpp server which requires same SRV resolution
-  * examples/cpp/matlabclient
+  * src/dns.cpp
+    - ibusy DNS
+  * examples/cpp/matlabclient.cpp
     - blows up for data > 10kB. Data allocated correctly - are we getting a
       bad pointer somwhere while rewritting?
-  * src/kerberos
-    - map out high level client and server authentication
+  * src/kerberos.cpp
     - fill in stub functionality; test against directory server
-  * src/ldap
+  * src/ldap.cpp
     - need a gameplan here. what is the high level interface? how are we 
       looking to organize the authorization directory?
   
@@ -36,16 +34,12 @@ TODO
     - change libraries linked to based on build type DCMAKE_BUILD_TYPE
     - get protobufs generated
     - write Find scripts for Matlab, ZMQ, PB, Kerberos
-    - cross platform testing (get compiled on FreeBSD image)
+    - cross platform testing (get compiled on FreeBSD image); do we need to 
+      set extra parameters to explicitly link boost on BSD?
     - bad form to use link_directories?
   * MATLAB
     - (?) automated, generic way to convert a probuf into an mxArray array of 
       structs, either by code generation or reflection
 
-Larger Design Considerations
-
-  * Multicast is inheretly insecure
-    - you can't permission multicast packets since they're passed along though
-      intermeditaries 
       
     
