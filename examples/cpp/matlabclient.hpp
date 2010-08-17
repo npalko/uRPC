@@ -2,14 +2,14 @@
 // 
 // Example Usage: see matlabclient.m
 
-// EXPORTED_FUNCTION required by Microsoft compiler only. _WIN32 is also 
-// defined for WIN64 enviroment. What a country! MATLAB's loadlibrary() calls 
-// the C preprocessor on this file which is why we need the __cplusplus guard
+// EXPORTED_FUNCTION required by Microsoft compiler only. MATLAB's 
+// loadlibrary() calls  the C preprocessor on this file which is why we need 
+// the __cplusplus guard
 
 #ifndef URPC_MATLAB_HPP
 #define URPC_MATLAB_HPP
 
-#ifdef _WIN32
+#ifdef _WIN32 // also defined for WIN64
 #define EXPORTED_FUNCTION __declspec(dllexport)
 #else
 #define EXPORTED_FUNCTION

@@ -20,8 +20,8 @@ EXPORTED_FUNCTION mxArray *request(const char * const service, int version,
   client.sendRequest(service, version, request);
   client.getResponse(response);
   
-  mxArray *mxResponse = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
-    mxDOUBLE_CLASS, mxREAL);
+  mxArray *mxResponse = mxCreateNumericMatrix(
+    static_cast<mwSize>(m), static_cast<mwSize>(n), mxDOUBLE_CLASS, mxREAL);
   double *out = mxGetPr(mxResponse);
   for (int i = 0; i < response.r_size(); i++) {
     out[i] = response.r(i);
@@ -36,7 +36,7 @@ EXPORTED_FUNCTION mxArray *zeros(int m, int n)
 {
   // rough replica of MATLAB zeros() function
   
-  mxArray *zeroArray = mxCreateNumericMatrix((mwSize) m, (mwSize) n, 
-    mxDOUBLE_CLASS, mxREAL);
+  mxArray *zeroArray = mxCreateNumericMatrix(
+    static_cast<mwSize>(m), static_cast<mwSize>(n), mxDOUBLE_CLASS, mxREAL);
   return zeroArray;
 }
