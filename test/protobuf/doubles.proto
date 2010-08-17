@@ -1,0 +1,5 @@
+package urpc.test.pb;
+
+message Array {
+  repeated double r = 1;
+}
