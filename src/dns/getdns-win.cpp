@@ -20,9 +20,10 @@
 namespace urpc {
 namespace dns {
 
-void getAddress(std::vector<boost::asio::ip::address> &server) {
+void getServer(std::vector<boost::asio::ip::address> &server) {
   FIXED_INFO *pFixedInfo;
   ULONG ulOutBufLen;
+  DWORD dwRetVal;
   IP_ADDR_STRING *pIPAddr;
   
   pFixedInfo = (FIXED_INFO *) malloc (sizeof(FIXED_INFO));
@@ -34,13 +35,25 @@ void getAddress(std::vector<boost::asio::ip::address> &server) {
   
   // get actual data
   pFixedInfo = (FIXED_INFO *) malloc (ulOutBufLen);
-  GetNetworkParams (pFixedInfo, &ulOutBufLen);
-  
-  do {
-    server.push_back (boost::asio::ip::address::from_string (
-      pFixedInfo->DnsServerList.IpAddress.String));  
+  dwRetVal = GetNetworkParams (pFixedInfo, &ulOutBufLen);
+  if (dwRetVal == NO_ERROR) {
+    
+    if (pFixedInfo->DnsServerList.IpAddress.String) {
+      server.push_back (boost::asio::ip::address::from_string (
+        pFixedInfo->DnsServerList.IpAddress.String));
+    } else {
+      printf("Aint shit\n");
+    }
+    
     pIPAddr = pFixedInfo->DnsServerList.Next;
-  } while (pIPAddr);
+    while (pIPAddr) {
+      server.push_back (boost::asio::ip::address::from_string (
+        pIPAddr->IpAddress.String));
+      pIPAddr = pIPAddr->Next;
+    }
+  } else {
+     printf("GetNetworkParams failed with error: %d\n", dwRetVal);
+  }
 
   free (pFixedInfo);
 }
