@@ -1,15 +1,11 @@
 #ifndef URPC_CLIENT_HPP
 #define URPC_CLIENT_HPP
 
-#include <cstdio>
 #include <string>
-#include <boost/asio.hpp>
 #include <boost/shared_ptr.hpp>
-
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
 #include "zmq.hpp"
-
 #include "dns/dns.hpp"
 #include "exception.hpp"
 #include "kerberos/kerberos.hpp"

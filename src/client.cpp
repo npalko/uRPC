@@ -6,17 +6,15 @@
 
 namespace urpc {
 
-Client::Client (const std::string &connectionString) {
-
+Client::Client (const std::string &connection = urpc::dns::getConnection ()) {
+  const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
-
-  const int nIOThread = 1;
+  
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t(nIOThread));
-  socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t (
-    *context, ZMQ_REQ));
-    
-  socket->connect (connectionString.c_str());
+  socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t(*context, 
+    ZMQ_REQ));
+  socket->connect (connection.c_str());
 }
 
 void Client::sendRequest (const std::string &service, int version, 
