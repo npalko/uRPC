@@ -49,7 +49,6 @@ endif (BUILD_MATLAB)
 # INTERNAL 
 include_directories (src)
 
-
 # DNS 
 add_subdirectory (src/dns)
 set (EXTRA_LIBS ${EXTRA_LIBS} dns)
@@ -64,6 +63,10 @@ set (EXTRA_LIBS ${EXTRA_LIBS} kerberos)
 # LDAP
 add_subdirectory (src/ldap)
 set (EXTRA_LIBS ${EXTRA_LIBS} ldap)
+
+# Glob
+add_library (glob STATIC src/glob.cpp src/glob.hpp)
+set (EXTRA_LIBS ${EXTRA_LIBS} glob)
 
 # must be added last, even though we specify depenceny. odd
 add_subdirectory (src)

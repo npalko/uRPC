@@ -1,6 +1,7 @@
 #!/bin/bash
 protoc --cpp_out=src/pb --python_out=python/urpc --proto_path=protobuf protobuf/*.proto
 protoc --cpp_out=examples/cpp --python_out=examples/python --proto_path=examples/protobuf examples/protobuf/*.proto
+protoc --cpp_out=test/pb --proto_path=test/protobuf test/protobuf/*.proto
 cd build && cmake .. \
   -DCMAKE_MODULE_PATH="C:/Users/Nicholas Palko/Documents/Development/cmake-modules" \
   -DBOOST_ROOT="C:/Users/Nicholas Palko/Documents/Development/boost_1_43_0" \
