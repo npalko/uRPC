@@ -26,16 +26,25 @@
 
 namespace urpc {
 
-enum GlobIO {Read, Write};
 
-class Glob {
+class glob {
   public:
-    Glob (const std::string &, GlobIO);
-    bool read (google::protobuf::Message &);
-    void write (const google::protobuf::Message &);
-  private:
+    glob ();
+  protected:
     std::fstream stream;
     static const int IntSize = 4;
+};
+
+class iglob : private glob {
+  public:
+    iglob (const std::string &);
+    bool read (google::protobuf::Message &);
+};
+
+class oglob : private glob {
+  public:
+    oglob (const std::string &);
+    void write (const google::protobuf::Message &);
 };
 
 

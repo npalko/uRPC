@@ -6,7 +6,7 @@
 
 int main (int argc, char **argv) {
   
-  urpc::Glob glob("somefile.pbuf", urpc::Read);
+  urpc::iglob glob("somefile.pbuf");
   urpc::test::pb::Array doubles;
   
   while (glob.read (doubles)) {

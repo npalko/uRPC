@@ -9,23 +9,17 @@
 
 namespace urpc {
 
-Glob::Glob (const std::string &filename, urpc::GlobIO direction) {
+glob::glob() {
 
-  using namespace std;
   assert (sizeof(int) == IntSize);
-
-  switch (direction) {
-    case urpc::Read:
-      stream.open (filename.c_str(), ios::binary | ios::in);
-      break;
-    case urpc::Write:
-      stream.open (filename.c_str(), ios::binary | ios::out | ios::trunc);
-      break;
-  }
 }
 
-bool Glob::read (google::protobuf::Message &message) {
+iglob::iglob (const std::string &filename) {
 
+  using namespace std;
+  stream.open (filename.c_str(), ios::binary | ios::in);
+}
+bool iglob::read (google::protobuf::Message &message) {
   // assumes we are ready for the next block of data
   // if read completed
 
@@ -52,7 +46,12 @@ bool Glob::read (google::protobuf::Message &message) {
   return true;
 }
 
-void Glob::write (const google::protobuf::Message &message) {
+oglob::oglob (const std::string &filename) {
+
+  using namespace std;
+  stream.open (filename.c_str(), ios::binary | ios::out | ios::trunc);
+}
+void oglob::write (const google::protobuf::Message &message) {
 
   bool serializeSuccess;
   int length;
