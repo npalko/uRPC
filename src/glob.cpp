@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include <cstdio>
+#include <vector>
 #include "glob.hpp"
 
 namespace urpc {
@@ -30,7 +31,6 @@ bool Glob::read (google::protobuf::Message &message) {
 
   bool parseSuccess;
   int length;
-  char *data;
   
   stream.read (reinterpret_cast<char*>(&length), IntSize);
   if (stream.eof()) {
@@ -38,11 +38,13 @@ bool Glob::read (google::protobuf::Message &message) {
   }
 
   printf ("Glob::read length=%d\n", length);
-  data = new char[length];
-  stream.read (data, length);
-  parseSuccess = message.ParseFromArray (data, length);
-  delete [] data;
+  std::vector<char> buffer (length);
+  stream.read (&buffer[0], length);
+  if (stream.gcount() != length) {
+    throw urpc::GlobError ("Could not read bytes specified by offset");
+  }
 
+  parseSuccess = message.ParseFromArray (&buffer[0], length);
   if (!parseSuccess) {
     throw urpc::GlobError ("ParseFromArray failure");
   }
