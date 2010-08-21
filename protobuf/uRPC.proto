@@ -1,33 +1,34 @@
-// Messages used to implement Remote Procedure Calls
+// protobuf/uRPC.proto
+//
+// Messages implementing remote procedure calls
 
 
 import "Log.proto";
 
 package urpc.pb;
 
-// ZMQ Request-reply pattern
-//  single-part: ZMQ_REQ, ZMQ_REP
-//  multi-part: ZMQ_SNDMORE, ZMQ_RCVMORE
+// ZMQ Request-Reply Pattern
+// ZMQ_REQ, ZMQ_REP, ZMQ_SNDMORE, ZMQ_RCVMORE
 
 message Request {
   optional string service = 1;        // Serivce called
   optional int32 version = 2;         // Version of the api
   optional bytes message = 3;         // Protobuf for service's request
 }
-message Response {
+message Reply {
   optional bool error = 1;            // True if error occured
-  optional bytes message = 2;         // Protobuf of selected response
+  optional bytes message = 2;         // Protobuf of selected reply
   repeated Log log = 3;               // Any additional error messages
 }
 
-// ZMQ Publish-subscribe pattern
-//  ZMQ_PUB, ZMQ_SUB
+// ZMQ Publish-Subscribe Pattern
+// ZMQ_PUB, ZMQ_SUB
 
-// ZMQ Peer to Peer pattern
-//  ZMQ_P2P
+// ZMQ Exclusive Pair Pattern
+// ZMQ_PAIR
 
-// ZMQ Parallelized pipeline pattern
-//  ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
+// ZMQ Parallelized Pipeline Pattern
+// ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
 
 // Server Record
 
@@ -39,7 +40,7 @@ message Server {
     }
     optional string service = 1;    // symbolic name e.g. http
     optional Protocol protocol = 2; // transport protocol 
-    optional string name = 3;       // domain name
+    optional string name = 3;       // domain name (e.g example.com)
     optional int32 ttl = 4;         // time to live field
     optional int32 priority = 5;    // target priority, lower is more preferred
     optional int32 weight = 6;      // relative weight for given priority

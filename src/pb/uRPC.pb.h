@@ -35,7 +35,7 @@ void protobuf_AssignDesc_uRPC_2eproto();
 void protobuf_ShutdownFile_uRPC_2eproto();
 
 class Request;
-class Response;
+class Reply;
 class Server;
 class Server_Record;
 
@@ -173,14 +173,14 @@ class Request : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class Response : public ::google::protobuf::Message {
+class Reply : public ::google::protobuf::Message {
  public:
-  Response();
-  virtual ~Response();
+  Reply();
+  virtual ~Reply();
   
-  Response(const Response& from);
+  Reply(const Reply& from);
   
-  inline Response& operator=(const Response& from) {
+  inline Reply& operator=(const Reply& from) {
     CopyFrom(from);
     return *this;
   }
@@ -194,17 +194,17 @@ class Response : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Response& default_instance();
+  static const Reply& default_instance();
   
-  void Swap(Response* other);
+  void Swap(Reply* other);
   
   // implements Message ----------------------------------------------
   
-  Response* New() const;
+  Reply* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Response& from);
-  void MergeFrom(const Response& from);
+  void CopyFrom(const Reply& from);
+  void MergeFrom(const Reply& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -256,7 +256,7 @@ class Response : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
       mutable_log();
   
-  // @@protoc_insertion_point(class_scope:urpc.pb.Response)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Reply)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -283,7 +283,7 @@ class Response : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Response* default_instance_;
+  static Reply* default_instance_;
 };
 // -------------------------------------------------------------------
 
@@ -671,59 +671,59 @@ inline ::std::string* Request::mutable_message() {
 
 // -------------------------------------------------------------------
 
-// Response
+// Reply
 
 // optional bool error = 1;
-inline bool Response::has_error() const {
+inline bool Reply::has_error() const {
   return _has_bit(0);
 }
-inline void Response::clear_error() {
+inline void Reply::clear_error() {
   error_ = false;
   _clear_bit(0);
 }
-inline bool Response::error() const {
+inline bool Reply::error() const {
   return error_;
 }
-inline void Response::set_error(bool value) {
+inline void Reply::set_error(bool value) {
   _set_bit(0);
   error_ = value;
 }
 
 // optional bytes message = 2;
-inline bool Response::has_message() const {
+inline bool Reply::has_message() const {
   return _has_bit(1);
 }
-inline void Response::clear_message() {
+inline void Reply::clear_message() {
   if (message_ != &_default_message_) {
     message_->clear();
   }
   _clear_bit(1);
 }
-inline const ::std::string& Response::message() const {
+inline const ::std::string& Reply::message() const {
   return *message_;
 }
-inline void Response::set_message(const ::std::string& value) {
+inline void Reply::set_message(const ::std::string& value) {
   _set_bit(1);
   if (message_ == &_default_message_) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
-inline void Response::set_message(const char* value) {
+inline void Reply::set_message(const char* value) {
   _set_bit(1);
   if (message_ == &_default_message_) {
     message_ = new ::std::string;
   }
   message_->assign(value);
 }
-inline void Response::set_message(const void* value, size_t size) {
+inline void Reply::set_message(const void* value, size_t size) {
   _set_bit(1);
   if (message_ == &_default_message_) {
     message_ = new ::std::string;
   }
   message_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Response::mutable_message() {
+inline ::std::string* Reply::mutable_message() {
   _set_bit(1);
   if (message_ == &_default_message_) {
     message_ = new ::std::string;
@@ -732,27 +732,27 @@ inline ::std::string* Response::mutable_message() {
 }
 
 // repeated .urpc.pb.Log log = 3;
-inline int Response::log_size() const {
+inline int Reply::log_size() const {
   return log_.size();
 }
-inline void Response::clear_log() {
+inline void Reply::clear_log() {
   log_.Clear();
 }
-inline const ::urpc::pb::Log& Response::log(int index) const {
+inline const ::urpc::pb::Log& Reply::log(int index) const {
   return log_.Get(index);
 }
-inline ::urpc::pb::Log* Response::mutable_log(int index) {
+inline ::urpc::pb::Log* Reply::mutable_log(int index) {
   return log_.Mutable(index);
 }
-inline ::urpc::pb::Log* Response::add_log() {
+inline ::urpc::pb::Log* Reply::add_log() {
   return log_.Add();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >&
-Response::log() const {
+Reply::log() const {
   return log_;
 }
 inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
-Response::mutable_log() {
+Reply::mutable_log() {
   return &log_;
 }
 

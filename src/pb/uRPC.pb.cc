@@ -21,9 +21,9 @@ namespace {
 const ::google::protobuf::Descriptor* Request_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Request_reflection_ = NULL;
-const ::google::protobuf::Descriptor* Response_descriptor_ = NULL;
+const ::google::protobuf::Descriptor* Reply_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
-  Response_reflection_ = NULL;
+  Reply_reflection_ = NULL;
 const ::google::protobuf::Descriptor* Server_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   Server_reflection_ = NULL;
@@ -58,23 +58,23 @@ void protobuf_AssignDesc_uRPC_2eproto() {
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(Request));
-  Response_descriptor_ = file->message_type(1);
-  static const int Response_offsets_[3] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, error_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, message_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, log_),
+  Reply_descriptor_ = file->message_type(1);
+  static const int Reply_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, error_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, message_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, log_),
   };
-  Response_reflection_ =
+  Reply_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
-      Response_descriptor_,
-      Response::default_instance_,
-      Response_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, _has_bits_[0]),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Response, _unknown_fields_),
+      Reply_descriptor_,
+      Reply::default_instance_,
+      Reply_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Reply, _unknown_fields_),
       -1,
       ::google::protobuf::DescriptorPool::generated_pool(),
       ::google::protobuf::MessageFactory::generated_factory(),
-      sizeof(Response));
+      sizeof(Reply));
   Server_descriptor_ = file->message_type(2);
   static const int Server_offsets_[1] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Server, record_),
@@ -128,7 +128,7 @@ void protobuf_RegisterTypes(const ::std::string&) {
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Request_descriptor_, &Request::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-    Response_descriptor_, &Response::default_instance());
+    Reply_descriptor_, &Reply::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     Server_descriptor_, &Server::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -140,8 +140,8 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void protobuf_ShutdownFile_uRPC_2eproto() {
   delete Request::default_instance_;
   delete Request_reflection_;
-  delete Response::default_instance_;
-  delete Response_reflection_;
+  delete Reply::default_instance_;
+  delete Reply_reflection_;
   delete Server::default_instance_;
   delete Server_reflection_;
   delete Server_Record::default_instance_;
@@ -158,23 +158,23 @@ void protobuf_AddDesc_uRPC_2eproto() {
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\nuRPC.proto\022\007urpc.pb\032\tLog.proto\"<\n\007Requ"
     "est\022\017\n\007service\030\001 \001(\t\022\017\n\007version\030\002 \001(\005\022\017\n"
-    "\007message\030\003 \001(\014\"E\n\010Response\022\r\n\005error\030\001 \001("
-    "\010\022\017\n\007message\030\002 \001(\014\022\031\n\003log\030\003 \003(\0132\014.urpc.p"
-    "b.Log\"\370\001\n\006Server\022&\n\006record\030\001 \003(\0132\026.urpc."
-    "pb.Server.Record\032\305\001\n\006Record\022\017\n\007service\030\001"
-    " \001(\t\0221\n\010protocol\030\002 \001(\0162\037.urpc.pb.Server."
-    "Record.Protocol\022\014\n\004name\030\003 \001(\t\022\013\n\003ttl\030\004 \001"
-    "(\005\022\020\n\010priority\030\005 \001(\005\022\016\n\006weight\030\006 \001(\005\022\014\n\004"
-    "port\030\007 \001(\005\022\016\n\006target\030\010 \001(\t\"\034\n\010Protocol\022\007"
-    "\n\003TCP\020\001\022\007\n\003UDP\020\002", 416);
+    "\007message\030\003 \001(\014\"B\n\005Reply\022\r\n\005error\030\001 \001(\010\022\017"
+    "\n\007message\030\002 \001(\014\022\031\n\003log\030\003 \003(\0132\014.urpc.pb.L"
+    "og\"\370\001\n\006Server\022&\n\006record\030\001 \003(\0132\026.urpc.pb."
+    "Server.Record\032\305\001\n\006Record\022\017\n\007service\030\001 \001("
+    "\t\0221\n\010protocol\030\002 \001(\0162\037.urpc.pb.Server.Rec"
+    "ord.Protocol\022\014\n\004name\030\003 \001(\t\022\013\n\003ttl\030\004 \001(\005\022"
+    "\020\n\010priority\030\005 \001(\005\022\016\n\006weight\030\006 \001(\005\022\014\n\004por"
+    "t\030\007 \001(\005\022\016\n\006target\030\010 \001(\t\"\034\n\010Protocol\022\007\n\003T"
+    "CP\020\001\022\007\n\003UDP\020\002", 413);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "uRPC.proto", &protobuf_RegisterTypes);
   Request::default_instance_ = new Request();
-  Response::default_instance_ = new Response();
+  Reply::default_instance_ = new Reply();
   Server::default_instance_ = new Server();
   Server_Record::default_instance_ = new Server_Record();
   Request::default_instance_->InitAsDefaultInstance();
-  Response::default_instance_->InitAsDefaultInstance();
+  Reply::default_instance_->InitAsDefaultInstance();
   Server::default_instance_->InitAsDefaultInstance();
   Server_Record::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_uRPC_2eproto);
@@ -504,39 +504,39 @@ void Request::Swap(Request* other) {
 
 // ===================================================================
 
-const ::std::string Response::_default_message_;
+const ::std::string Reply::_default_message_;
 #ifndef _MSC_VER
-const int Response::kErrorFieldNumber;
-const int Response::kMessageFieldNumber;
-const int Response::kLogFieldNumber;
+const int Reply::kErrorFieldNumber;
+const int Reply::kMessageFieldNumber;
+const int Reply::kLogFieldNumber;
 #endif  // !_MSC_VER
 
-Response::Response()
+Reply::Reply()
   : ::google::protobuf::Message() {
   SharedCtor();
 }
 
-void Response::InitAsDefaultInstance() {
+void Reply::InitAsDefaultInstance() {
 }
 
-Response::Response(const Response& from)
+Reply::Reply(const Reply& from)
   : ::google::protobuf::Message() {
   SharedCtor();
   MergeFrom(from);
 }
 
-void Response::SharedCtor() {
+void Reply::SharedCtor() {
   _cached_size_ = 0;
   error_ = false;
   message_ = const_cast< ::std::string*>(&_default_message_);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
-Response::~Response() {
+Reply::~Reply() {
   SharedDtor();
 }
 
-void Response::SharedDtor() {
+void Reply::SharedDtor() {
   if (message_ != &_default_message_) {
     delete message_;
   }
@@ -544,27 +544,27 @@ void Response::SharedDtor() {
   }
 }
 
-void Response::SetCachedSize(int size) const {
+void Reply::SetCachedSize(int size) const {
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
 }
-const ::google::protobuf::Descriptor* Response::descriptor() {
+const ::google::protobuf::Descriptor* Reply::descriptor() {
   protobuf_AssignDescriptorsOnce();
-  return Response_descriptor_;
+  return Reply_descriptor_;
 }
 
-const Response& Response::default_instance() {
+const Reply& Reply::default_instance() {
   if (default_instance_ == NULL) protobuf_AddDesc_uRPC_2eproto();  return *default_instance_;
 }
 
-Response* Response::default_instance_ = NULL;
+Reply* Reply::default_instance_ = NULL;
 
-Response* Response::New() const {
-  return new Response;
+Reply* Reply::New() const {
+  return new Reply;
 }
 
-void Response::Clear() {
+void Reply::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     error_ = false;
     if (_has_bit(1)) {
@@ -578,7 +578,7 @@ void Response::Clear() {
   mutable_unknown_fields()->Clear();
 }
 
-bool Response::MergePartialFromCodedStream(
+bool Reply::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!(EXPRESSION)) return false
   ::google::protobuf::uint32 tag;
@@ -644,7 +644,7 @@ bool Response::MergePartialFromCodedStream(
 #undef DO_
 }
 
-void Response::SerializeWithCachedSizes(
+void Reply::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional bool error = 1;
   if (_has_bit(0)) {
@@ -669,7 +669,7 @@ void Response::SerializeWithCachedSizes(
   }
 }
 
-::google::protobuf::uint8* Response::SerializeWithCachedSizesToArray(
+::google::protobuf::uint8* Reply::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional bool error = 1;
   if (_has_bit(0)) {
@@ -697,7 +697,7 @@ void Response::SerializeWithCachedSizes(
   return target;
 }
 
-int Response::ByteSize() const {
+int Reply::ByteSize() const {
   int total_size = 0;
   
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
@@ -733,10 +733,10 @@ int Response::ByteSize() const {
   return total_size;
 }
 
-void Response::MergeFrom(const ::google::protobuf::Message& from) {
+void Reply::MergeFrom(const ::google::protobuf::Message& from) {
   GOOGLE_CHECK_NE(&from, this);
-  const Response* source =
-    ::google::protobuf::internal::dynamic_cast_if_available<const Response*>(
+  const Reply* source =
+    ::google::protobuf::internal::dynamic_cast_if_available<const Reply*>(
       &from);
   if (source == NULL) {
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
@@ -745,7 +745,7 @@ void Response::MergeFrom(const ::google::protobuf::Message& from) {
   }
 }
 
-void Response::MergeFrom(const Response& from) {
+void Reply::MergeFrom(const Reply& from) {
   GOOGLE_CHECK_NE(&from, this);
   log_.MergeFrom(from.log_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
@@ -759,24 +759,24 @@ void Response::MergeFrom(const Response& from) {
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
-void Response::CopyFrom(const ::google::protobuf::Message& from) {
+void Reply::CopyFrom(const ::google::protobuf::Message& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void Response::CopyFrom(const Response& from) {
+void Reply::CopyFrom(const Reply& from) {
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool Response::IsInitialized() const {
+bool Reply::IsInitialized() const {
   
   return true;
 }
 
-void Response::Swap(Response* other) {
+void Reply::Swap(Reply* other) {
   if (other != this) {
     std::swap(error_, other->error_);
     std::swap(message_, other->message_);
@@ -787,11 +787,11 @@ void Response::Swap(Response* other) {
   }
 }
 
-::google::protobuf::Metadata Response::GetMetadata() const {
+::google::protobuf::Metadata Reply::GetMetadata() const {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::Metadata metadata;
-  metadata.descriptor = Response_descriptor_;
-  metadata.reflection = Response_reflection_;
+  metadata.descriptor = Reply_descriptor_;
+  metadata.reflection = Reply_reflection_;
   return metadata;
 }
 

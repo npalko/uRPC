@@ -18,30 +18,38 @@ Client::Client (const std::string &connection = urpc::dns::getConnection ()) {
 }
 
 void Client::sendRequest (const std::string &service, int version, 
-  const google::protobuf::Message &message) {
-  urpc::pb::Request query;
-  std::string messageString, queryString;
+  const google::protobuf::Message &message, int flag) {
+  urpc::pb::Request request;
+  std::string messageString;
+  std::string requestString;
   
-  query.set_service (service);
-  query.set_version (version);
   message.SerializeToString (&messageString);
-  query.set_message (messageString);
-  query.SerializeToString (&queryString);
+
+  request.set_service (service);
+  request.set_version (version);
+  request.set_message (messageString);
+  request.SerializeToString (&requestString);
   
-  int length = strlen (queryString.c_str());
-  zmq::message_t requestFrame (length);
-  memcpy (requestFrame.data(), queryString.c_str(), length);
-  socket->send (requestFrame);
+  //zmq::message_t requestFrame (requestString.c_str(), requestString.length()), NULL, NULL);
+  zmq::message_t requestFrame (requestString.length());
+  memcpy (requestFrame.data(), requestString.c_str(), requestString.length());
+
+  socket->send (requestFrame, flag);
 }
 
-void Client::getResponse (google::protobuf::Message &message) {
-  urpc::pb::Response response;
+bool Client::getReply (google::protobuf::Message &message) {
+  urpc::pb::Reply reply;
   zmq::message_t resultset;
+  long long more;
+  size_t sz = sizeof (more);
   
   socket->recv (&resultset);
+  socket->getsockopt (ZMQ_RCVMORE, &more, &sz);
+
   //printf("recieved %d bytes\n", resultset.size());
-  response.ParseFromArray (resultset.data(), resultset.size());
-  message.ParseFromString (response.message());
+  reply.ParseFromArray (resultset.data(), resultset.size());
+  message.ParseFromString (reply.message());
+  return (more != 0);
 }
 
 

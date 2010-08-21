@@ -16,8 +16,8 @@ namespace urpc {
 class Client {
   public:
     Client (const std::string &);
-    void sendRequest (const std::string &, int, const google::protobuf::Message &);
-    void getResponse (google::protobuf::Message &);
+    void sendRequest (const std::string &, int, const google::protobuf::Message &, int = 0);
+    bool getReply (google::protobuf::Message &);
   private:
     boost::shared_ptr<zmq::context_t> context;
     boost::shared_ptr<zmq::socket_t> socket;
