@@ -6,45 +6,30 @@
 
 
 #include <cstdio>
-#include <string>
-
 #include "dns/dns.hpp"
-
 
 
 namespace urpc {
 namespace dns {
 
-using boost::asio::ip::udp;
+std::string getConnection() {
 
-void getRecordFromAddress (const boost::asio::ip::address &address, 
-                           urpc::pb::Server &server)
-{
-  // append Server_Record to server based on SRV records obtained from DNS 
-  // server at address
+  std::vector<boost::asio::ip::address> hostDnsServer;
+  urpc::pb::Server urpcSrv;
+  std::string connection;
 
-  // look up "_urpc._tcp"
-
-  const int DNSPort = 53;
-
-
-  const int max_length = 100;
-  char request[max_length];
-  char reply[max_length];
-  
-  boost::asio::io_service io_service;
-  udp::endpoint destination (address, DNSPort);
-  udp::socket socket (io_service, destination);
-  
-  socket.send_to (boost::asio::buffer (request, strlen(request)), destination);
-    
-  udp::endpoint sender_endpoint;
-  size_t reply_length = socket.receive_from ( 
-    boost::asio::buffer (reply, max_length), sender_endpoint);
-    
+  urpc::dns::getServer (hostDnsServer);
+  std::vector<boost::asio::ip::address>::const_iterator addr = hostDnsServer.begin();
+  for(; addr != hostDnsServer.end(); ++addr) {
+    urpc::dns::appendSrvRecordFromAddress (*addr, urpcSrv);
+  }
+  //connection = urpc::dns::getConnectionFromRecord (urpcSrv.record(0));
+  connection = "tcp://120.0.0.1:5555";
+  return connection;
 }
-std::string getConnectionStringFromRecord (const urpc::pb::Server_Record &record) {
-  // tcp://host:port
+
+std::string getConnectionFromRecord (const urpc::pb::Server_Record &record) {
+  // "tcp://host:port"
 
   std::string connection;
   
@@ -64,7 +49,28 @@ std::string getConnectionStringFromRecord (const urpc::pb::Server_Record &record
   return connection;
 }
 
+void appendSrvRecordFromAddress (const boost::asio::ip::address &address, 
+                           urpc::pb::Server &server)
+{
+  // lookup SRV records from server
 
+  // address: DNS server
+  // server: list of Server_Record's containing SRV entries corresponding to
+  // _urpc._tcp
+  
+  
+  // _Service._Proto.Name   TTL   Class SRV Priority Weight Port Target
+  // _sip._tcp.example.com. 86400 IN    SRV 0        5      5060 sipserver.example.com.
+
+  // Unix:     dig SRV _sip._tcp.example.com
+  // Windows:  nslookup nslookup -q=SRV _sip._tls.microsoft.com
+
+
+
+
+
+
+}
 
 }
 }

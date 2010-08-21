@@ -2,15 +2,6 @@
 //
 //
 
-// _Service._Proto.Name   TTL   Class SRV Priority Weight Port Target
-// _sip._tcp.example.com. 86400 IN    SRV 0        5      5060 sipserver.example.com.
-
-// Unix:     dig SRV _sip._tcp.example.com
-// Windows:  nslookup nslookup -q=SRV _sip._tls.microsoft.com
-
-
-
-
 #ifndef URPC_DNS_HPP
 #define URPC_DNS_HPP
 
@@ -22,13 +13,16 @@
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
 
+#include "exception.hpp"
+
 
 namespace urpc {
 namespace dns {
 
-void getAddress (std::vector<boost::asio::ip::address> &);
-void getRecordFromAddress (const boost::asio::ip::address &, urpc::pb::Server &);
-std::string getConnectionStringFromRecord(const urpc::pb::Server_Record &);
+std::string getConnection ();
+std::string getConnectionFromRecord (const urpc::pb::Server_Record &);
+void appendSrvRecordFromAddress (const boost::asio::ip::address &, urpc::pb::Server &);
+void getServer (std::vector<boost::asio::ip::address> &);
 
 }
 }
