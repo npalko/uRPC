@@ -34,40 +34,40 @@ void  protobuf_AddDesc_uRPC_2eproto();
 void protobuf_AssignDesc_uRPC_2eproto();
 void protobuf_ShutdownFile_uRPC_2eproto();
 
-class Request;
-class Reply;
-class Server;
-class Server_Record;
+class RequestEnvelope;
+class ReplyEnvelope;
+class Application;
+class ApplicationList;
 
-enum Server_Record_Protocol {
-  Server_Record_Protocol_TCP = 1,
-  Server_Record_Protocol_UDP = 2
+enum Application_Protocol {
+  Application_Protocol_TCP = 1,
+  Application_Protocol_UDP = 2
 };
-bool Server_Record_Protocol_IsValid(int value);
-const Server_Record_Protocol Server_Record_Protocol_Protocol_MIN = Server_Record_Protocol_TCP;
-const Server_Record_Protocol Server_Record_Protocol_Protocol_MAX = Server_Record_Protocol_UDP;
-const int Server_Record_Protocol_Protocol_ARRAYSIZE = Server_Record_Protocol_Protocol_MAX + 1;
+bool Application_Protocol_IsValid(int value);
+const Application_Protocol Application_Protocol_Protocol_MIN = Application_Protocol_TCP;
+const Application_Protocol Application_Protocol_Protocol_MAX = Application_Protocol_UDP;
+const int Application_Protocol_Protocol_ARRAYSIZE = Application_Protocol_Protocol_MAX + 1;
 
-const ::google::protobuf::EnumDescriptor* Server_Record_Protocol_descriptor();
-inline const ::std::string& Server_Record_Protocol_Name(Server_Record_Protocol value) {
+const ::google::protobuf::EnumDescriptor* Application_Protocol_descriptor();
+inline const ::std::string& Application_Protocol_Name(Application_Protocol value) {
   return ::google::protobuf::internal::NameOfEnum(
-    Server_Record_Protocol_descriptor(), value);
+    Application_Protocol_descriptor(), value);
 }
-inline bool Server_Record_Protocol_Parse(
-    const ::std::string& name, Server_Record_Protocol* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Server_Record_Protocol>(
-    Server_Record_Protocol_descriptor(), name, value);
+inline bool Application_Protocol_Parse(
+    const ::std::string& name, Application_Protocol* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Application_Protocol>(
+    Application_Protocol_descriptor(), name, value);
 }
 // ===================================================================
 
-class Request : public ::google::protobuf::Message {
+class RequestEnvelope : public ::google::protobuf::Message {
  public:
-  Request();
-  virtual ~Request();
+  RequestEnvelope();
+  virtual ~RequestEnvelope();
   
-  Request(const Request& from);
+  RequestEnvelope(const RequestEnvelope& from);
   
-  inline Request& operator=(const Request& from) {
+  inline RequestEnvelope& operator=(const RequestEnvelope& from) {
     CopyFrom(from);
     return *this;
   }
@@ -81,17 +81,17 @@ class Request : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Request& default_instance();
+  static const RequestEnvelope& default_instance();
   
-  void Swap(Request* other);
+  void Swap(RequestEnvelope* other);
   
   // implements Message ----------------------------------------------
   
-  Request* New() const;
+  RequestEnvelope* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Request& from);
-  void MergeFrom(const Request& from);
+  void CopyFrom(const RequestEnvelope& from);
+  void MergeFrom(const RequestEnvelope& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -131,17 +131,17 @@ class Request : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 version() const;
   inline void set_version(::google::protobuf::int32 value);
   
-  // optional bytes message = 3;
-  inline bool has_message() const;
-  inline void clear_message();
-  static const int kMessageFieldNumber = 3;
-  inline const ::std::string& message() const;
-  inline void set_message(const ::std::string& value);
-  inline void set_message(const char* value);
-  inline void set_message(const void* value, size_t size);
-  inline ::std::string* mutable_message();
+  // optional bytes request = 3;
+  inline bool has_request() const;
+  inline void clear_request();
+  static const int kRequestFieldNumber = 3;
+  inline const ::std::string& request() const;
+  inline void set_request(const ::std::string& value);
+  inline void set_request(const char* value);
+  inline void set_request(const void* value, size_t size);
+  inline ::std::string* mutable_request();
   
-  // @@protoc_insertion_point(class_scope:urpc.pb.Request)
+  // @@protoc_insertion_point(class_scope:urpc.pb.RequestEnvelope)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -149,8 +149,8 @@ class Request : public ::google::protobuf::Message {
   ::std::string* service_;
   static const ::std::string _default_service_;
   ::google::protobuf::int32 version_;
-  ::std::string* message_;
-  static const ::std::string _default_message_;
+  ::std::string* request_;
+  static const ::std::string _default_request_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
@@ -169,18 +169,18 @@ class Request : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Request* default_instance_;
+  static RequestEnvelope* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class Reply : public ::google::protobuf::Message {
+class ReplyEnvelope : public ::google::protobuf::Message {
  public:
-  Reply();
-  virtual ~Reply();
+  ReplyEnvelope();
+  virtual ~ReplyEnvelope();
   
-  Reply(const Reply& from);
+  ReplyEnvelope(const ReplyEnvelope& from);
   
-  inline Reply& operator=(const Reply& from) {
+  inline ReplyEnvelope& operator=(const ReplyEnvelope& from) {
     CopyFrom(from);
     return *this;
   }
@@ -194,17 +194,17 @@ class Reply : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Reply& default_instance();
+  static const ReplyEnvelope& default_instance();
   
-  void Swap(Reply* other);
+  void Swap(ReplyEnvelope* other);
   
   // implements Message ----------------------------------------------
   
-  Reply* New() const;
+  ReplyEnvelope* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Reply& from);
-  void MergeFrom(const Reply& from);
+  void CopyFrom(const ReplyEnvelope& from);
+  void MergeFrom(const ReplyEnvelope& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -234,15 +234,15 @@ class Reply : public ::google::protobuf::Message {
   inline bool error() const;
   inline void set_error(bool value);
   
-  // optional bytes message = 2;
-  inline bool has_message() const;
-  inline void clear_message();
-  static const int kMessageFieldNumber = 2;
-  inline const ::std::string& message() const;
-  inline void set_message(const ::std::string& value);
-  inline void set_message(const char* value);
-  inline void set_message(const void* value, size_t size);
-  inline ::std::string* mutable_message();
+  // optional bytes reply = 2;
+  inline bool has_reply() const;
+  inline void clear_reply();
+  static const int kReplyFieldNumber = 2;
+  inline const ::std::string& reply() const;
+  inline void set_reply(const ::std::string& value);
+  inline void set_reply(const char* value);
+  inline void set_reply(const void* value, size_t size);
+  inline ::std::string* mutable_reply();
   
   // repeated .urpc.pb.Log log = 3;
   inline int log_size() const;
@@ -256,14 +256,14 @@ class Reply : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
       mutable_log();
   
-  // @@protoc_insertion_point(class_scope:urpc.pb.Reply)
+  // @@protoc_insertion_point(class_scope:urpc.pb.ReplyEnvelope)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   bool error_;
-  ::std::string* message_;
-  static const ::std::string _default_message_;
+  ::std::string* reply_;
+  static const ::std::string _default_reply_;
   ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log > log_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
@@ -283,18 +283,18 @@ class Reply : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Reply* default_instance_;
+  static ReplyEnvelope* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class Server_Record : public ::google::protobuf::Message {
+class Application : public ::google::protobuf::Message {
  public:
-  Server_Record();
-  virtual ~Server_Record();
+  Application();
+  virtual ~Application();
   
-  Server_Record(const Server_Record& from);
+  Application(const Application& from);
   
-  inline Server_Record& operator=(const Server_Record& from) {
+  inline Application& operator=(const Application& from) {
     CopyFrom(from);
     return *this;
   }
@@ -308,17 +308,17 @@ class Server_Record : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Server_Record& default_instance();
+  static const Application& default_instance();
   
-  void Swap(Server_Record* other);
+  void Swap(Application* other);
   
   // implements Message ----------------------------------------------
   
-  Server_Record* New() const;
+  Application* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Server_Record& from);
-  void MergeFrom(const Server_Record& from);
+  void CopyFrom(const Application& from);
+  void MergeFrom(const Application& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -339,28 +339,28 @@ class Server_Record : public ::google::protobuf::Message {
   
   // nested types ----------------------------------------------------
   
-  typedef Server_Record_Protocol Protocol;
-  static const Protocol TCP = Server_Record_Protocol_TCP;
-  static const Protocol UDP = Server_Record_Protocol_UDP;
+  typedef Application_Protocol Protocol;
+  static const Protocol TCP = Application_Protocol_TCP;
+  static const Protocol UDP = Application_Protocol_UDP;
   static inline bool Protocol_IsValid(int value) {
-    return Server_Record_Protocol_IsValid(value);
+    return Application_Protocol_IsValid(value);
   }
   static const Protocol Protocol_MIN =
-    Server_Record_Protocol_Protocol_MIN;
+    Application_Protocol_Protocol_MIN;
   static const Protocol Protocol_MAX =
-    Server_Record_Protocol_Protocol_MAX;
+    Application_Protocol_Protocol_MAX;
   static const int Protocol_ARRAYSIZE =
-    Server_Record_Protocol_Protocol_ARRAYSIZE;
+    Application_Protocol_Protocol_ARRAYSIZE;
   static inline const ::google::protobuf::EnumDescriptor*
   Protocol_descriptor() {
-    return Server_Record_Protocol_descriptor();
+    return Application_Protocol_descriptor();
   }
   static inline const ::std::string& Protocol_Name(Protocol value) {
-    return Server_Record_Protocol_Name(value);
+    return Application_Protocol_Name(value);
   }
   static inline bool Protocol_Parse(const ::std::string& name,
       Protocol* value) {
-    return Server_Record_Protocol_Parse(name, value);
+    return Application_Protocol_Parse(name, value);
   }
   
   // accessors -------------------------------------------------------
@@ -375,12 +375,12 @@ class Server_Record : public ::google::protobuf::Message {
   inline void set_service(const char* value, size_t size);
   inline ::std::string* mutable_service();
   
-  // optional .urpc.pb.Server.Record.Protocol protocol = 2;
+  // optional .urpc.pb.Application.Protocol protocol = 2;
   inline bool has_protocol() const;
   inline void clear_protocol();
   static const int kProtocolFieldNumber = 2;
-  inline ::urpc::pb::Server_Record_Protocol protocol() const;
-  inline void set_protocol(::urpc::pb::Server_Record_Protocol value);
+  inline ::urpc::pb::Application_Protocol protocol() const;
+  inline void set_protocol(::urpc::pb::Application_Protocol value);
   
   // optional string name = 3;
   inline bool has_name() const;
@@ -420,17 +420,7 @@ class Server_Record : public ::google::protobuf::Message {
   inline ::google::protobuf::int32 port() const;
   inline void set_port(::google::protobuf::int32 value);
   
-  // optional string target = 8;
-  inline bool has_target() const;
-  inline void clear_target();
-  static const int kTargetFieldNumber = 8;
-  inline const ::std::string& target() const;
-  inline void set_target(const ::std::string& value);
-  inline void set_target(const char* value);
-  inline void set_target(const char* value, size_t size);
-  inline ::std::string* mutable_target();
-  
-  // @@protoc_insertion_point(class_scope:urpc.pb.Server.Record)
+  // @@protoc_insertion_point(class_scope:urpc.pb.Application)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -444,13 +434,11 @@ class Server_Record : public ::google::protobuf::Message {
   ::google::protobuf::int32 priority_;
   ::google::protobuf::int32 weight_;
   ::google::protobuf::int32 port_;
-  ::std::string* target_;
-  static const ::std::string _default_target_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
   
-  ::google::protobuf::uint32 _has_bits_[(8 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -464,18 +452,18 @@ class Server_Record : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Server_Record* default_instance_;
+  static Application* default_instance_;
 };
 // -------------------------------------------------------------------
 
-class Server : public ::google::protobuf::Message {
+class ApplicationList : public ::google::protobuf::Message {
  public:
-  Server();
-  virtual ~Server();
+  ApplicationList();
+  virtual ~ApplicationList();
   
-  Server(const Server& from);
+  ApplicationList(const ApplicationList& from);
   
-  inline Server& operator=(const Server& from) {
+  inline ApplicationList& operator=(const ApplicationList& from) {
     CopyFrom(from);
     return *this;
   }
@@ -489,17 +477,17 @@ class Server : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Server& default_instance();
+  static const ApplicationList& default_instance();
   
-  void Swap(Server* other);
+  void Swap(ApplicationList* other);
   
   // implements Message ----------------------------------------------
   
-  Server* New() const;
+  ApplicationList* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Server& from);
-  void MergeFrom(const Server& from);
+  void CopyFrom(const ApplicationList& from);
+  void MergeFrom(const ApplicationList& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -520,28 +508,26 @@ class Server : public ::google::protobuf::Message {
   
   // nested types ----------------------------------------------------
   
-  typedef Server_Record Record;
-  
   // accessors -------------------------------------------------------
   
-  // repeated .urpc.pb.Server.Record record = 1;
-  inline int record_size() const;
-  inline void clear_record();
-  static const int kRecordFieldNumber = 1;
-  inline const ::urpc::pb::Server_Record& record(int index) const;
-  inline ::urpc::pb::Server_Record* mutable_record(int index);
-  inline ::urpc::pb::Server_Record* add_record();
-  inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Server_Record >&
-      record() const;
-  inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Server_Record >*
-      mutable_record();
+  // repeated .urpc.pb.Application application = 1;
+  inline int application_size() const;
+  inline void clear_application();
+  static const int kApplicationFieldNumber = 1;
+  inline const ::urpc::pb::Application& application(int index) const;
+  inline ::urpc::pb::Application* mutable_application(int index);
+  inline ::urpc::pb::Application* add_application();
+  inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application >&
+      application() const;
+  inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application >*
+      mutable_application();
   
-  // @@protoc_insertion_point(class_scope:urpc.pb.Server)
+  // @@protoc_insertion_point(class_scope:urpc.pb.ApplicationList)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::RepeatedPtrField< ::urpc::pb::Server_Record > record_;
+  ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application > application_;
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
@@ -560,50 +546,50 @@ class Server : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Server* default_instance_;
+  static ApplicationList* default_instance_;
 };
 // ===================================================================
 
 
 // ===================================================================
 
-// Request
+// RequestEnvelope
 
 // optional string service = 1;
-inline bool Request::has_service() const {
+inline bool RequestEnvelope::has_service() const {
   return _has_bit(0);
 }
-inline void Request::clear_service() {
+inline void RequestEnvelope::clear_service() {
   if (service_ != &_default_service_) {
     service_->clear();
   }
   _clear_bit(0);
 }
-inline const ::std::string& Request::service() const {
+inline const ::std::string& RequestEnvelope::service() const {
   return *service_;
 }
-inline void Request::set_service(const ::std::string& value) {
+inline void RequestEnvelope::set_service(const ::std::string& value) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
-inline void Request::set_service(const char* value) {
+inline void RequestEnvelope::set_service(const char* value) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
-inline void Request::set_service(const char* value, size_t size) {
+inline void RequestEnvelope::set_service(const char* value, size_t size) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Request::mutable_service() {
+inline ::std::string* RequestEnvelope::mutable_service() {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
@@ -612,189 +598,189 @@ inline ::std::string* Request::mutable_service() {
 }
 
 // optional int32 version = 2;
-inline bool Request::has_version() const {
+inline bool RequestEnvelope::has_version() const {
   return _has_bit(1);
 }
-inline void Request::clear_version() {
+inline void RequestEnvelope::clear_version() {
   version_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int32 Request::version() const {
+inline ::google::protobuf::int32 RequestEnvelope::version() const {
   return version_;
 }
-inline void Request::set_version(::google::protobuf::int32 value) {
+inline void RequestEnvelope::set_version(::google::protobuf::int32 value) {
   _set_bit(1);
   version_ = value;
 }
 
-// optional bytes message = 3;
-inline bool Request::has_message() const {
+// optional bytes request = 3;
+inline bool RequestEnvelope::has_request() const {
   return _has_bit(2);
 }
-inline void Request::clear_message() {
-  if (message_ != &_default_message_) {
-    message_->clear();
+inline void RequestEnvelope::clear_request() {
+  if (request_ != &_default_request_) {
+    request_->clear();
   }
   _clear_bit(2);
 }
-inline const ::std::string& Request::message() const {
-  return *message_;
+inline const ::std::string& RequestEnvelope::request() const {
+  return *request_;
 }
-inline void Request::set_message(const ::std::string& value) {
+inline void RequestEnvelope::set_request(const ::std::string& value) {
   _set_bit(2);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (request_ == &_default_request_) {
+    request_ = new ::std::string;
   }
-  message_->assign(value);
+  request_->assign(value);
 }
-inline void Request::set_message(const char* value) {
+inline void RequestEnvelope::set_request(const char* value) {
   _set_bit(2);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (request_ == &_default_request_) {
+    request_ = new ::std::string;
   }
-  message_->assign(value);
+  request_->assign(value);
 }
-inline void Request::set_message(const void* value, size_t size) {
+inline void RequestEnvelope::set_request(const void* value, size_t size) {
   _set_bit(2);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (request_ == &_default_request_) {
+    request_ = new ::std::string;
   }
-  message_->assign(reinterpret_cast<const char*>(value), size);
+  request_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Request::mutable_message() {
+inline ::std::string* RequestEnvelope::mutable_request() {
   _set_bit(2);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (request_ == &_default_request_) {
+    request_ = new ::std::string;
   }
-  return message_;
+  return request_;
 }
 
 // -------------------------------------------------------------------
 
-// Reply
+// ReplyEnvelope
 
 // optional bool error = 1;
-inline bool Reply::has_error() const {
+inline bool ReplyEnvelope::has_error() const {
   return _has_bit(0);
 }
-inline void Reply::clear_error() {
+inline void ReplyEnvelope::clear_error() {
   error_ = false;
   _clear_bit(0);
 }
-inline bool Reply::error() const {
+inline bool ReplyEnvelope::error() const {
   return error_;
 }
-inline void Reply::set_error(bool value) {
+inline void ReplyEnvelope::set_error(bool value) {
   _set_bit(0);
   error_ = value;
 }
 
-// optional bytes message = 2;
-inline bool Reply::has_message() const {
+// optional bytes reply = 2;
+inline bool ReplyEnvelope::has_reply() const {
   return _has_bit(1);
 }
-inline void Reply::clear_message() {
-  if (message_ != &_default_message_) {
-    message_->clear();
+inline void ReplyEnvelope::clear_reply() {
+  if (reply_ != &_default_reply_) {
+    reply_->clear();
   }
   _clear_bit(1);
 }
-inline const ::std::string& Reply::message() const {
-  return *message_;
+inline const ::std::string& ReplyEnvelope::reply() const {
+  return *reply_;
 }
-inline void Reply::set_message(const ::std::string& value) {
+inline void ReplyEnvelope::set_reply(const ::std::string& value) {
   _set_bit(1);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (reply_ == &_default_reply_) {
+    reply_ = new ::std::string;
   }
-  message_->assign(value);
+  reply_->assign(value);
 }
-inline void Reply::set_message(const char* value) {
+inline void ReplyEnvelope::set_reply(const char* value) {
   _set_bit(1);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (reply_ == &_default_reply_) {
+    reply_ = new ::std::string;
   }
-  message_->assign(value);
+  reply_->assign(value);
 }
-inline void Reply::set_message(const void* value, size_t size) {
+inline void ReplyEnvelope::set_reply(const void* value, size_t size) {
   _set_bit(1);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (reply_ == &_default_reply_) {
+    reply_ = new ::std::string;
   }
-  message_->assign(reinterpret_cast<const char*>(value), size);
+  reply_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Reply::mutable_message() {
+inline ::std::string* ReplyEnvelope::mutable_reply() {
   _set_bit(1);
-  if (message_ == &_default_message_) {
-    message_ = new ::std::string;
+  if (reply_ == &_default_reply_) {
+    reply_ = new ::std::string;
   }
-  return message_;
+  return reply_;
 }
 
 // repeated .urpc.pb.Log log = 3;
-inline int Reply::log_size() const {
+inline int ReplyEnvelope::log_size() const {
   return log_.size();
 }
-inline void Reply::clear_log() {
+inline void ReplyEnvelope::clear_log() {
   log_.Clear();
 }
-inline const ::urpc::pb::Log& Reply::log(int index) const {
+inline const ::urpc::pb::Log& ReplyEnvelope::log(int index) const {
   return log_.Get(index);
 }
-inline ::urpc::pb::Log* Reply::mutable_log(int index) {
+inline ::urpc::pb::Log* ReplyEnvelope::mutable_log(int index) {
   return log_.Mutable(index);
 }
-inline ::urpc::pb::Log* Reply::add_log() {
+inline ::urpc::pb::Log* ReplyEnvelope::add_log() {
   return log_.Add();
 }
 inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >&
-Reply::log() const {
+ReplyEnvelope::log() const {
   return log_;
 }
 inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log >*
-Reply::mutable_log() {
+ReplyEnvelope::mutable_log() {
   return &log_;
 }
 
 // -------------------------------------------------------------------
 
-// Server_Record
+// Application
 
 // optional string service = 1;
-inline bool Server_Record::has_service() const {
+inline bool Application::has_service() const {
   return _has_bit(0);
 }
-inline void Server_Record::clear_service() {
+inline void Application::clear_service() {
   if (service_ != &_default_service_) {
     service_->clear();
   }
   _clear_bit(0);
 }
-inline const ::std::string& Server_Record::service() const {
+inline const ::std::string& Application::service() const {
   return *service_;
 }
-inline void Server_Record::set_service(const ::std::string& value) {
+inline void Application::set_service(const ::std::string& value) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
-inline void Server_Record::set_service(const char* value) {
+inline void Application::set_service(const char* value) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
-inline void Server_Record::set_service(const char* value, size_t size) {
+inline void Application::set_service(const char* value, size_t size) {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
   }
   service_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Server_Record::mutable_service() {
+inline ::std::string* Application::mutable_service() {
   _set_bit(0);
   if (service_ == &_default_service_) {
     service_ = new ::std::string;
@@ -802,58 +788,58 @@ inline ::std::string* Server_Record::mutable_service() {
   return service_;
 }
 
-// optional .urpc.pb.Server.Record.Protocol protocol = 2;
-inline bool Server_Record::has_protocol() const {
+// optional .urpc.pb.Application.Protocol protocol = 2;
+inline bool Application::has_protocol() const {
   return _has_bit(1);
 }
-inline void Server_Record::clear_protocol() {
+inline void Application::clear_protocol() {
   protocol_ = 1;
   _clear_bit(1);
 }
-inline ::urpc::pb::Server_Record_Protocol Server_Record::protocol() const {
-  return static_cast< ::urpc::pb::Server_Record_Protocol >(protocol_);
+inline ::urpc::pb::Application_Protocol Application::protocol() const {
+  return static_cast< ::urpc::pb::Application_Protocol >(protocol_);
 }
-inline void Server_Record::set_protocol(::urpc::pb::Server_Record_Protocol value) {
-  GOOGLE_DCHECK(::urpc::pb::Server_Record_Protocol_IsValid(value));
+inline void Application::set_protocol(::urpc::pb::Application_Protocol value) {
+  GOOGLE_DCHECK(::urpc::pb::Application_Protocol_IsValid(value));
   _set_bit(1);
   protocol_ = value;
 }
 
 // optional string name = 3;
-inline bool Server_Record::has_name() const {
+inline bool Application::has_name() const {
   return _has_bit(2);
 }
-inline void Server_Record::clear_name() {
+inline void Application::clear_name() {
   if (name_ != &_default_name_) {
     name_->clear();
   }
   _clear_bit(2);
 }
-inline const ::std::string& Server_Record::name() const {
+inline const ::std::string& Application::name() const {
   return *name_;
 }
-inline void Server_Record::set_name(const ::std::string& value) {
+inline void Application::set_name(const ::std::string& value) {
   _set_bit(2);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
-inline void Server_Record::set_name(const char* value) {
+inline void Application::set_name(const char* value) {
   _set_bit(2);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
-inline void Server_Record::set_name(const char* value, size_t size) {
+inline void Application::set_name(const char* value, size_t size) {
   _set_bit(2);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
   }
   name_->assign(reinterpret_cast<const char*>(value), size);
 }
-inline ::std::string* Server_Record::mutable_name() {
+inline ::std::string* Application::mutable_name() {
   _set_bit(2);
   if (name_ == &_default_name_) {
     name_ = new ::std::string;
@@ -862,138 +848,96 @@ inline ::std::string* Server_Record::mutable_name() {
 }
 
 // optional int32 ttl = 4;
-inline bool Server_Record::has_ttl() const {
+inline bool Application::has_ttl() const {
   return _has_bit(3);
 }
-inline void Server_Record::clear_ttl() {
+inline void Application::clear_ttl() {
   ttl_ = 0;
   _clear_bit(3);
 }
-inline ::google::protobuf::int32 Server_Record::ttl() const {
+inline ::google::protobuf::int32 Application::ttl() const {
   return ttl_;
 }
-inline void Server_Record::set_ttl(::google::protobuf::int32 value) {
+inline void Application::set_ttl(::google::protobuf::int32 value) {
   _set_bit(3);
   ttl_ = value;
 }
 
 // optional int32 priority = 5;
-inline bool Server_Record::has_priority() const {
+inline bool Application::has_priority() const {
   return _has_bit(4);
 }
-inline void Server_Record::clear_priority() {
+inline void Application::clear_priority() {
   priority_ = 0;
   _clear_bit(4);
 }
-inline ::google::protobuf::int32 Server_Record::priority() const {
+inline ::google::protobuf::int32 Application::priority() const {
   return priority_;
 }
-inline void Server_Record::set_priority(::google::protobuf::int32 value) {
+inline void Application::set_priority(::google::protobuf::int32 value) {
   _set_bit(4);
   priority_ = value;
 }
 
 // optional int32 weight = 6;
-inline bool Server_Record::has_weight() const {
+inline bool Application::has_weight() const {
   return _has_bit(5);
 }
-inline void Server_Record::clear_weight() {
+inline void Application::clear_weight() {
   weight_ = 0;
   _clear_bit(5);
 }
-inline ::google::protobuf::int32 Server_Record::weight() const {
+inline ::google::protobuf::int32 Application::weight() const {
   return weight_;
 }
-inline void Server_Record::set_weight(::google::protobuf::int32 value) {
+inline void Application::set_weight(::google::protobuf::int32 value) {
   _set_bit(5);
   weight_ = value;
 }
 
 // optional int32 port = 7;
-inline bool Server_Record::has_port() const {
+inline bool Application::has_port() const {
   return _has_bit(6);
 }
-inline void Server_Record::clear_port() {
+inline void Application::clear_port() {
   port_ = 0;
   _clear_bit(6);
 }
-inline ::google::protobuf::int32 Server_Record::port() const {
+inline ::google::protobuf::int32 Application::port() const {
   return port_;
 }
-inline void Server_Record::set_port(::google::protobuf::int32 value) {
+inline void Application::set_port(::google::protobuf::int32 value) {
   _set_bit(6);
   port_ = value;
 }
 
-// optional string target = 8;
-inline bool Server_Record::has_target() const {
-  return _has_bit(7);
-}
-inline void Server_Record::clear_target() {
-  if (target_ != &_default_target_) {
-    target_->clear();
-  }
-  _clear_bit(7);
-}
-inline const ::std::string& Server_Record::target() const {
-  return *target_;
-}
-inline void Server_Record::set_target(const ::std::string& value) {
-  _set_bit(7);
-  if (target_ == &_default_target_) {
-    target_ = new ::std::string;
-  }
-  target_->assign(value);
-}
-inline void Server_Record::set_target(const char* value) {
-  _set_bit(7);
-  if (target_ == &_default_target_) {
-    target_ = new ::std::string;
-  }
-  target_->assign(value);
-}
-inline void Server_Record::set_target(const char* value, size_t size) {
-  _set_bit(7);
-  if (target_ == &_default_target_) {
-    target_ = new ::std::string;
-  }
-  target_->assign(reinterpret_cast<const char*>(value), size);
-}
-inline ::std::string* Server_Record::mutable_target() {
-  _set_bit(7);
-  if (target_ == &_default_target_) {
-    target_ = new ::std::string;
-  }
-  return target_;
-}
-
 // -------------------------------------------------------------------
 
-// Server
+// ApplicationList
 
-// repeated .urpc.pb.Server.Record record = 1;
-inline int Server::record_size() const {
-  return record_.size();
+// repeated .urpc.pb.Application application = 1;
+inline int ApplicationList::application_size() const {
+  return application_.size();
 }
-inline void Server::clear_record() {
-  record_.Clear();
+inline void ApplicationList::clear_application() {
+  application_.Clear();
 }
-inline const ::urpc::pb::Server_Record& Server::record(int index) const {
-  return record_.Get(index);
+inline const ::urpc::pb::Application& ApplicationList::application(int index) const {
+  return application_.Get(index);
 }
-inline ::urpc::pb::Server_Record* Server::mutable_record(int index) {
-  return record_.Mutable(index);
+inline ::urpc::pb::Application* ApplicationList::mutable_application(int index) {
+  return application_.Mutable(index);
 }
-inline ::urpc::pb::Server_Record* Server::add_record() {
-  return record_.Add();
+inline ::urpc::pb::Application* ApplicationList::add_application() {
+  return application_.Add();
 }
-inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Server_Record >&
-Server::record() const {
-  return record_;
+inline const ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application >&
+ApplicationList::application() const {
+  return application_;
 }
-inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Server_Record >*
-Server::mutable_record() {
-  return &record_;
+inline ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application >*
+ApplicationList::mutable_application() {
+  return &application_;
 }
 
 
@@ -1007,8 +951,8 @@ namespace google {
 namespace protobuf {
 
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::urpc::pb::Server_Record_Protocol>() {
-  return ::urpc::pb::Server_Record_Protocol_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::urpc::pb::Application_Protocol>() {
+  return ::urpc::pb::Application_Protocol_descriptor();
 }
 
 }  // namespace google

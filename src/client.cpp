@@ -6,7 +6,12 @@
 
 namespace urpc {
 
-Client::Client (const std::string &connection = urpc::dns::getConnection ()) {
+void deleteEnvelope (void *, void *);
+void deleteEnvelope (void *data, void *hint) {
+  delete [] data;
+}
+
+Client::Client (const std::string &connection) {
   const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
@@ -18,37 +23,37 @@ Client::Client (const std::string &connection = urpc::dns::getConnection ()) {
 }
 
 void Client::sendRequest (const std::string &service, int version, 
-  const google::protobuf::Message &message, int flag) {
-  urpc::pb::Request request;
-  std::string messageString;
+                          const google::protobuf::Message &request, 
+                          bool moreToFollow) {
+  int sendFlag = moreToFollow ? ZMQ_SNDMORE : 0;
+  char *wireEnvelope;
+  urpc::pb::RequestEnvelope envelope;
   std::string requestString;
   
-  message.SerializeToString (&messageString);
-
-  request.set_service (service);
-  request.set_version (version);
-  request.set_message (messageString);
   request.SerializeToString (&requestString);
-  
-  //zmq::message_t requestFrame (requestString.c_str(), requestString.length()), NULL, NULL);
-  zmq::message_t requestFrame (requestString.length());
-  memcpy (requestFrame.data(), requestString.c_str(), requestString.length());
+  envelope.set_service (service);
+  envelope.set_version (version);
+  envelope.set_request (requestString);
 
-  socket->send (requestFrame, flag);
+  wireEnvelope = new char[envelope.ByteSize()];
+  envelope.SerializeToArray(wireEnvelope, envelope.ByteSize());
+  zmq::message_t message (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
+
+  socket->send (message, sendFlag);
 }
 
-bool Client::getReply (google::protobuf::Message &message) {
-  urpc::pb::Reply reply;
-  zmq::message_t resultset;
+bool Client::getReply (google::protobuf::Message &reply) {
   long long more;
   size_t sz = sizeof (more);
-  
-  socket->recv (&resultset);
+  urpc::pb::ReplyEnvelope envelope;
+  zmq::message_t message;
+
+  socket->recv (&message);
   socket->getsockopt (ZMQ_RCVMORE, &more, &sz);
 
-  //printf("recieved %d bytes\n", resultset.size());
-  reply.ParseFromArray (resultset.data(), resultset.size());
-  message.ParseFromString (reply.message());
+  //printf("recieved %d bytes\n", message.size());
+  envelope.ParseFromArray (message.data(), message.size());
+  reply.ParseFromString (envelope.reply());
   return (more != 0);
 }
 

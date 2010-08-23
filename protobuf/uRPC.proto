@@ -1,6 +1,11 @@
 // protobuf/uRPC.proto
 //
-// Messages implementing remote procedure calls
+//
+// Envelopes are the encapsulation layer around the request and reply messages
+// in a ZMQ messaging pattern. This way, the actual API (request/reply) is 
+// independent of the transport machinery.
+//
+// Application refers to the OSI 7 applications.
 
 
 import "Log.proto";
@@ -10,15 +15,15 @@ package urpc.pb;
 // ZMQ Request-Reply Pattern
 // ZMQ_REQ, ZMQ_REP, ZMQ_SNDMORE, ZMQ_RCVMORE
 
-message Request {
+message RequestEnvelope {
   optional string service = 1;        // Serivce called
-  optional int32 version = 2;         // Version of the api
-  optional bytes message = 3;         // Protobuf for service's request
+  optional int32 version = 2;         // Version of the service called
+  optional bytes request = 3;         // Protobuf of service parameters
 }
-message Reply {
+message ReplyEnvelope {
   optional bool error = 1;            // True if error occured
-  optional bytes message = 2;         // Protobuf of selected reply
-  repeated Log log = 3;               // Any additional error messages
+  optional bytes reply = 2;           // Protobuf of the reply's content
+  repeated Log log = 3;               // Logs associated with creating reply
 }
 
 // ZMQ Publish-Subscribe Pattern
@@ -30,22 +35,23 @@ message Reply {
 // ZMQ Parallelized Pipeline Pattern
 // ZMQ_UPSTREAM, ZMQ_DOWNSTREAM
 
-// Server Record
 
-message Server {
-  message Record {
-    enum Protocol {
-      TCP = 1;
-      UDP = 2;
-    }
-    optional string service = 1;    // symbolic name e.g. http
-    optional Protocol protocol = 2; // transport protocol 
-    optional string name = 3;       // domain name (e.g example.com)
-    optional int32 ttl = 4;         // time to live field
-    optional int32 priority = 5;    // target priority, lower is more preferred
-    optional int32 weight = 6;      // relative weight for given priority
-    optional int32 port = 7;        // service port
-    optional string target = 8;     // canonical hostname 
+// Application. Application Layer (OSI 7) 
+
+message Application {
+  enum Protocol {
+    TCP = 1;
+    UDP = 2;
   }
-  repeated Record record = 1;
+  optional string service = 1;    // symbolic name e.g. http
+  optional Protocol protocol = 2; // transport protocol 
+  optional string name = 3;       // fully qualified domain name
+  optional int32 ttl = 4;         // time to live field
+  optional int32 priority = 5;    // target priority, lower is more preferred
+  optional int32 weight = 6;      // relative weight for given priority
+  optional int32 port = 7;        // service port
+}
+
+message ApplicationList {
+  repeated Application application = 1;
 }
