@@ -6,27 +6,27 @@
 
 int main(int argc, char **argv) {
   if (argc != 3) {
-    printf ("usage: %s <num_rows> <num_columns>\n", "cmdclient");
+    printf ("usage: %s <nMessage> <nSample>\n", "cmdclient");
     return 1;
   }
-  int m = atoi(argv[1]); 
-  int n = atoi(argv[2]);
+  int nMessage = atoi(argv[1]); 
+  int nSample = atoi(argv[2]);
 
   urpc::Client client("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Reply reply;
   bool isMore;
   
-  request.set_m(m);
-  request.set_n(n);
+  request.set_nmessage(nMessage);
+  request.set_nsample(nSample);
   client.sendRequest("RandExampleRequest", 1, request);
-  printf("[RandExampleRequest] (m=%d,n=%d)\n", m, n);
+  printf("[RandExampleRequest] (nMesage=%d,nSample=%d)\n", nMessage, nSample);
 
 
   do {
     isMore = client.getReply (reply);
 
-    printf ("got reply block!\n");
+    printf ("Reply block:\n");
     for (int i = 0; i < reply.r_size(); i++) {
       printf("%f\n", reply.r(i));
     }

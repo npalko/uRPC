@@ -10,7 +10,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='randexample.proto',
   package='randexample',
-  serialized_pb='\n\x11randexample.proto\x12\x0brandexample\"\x1f\n\x07Request\x12\t\n\x01m\x18\x01 \x01(\x05\x12\t\n\x01n\x18\x02 \x01(\x05\"\x15\n\x08Response\x12\t\n\x01r\x18\x01 \x03(\x01')
+  serialized_pb='\n\x11randexample.proto\x12\x0brandexample\",\n\x07Request\x12\x10\n\x08nMessage\x18\x01 \x01(\x05\x12\x0f\n\x07nSample\x18\x02 \x01(\x05\"\x12\n\x05Reply\x12\t\n\x01r\x18\x01 \x03(\x01')
 
 
 
@@ -23,14 +23,14 @@ _REQUEST = descriptor.Descriptor(
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='m', full_name='randexample.Request.m', index=0,
+      name='nMessage', full_name='randexample.Request.nMessage', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='n', full_name='randexample.Request.n', index=1,
+      name='nSample', full_name='randexample.Request.nSample', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -46,19 +46,19 @@ _REQUEST = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=34,
-  serialized_end=65,
+  serialized_end=78,
 )
 
 
-_RESPONSE = descriptor.Descriptor(
-  name='Response',
-  full_name='randexample.Response',
+_REPLY = descriptor.Descriptor(
+  name='Reply',
+  full_name='randexample.Reply',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='r', full_name='randexample.Response.r', index=0,
+      name='r', full_name='randexample.Reply.r', index=0,
       number=1, type=1, cpp_type=5, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -73,8 +73,8 @@ _RESPONSE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=67,
-  serialized_end=88,
+  serialized_start=80,
+  serialized_end=98,
 )
 
 
@@ -85,10 +85,10 @@ class Request(message.Message):
   
   # @@protoc_insertion_point(class_scope:randexample.Request)
 
-class Response(message.Message):
+class Reply(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _RESPONSE
+  DESCRIPTOR = _REPLY
   
-  # @@protoc_insertion_point(class_scope:randexample.Response)
+  # @@protoc_insertion_point(class_scope:randexample.Reply)
 
 # @@protoc_insertion_point(module_scope)

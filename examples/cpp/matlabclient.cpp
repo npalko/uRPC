@@ -8,19 +8,19 @@
 #include "randexample.pb.h"
 
 
-EXPORTED_FUNCTION mxArray *request(const char * const service, int version, 
-                                   int m, int n)
+EXPORTED_FUNCTION mxArray *request (const char * const service, int version, 
+                                    int nMessage, int nSample)
 {
   urpc::Client client("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Reply reply;
   
-  request.set_m (m);
-  request.set_n (n);
+  request.set_nmessage (nMessage);
+  request.set_nsample (nSample);
   client.sendRequest (service, version, request);
 
-  mxArray *mxReply = mxCreateNumericMatrix (static_cast<mwSize>(m), 
-    static_cast<mwSize>(n), mxDOUBLE_CLASS, mxREAL);
+  mxArray *mxReply = mxCreateNumericMatrix (static_cast<mwSize>(nMessage), 
+    static_cast<mwSize>(nSample), mxDOUBLE_CLASS, mxREAL);
   double *out = mxGetPr (mxReply);
 
   client.getReply (reply);
@@ -32,7 +32,7 @@ EXPORTED_FUNCTION mxArray *request(const char * const service, int version,
 
 // Small demos of functionality
 
-EXPORTED_FUNCTION mxArray *zeros(int m, int n)
+EXPORTED_FUNCTION mxArray *zeros (int m, int n)
 {
   // rough replica of MATLAB zeros() function
   

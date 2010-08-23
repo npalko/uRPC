@@ -33,7 +33,7 @@ void protobuf_AssignDesc_randexample_2eproto();
 void protobuf_ShutdownFile_randexample_2eproto();
 
 class Request;
-class Response;
+class Reply;
 
 // ===================================================================
 
@@ -91,27 +91,27 @@ class Request : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // optional int32 m = 1;
-  inline bool has_m() const;
-  inline void clear_m();
-  static const int kMFieldNumber = 1;
-  inline ::google::protobuf::int32 m() const;
-  inline void set_m(::google::protobuf::int32 value);
+  // optional int32 nMessage = 1;
+  inline bool has_nmessage() const;
+  inline void clear_nmessage();
+  static const int kNMessageFieldNumber = 1;
+  inline ::google::protobuf::int32 nmessage() const;
+  inline void set_nmessage(::google::protobuf::int32 value);
   
-  // optional int32 n = 2;
-  inline bool has_n() const;
-  inline void clear_n();
-  static const int kNFieldNumber = 2;
-  inline ::google::protobuf::int32 n() const;
-  inline void set_n(::google::protobuf::int32 value);
+  // optional int32 nSample = 2;
+  inline bool has_nsample() const;
+  inline void clear_nsample();
+  static const int kNSampleFieldNumber = 2;
+  inline ::google::protobuf::int32 nsample() const;
+  inline void set_nsample(::google::protobuf::int32 value);
   
   // @@protoc_insertion_point(class_scope:randexample.Request)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  ::google::protobuf::int32 m_;
-  ::google::protobuf::int32 n_;
+  ::google::protobuf::int32 nmessage_;
+  ::google::protobuf::int32 nsample_;
   friend void  protobuf_AddDesc_randexample_2eproto();
   friend void protobuf_AssignDesc_randexample_2eproto();
   friend void protobuf_ShutdownFile_randexample_2eproto();
@@ -134,14 +134,14 @@ class Request : public ::google::protobuf::Message {
 };
 // -------------------------------------------------------------------
 
-class Response : public ::google::protobuf::Message {
+class Reply : public ::google::protobuf::Message {
  public:
-  Response();
-  virtual ~Response();
+  Reply();
+  virtual ~Reply();
   
-  Response(const Response& from);
+  Reply(const Reply& from);
   
-  inline Response& operator=(const Response& from) {
+  inline Reply& operator=(const Reply& from) {
     CopyFrom(from);
     return *this;
   }
@@ -155,17 +155,17 @@ class Response : public ::google::protobuf::Message {
   }
   
   static const ::google::protobuf::Descriptor* descriptor();
-  static const Response& default_instance();
+  static const Reply& default_instance();
   
-  void Swap(Response* other);
+  void Swap(Reply* other);
   
   // implements Message ----------------------------------------------
   
-  Response* New() const;
+  Reply* New() const;
   void CopyFrom(const ::google::protobuf::Message& from);
   void MergeFrom(const ::google::protobuf::Message& from);
-  void CopyFrom(const Response& from);
-  void MergeFrom(const Response& from);
+  void CopyFrom(const Reply& from);
+  void MergeFrom(const Reply& from);
   void Clear();
   bool IsInitialized() const;
   
@@ -200,7 +200,7 @@ class Response : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< double >*
       mutable_r();
   
-  // @@protoc_insertion_point(class_scope:randexample.Response)
+  // @@protoc_insertion_point(class_scope:randexample.Reply)
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -224,7 +224,7 @@ class Response : public ::google::protobuf::Message {
   }
   
   void InitAsDefaultInstance();
-  static Response* default_instance_;
+  static Reply* default_instance_;
 };
 // ===================================================================
 
@@ -233,64 +233,64 @@ class Response : public ::google::protobuf::Message {
 
 // Request
 
-// optional int32 m = 1;
-inline bool Request::has_m() const {
+// optional int32 nMessage = 1;
+inline bool Request::has_nmessage() const {
   return _has_bit(0);
 }
-inline void Request::clear_m() {
-  m_ = 0;
+inline void Request::clear_nmessage() {
+  nmessage_ = 0;
   _clear_bit(0);
 }
-inline ::google::protobuf::int32 Request::m() const {
-  return m_;
+inline ::google::protobuf::int32 Request::nmessage() const {
+  return nmessage_;
 }
-inline void Request::set_m(::google::protobuf::int32 value) {
+inline void Request::set_nmessage(::google::protobuf::int32 value) {
   _set_bit(0);
-  m_ = value;
+  nmessage_ = value;
 }
 
-// optional int32 n = 2;
-inline bool Request::has_n() const {
+// optional int32 nSample = 2;
+inline bool Request::has_nsample() const {
   return _has_bit(1);
 }
-inline void Request::clear_n() {
-  n_ = 0;
+inline void Request::clear_nsample() {
+  nsample_ = 0;
   _clear_bit(1);
 }
-inline ::google::protobuf::int32 Request::n() const {
-  return n_;
+inline ::google::protobuf::int32 Request::nsample() const {
+  return nsample_;
 }
-inline void Request::set_n(::google::protobuf::int32 value) {
+inline void Request::set_nsample(::google::protobuf::int32 value) {
   _set_bit(1);
-  n_ = value;
+  nsample_ = value;
 }
 
 // -------------------------------------------------------------------
 
-// Response
+// Reply
 
 // repeated double r = 1;
-inline int Response::r_size() const {
+inline int Reply::r_size() const {
   return r_.size();
 }
-inline void Response::clear_r() {
+inline void Reply::clear_r() {
   r_.Clear();
 }
-inline double Response::r(int index) const {
+inline double Reply::r(int index) const {
   return r_.Get(index);
 }
-inline void Response::set_r(int index, double value) {
+inline void Reply::set_r(int index, double value) {
   r_.Set(index, value);
 }
-inline void Response::add_r(double value) {
+inline void Reply::add_r(double value) {
   r_.Add(value);
 }
 inline const ::google::protobuf::RepeatedField< double >&
-Response::r() const {
+Reply::r() const {
   return r_;
 }
 inline ::google::protobuf::RepeatedField< double >*
-Response::mutable_r() {
+Reply::mutable_r() {
   return &r_;
 }
 

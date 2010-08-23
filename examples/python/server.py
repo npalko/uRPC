@@ -15,28 +15,38 @@ def server(connection='tcp://127.0.0.1:5555'):
   print('bound to %s' % connection)
   
   while True:
-    request = uRPC_pb2.Request()
-    msg = socket.recv()
+    requestEnvelope = uRPC_pb2.RequestEnvelope()
+    request = randexample_pb2.Request()
+  
+    wireRequestEnvelope = socket.recv()
+    requestEnvelope.ParseFromString(wireRequestEnvelope)
+    request.ParseFromString(requestEnvelope.request)
     
-    request.ParseFromString(msg)
-    randRequest = randexample_pb2.Request()
-    randRequest.ParseFromString(request.message)
+    statusMsg = 'GOT REQUEST [%s](%s) nMessage=%d nSample=%d' % \
+      (requestEnvelope.service, requestEnvelope.version, request.nMessage, \
+      request.nSample)
+    print(statusMsg)
     
-    print('GOT [%s](%d) (m=%d,n=%d)' % (request.service, \
-      request.version, \
-      randRequest.m, \
-      randRequest.n))
+
+    for i in range(1, request.nMessage + 1):
     
-    response = uRPC_pb2.Response()
-    randResponse = randexample_pb2.Response()
-    
-    for i in range(0,randRequest.m * randRequest.n):
-      randResponse.r.append(random.random())
-    
-    response.message = randResponse.SerializeToString()
-    msg = response.SerializeToString()
-    socket.send(msg)
-    print('SENT %d bytes' % len(msg))
+      replyEnvelope = uRPC_pb2.ReplyEnvelope()
+      reply = randexample_pb2.Reply()
+      
+      for j in range(0, request.nSample):
+        rnd = random.random()
+        #print(rnd)
+        reply.r.append(rnd)
+      
+      replyEnvelope.reply = reply.SerializeToString()
+      wireReplyEnvelope = replyEnvelope.SerializeToString()
+      
+      if i == request.nMessage:
+        socket.send(wireReplyEnvelope)
+      else:
+        socket.send(wireReplyEnvelope, zmq.SNDMORE)
+        
+      print('SENT %d bytes' % len(wireReplyEnvelope))
     
 
 if __name__ == '__main__':
