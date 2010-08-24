@@ -17,3 +17,10 @@ file (GLOB readGlobSource readglob.* pb/doubles.*)
 add_executable (readglob ${readGlobSource})
 add_dependencies (readglob glob)
 target_link_libraries (readglob ${EXTRA_LIBS})
+
+# multithread server w/client
+#add_executable (client client.cpp)
+#target_link_libraries (client ${EXTRA_LIBS})
+#
+#add_executable (server server.cpp)
+#target_link_libraries (server ${EXTRA_LIBS})
