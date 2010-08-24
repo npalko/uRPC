@@ -10,13 +10,13 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='uRPC.proto',
   package='urpc.pb',
-  serialized_pb='\n\nuRPC.proto\x12\x07urpc.pb\x1a\tLog.proto\"<\n\x07Request\x12\x0f\n\x07service\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x0f\n\x07message\x18\x03 \x01(\x0c\"E\n\x08Response\x12\r\n\x05\x65rror\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\x0c\x12\x19\n\x03log\x18\x03 \x03(\x0b\x32\x0c.urpc.pb.Log\"\xf8\x01\n\x06Server\x12&\n\x06record\x18\x01 \x03(\x0b\x32\x16.urpc.pb.Server.Record\x1a\xc5\x01\n\x06Record\x12\x0f\n\x07service\x18\x01 \x01(\t\x12\x31\n\x08protocol\x18\x02 \x01(\x0e\x32\x1f.urpc.pb.Server.Record.Protocol\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0b\n\x03ttl\x18\x04 \x01(\x05\x12\x10\n\x08priority\x18\x05 \x01(\x05\x12\x0e\n\x06weight\x18\x06 \x01(\x05\x12\x0c\n\x04port\x18\x07 \x01(\x05\x12\x0e\n\x06target\x18\x08 \x01(\t\"\x1c\n\x08Protocol\x12\x07\n\x03TCP\x10\x01\x12\x07\n\x03UDP\x10\x02')
+  serialized_pb='\n\nuRPC.proto\x12\x07urpc.pb\x1a\tLog.proto\"D\n\x0fRequestEnvelope\x12\x0f\n\x07service\x18\x01 \x01(\t\x12\x0f\n\x07version\x18\x02 \x01(\x05\x12\x0f\n\x07request\x18\x03 \x01(\x0c\"H\n\rReplyEnvelope\x12\r\n\x05\x65rror\x18\x01 \x01(\x08\x12\r\n\x05reply\x18\x02 \x01(\x0c\x12\x19\n\x03log\x18\x03 \x03(\x0b\x32\x0c.urpc.pb.Log\"\xb8\x01\n\x0b\x41pplication\x12\x0f\n\x07service\x18\x01 \x01(\t\x12/\n\x08protocol\x18\x02 \x01(\x0e\x32\x1d.urpc.pb.Application.Protocol\x12\x0c\n\x04name\x18\x03 \x01(\t\x12\x0b\n\x03ttl\x18\x04 \x01(\x05\x12\x10\n\x08priority\x18\x05 \x01(\x05\x12\x0e\n\x06weight\x18\x06 \x01(\x05\x12\x0c\n\x04port\x18\x07 \x01(\x05\"\x1c\n\x08Protocol\x12\x07\n\x03TCP\x10\x01\x12\x07\n\x03UDP\x10\x02\"<\n\x0f\x41pplicationList\x12)\n\x0b\x61pplication\x18\x01 \x03(\x0b\x32\x14.urpc.pb.Application')
 
 
 
-_SERVER_RECORD_PROTOCOL = descriptor.EnumDescriptor(
+_APPLICATION_PROTOCOL = descriptor.EnumDescriptor(
   name='Protocol',
-  full_name='urpc.pb.Server.Record.Protocol',
+  full_name='urpc.pb.Application.Protocol',
   filename=None,
   file=DESCRIPTOR,
   values=[
@@ -31,34 +31,34 @@ _SERVER_RECORD_PROTOCOL = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=388,
-  serialized_end=416,
+  serialized_start=335,
+  serialized_end=363,
 )
 
 
-_REQUEST = descriptor.Descriptor(
-  name='Request',
-  full_name='urpc.pb.Request',
+_REQUESTENVELOPE = descriptor.Descriptor(
+  name='RequestEnvelope',
+  full_name='urpc.pb.RequestEnvelope',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='service', full_name='urpc.pb.Request.service', index=0,
+      name='service', full_name='urpc.pb.RequestEnvelope.service', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='version', full_name='urpc.pb.Request.version', index=1,
+      name='version', full_name='urpc.pb.RequestEnvelope.version', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='message', full_name='urpc.pb.Request.message', index=2,
+      name='request', full_name='urpc.pb.RequestEnvelope.request', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
@@ -74,33 +74,33 @@ _REQUEST = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=34,
-  serialized_end=94,
+  serialized_end=102,
 )
 
 
-_RESPONSE = descriptor.Descriptor(
-  name='Response',
-  full_name='urpc.pb.Response',
+_REPLYENVELOPE = descriptor.Descriptor(
+  name='ReplyEnvelope',
+  full_name='urpc.pb.ReplyEnvelope',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='error', full_name='urpc.pb.Response.error', index=0,
+      name='error', full_name='urpc.pb.ReplyEnvelope.error', index=0,
       number=1, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='message', full_name='urpc.pb.Response.message', index=1,
+      name='reply', full_name='urpc.pb.ReplyEnvelope.reply', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value="",
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='log', full_name='urpc.pb.Response.log', index=2,
+      name='log', full_name='urpc.pb.ReplyEnvelope.log', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -115,71 +115,64 @@ _RESPONSE = descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=96,
-  serialized_end=165,
+  serialized_start=104,
+  serialized_end=176,
 )
 
 
-_SERVER_RECORD = descriptor.Descriptor(
-  name='Record',
-  full_name='urpc.pb.Server.Record',
+_APPLICATION = descriptor.Descriptor(
+  name='Application',
+  full_name='urpc.pb.Application',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='service', full_name='urpc.pb.Server.Record.service', index=0,
+      name='service', full_name='urpc.pb.Application.service', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='protocol', full_name='urpc.pb.Server.Record.protocol', index=1,
+      name='protocol', full_name='urpc.pb.Application.protocol', index=1,
       number=2, type=14, cpp_type=8, label=1,
       has_default_value=False, default_value=1,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='name', full_name='urpc.pb.Server.Record.name', index=2,
+      name='name', full_name='urpc.pb.Application.name', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='ttl', full_name='urpc.pb.Server.Record.ttl', index=3,
+      name='ttl', full_name='urpc.pb.Application.ttl', index=3,
       number=4, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='priority', full_name='urpc.pb.Server.Record.priority', index=4,
+      name='priority', full_name='urpc.pb.Application.priority', index=4,
       number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='weight', full_name='urpc.pb.Server.Record.weight', index=5,
+      name='weight', full_name='urpc.pb.Application.weight', index=5,
       number=6, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='port', full_name='urpc.pb.Server.Record.port', index=6,
+      name='port', full_name='urpc.pb.Application.port', index=6,
       number=7, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    descriptor.FieldDescriptor(
-      name='target', full_name='urpc.pb.Server.Record.target', index=7,
-      number=8, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -188,24 +181,25 @@ _SERVER_RECORD = descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
-    _SERVER_RECORD_PROTOCOL,
+    _APPLICATION_PROTOCOL,
   ],
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=219,
-  serialized_end=416,
+  serialized_start=179,
+  serialized_end=363,
 )
 
-_SERVER = descriptor.Descriptor(
-  name='Server',
-  full_name='urpc.pb.Server',
+
+_APPLICATIONLIST = descriptor.Descriptor(
+  name='ApplicationList',
+  full_name='urpc.pb.ApplicationList',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='record', full_name='urpc.pb.Server.record', index=0,
+      name='application', full_name='urpc.pb.ApplicationList.application', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -214,46 +208,45 @@ _SERVER = descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[_SERVER_RECORD, ],
+  nested_types=[],
   enum_types=[
   ],
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=168,
-  serialized_end=416,
+  serialized_start=365,
+  serialized_end=425,
 )
 
 import Log_pb2
 
-_RESPONSE.fields_by_name['log'].message_type = Log_pb2._LOG
-_SERVER_RECORD.fields_by_name['protocol'].enum_type = _SERVER_RECORD_PROTOCOL
-_SERVER_RECORD.containing_type = _SERVER;
-_SERVER_RECORD_PROTOCOL.containing_type = _SERVER_RECORD;
-_SERVER.fields_by_name['record'].message_type = _SERVER_RECORD
+_REPLYENVELOPE.fields_by_name['log'].message_type = Log_pb2._LOG
+_APPLICATION.fields_by_name['protocol'].enum_type = _APPLICATION_PROTOCOL
+_APPLICATION_PROTOCOL.containing_type = _APPLICATION;
+_APPLICATIONLIST.fields_by_name['application'].message_type = _APPLICATION
 
-class Request(message.Message):
+class RequestEnvelope(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _REQUEST
+  DESCRIPTOR = _REQUESTENVELOPE
   
-  # @@protoc_insertion_point(class_scope:urpc.pb.Request)
+  # @@protoc_insertion_point(class_scope:urpc.pb.RequestEnvelope)
 
-class Response(message.Message):
+class ReplyEnvelope(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
-  DESCRIPTOR = _RESPONSE
+  DESCRIPTOR = _REPLYENVELOPE
   
-  # @@protoc_insertion_point(class_scope:urpc.pb.Response)
+  # @@protoc_insertion_point(class_scope:urpc.pb.ReplyEnvelope)
 
-class Server(message.Message):
+class Application(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _APPLICATION
   
-  class Record(message.Message):
-    __metaclass__ = reflection.GeneratedProtocolMessageType
-    DESCRIPTOR = _SERVER_RECORD
-    
-    # @@protoc_insertion_point(class_scope:urpc.pb.Server.Record)
-  DESCRIPTOR = _SERVER
+  # @@protoc_insertion_point(class_scope:urpc.pb.Application)
+
+class ApplicationList(message.Message):
+  __metaclass__ = reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _APPLICATIONLIST
   
-  # @@protoc_insertion_point(class_scope:urpc.pb.Server)
+  # @@protoc_insertion_point(class_scope:urpc.pb.ApplicationList)
 
 # @@protoc_insertion_point(module_scope)
