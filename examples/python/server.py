@@ -28,7 +28,7 @@ def server(connection='tcp://127.0.0.1:5555'):
     print(statusMsg)
     
 
-    for i in range(1, request.nMessage + 1):
+    for i in range(0, request.nMessage):
     
       replyEnvelope = uRPC_pb2.ReplyEnvelope()
       reply = randexample_pb2.Reply()
@@ -41,7 +41,7 @@ def server(connection='tcp://127.0.0.1:5555'):
       replyEnvelope.reply = reply.SerializeToString()
       wireReplyEnvelope = replyEnvelope.SerializeToString()
       
-      if i == request.nMessage:
+      if i == (request.nMessage - 1):
         socket.send(wireReplyEnvelope)
       else:
         socket.send(wireReplyEnvelope, zmq.SNDMORE)
