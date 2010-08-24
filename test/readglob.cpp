@@ -8,11 +8,14 @@ int main (int argc, char **argv) {
   
   urpc::iglob glob("somefile.pbuf");
   urpc::test::pb::Array doubles;
+  double total;
   
   while (glob.read (doubles)) {
+    total = 0;
     for (int i=0; i != doubles.r_size(); ++i) {
-      std::cout << doubles.r(i) << std::endl;
+      total += doubles.r(i);
     }
+    std::cout << total << std::endl;
     doubles.Clear();
   }
 
