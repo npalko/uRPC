@@ -1,6 +1,7 @@
 *.pyc
 *.user
 *.suo
+*.pfx
 build/
 
 Excel/AddIn/bin/
