@@ -15,29 +15,27 @@ namespace dns {
 std::string getConnection() {
 
   std::vector<boost::asio::ip::address> hostDnsServer;
-  urpc::pb::Server urpcSrv;
+  urpc::pb::ApplicationList list;
   std::string connection;
 
   urpc::dns::getServer (hostDnsServer);
   std::vector<boost::asio::ip::address>::const_iterator addr = hostDnsServer.begin();
   for(; addr != hostDnsServer.end(); ++addr) {
-    urpc::dns::appendSrvRecordFromAddress (*addr, urpcSrv);
+    urpc::dns::appendListFromServer (*addr, list);
   }
-  //connection = urpc::dns::getConnectionFromRecord (urpcSrv.record(0));
+  //connection = urpc::dns::getConnectionFromRecord (list.application(0));
   connection = "tcp://120.0.0.1:5555";
   return connection;
 }
 
-std::string getConnectionFromRecord (const urpc::pb::Server_Record &record) {
-  // "tcp://host:port"
-
+std::string getConnectionFromRecord (const urpc::pb::Application &record) {
   std::string connection;
   
   switch (record.protocol()) {
-    case urpc::pb::Server_Record::TCP:
+    case urpc::pb::Application::TCP:
       connection += "tcp";
       break;
-    case urpc::pb::Server_Record::UDP:
+    case urpc::pb::Application::UDP:
       connection += "udp";
       break;
   }
@@ -49,9 +47,9 @@ std::string getConnectionFromRecord (const urpc::pb::Server_Record &record) {
   return connection;
 }
 
-void appendSrvRecordFromAddress (const boost::asio::ip::address &address, 
-                           urpc::pb::Server &server)
-{
+void appendListFromServer (const boost::asio::ip::address &server, 
+                                   urpc::pb::ApplicationList &list) {
+
   // lookup SRV records from server
 
   // address: DNS server

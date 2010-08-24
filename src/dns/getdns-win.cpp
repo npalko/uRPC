@@ -13,8 +13,10 @@
 #include <string>
 #include <vector>
 #include <boost/asio.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "dns/dns.hpp"
+#include "exception.hpp"
 
 
 namespace urpc {
@@ -26,6 +28,7 @@ void getServer(std::vector<boost::asio::ip::address> &server) {
   DWORD dwRetVal;
   IP_ADDR_STRING *pIPAddr;
   
+  //boost::shared_ptr<FIXED_INFO> pFixedInfo (new(sizeof(FIXED_INFO));
   pFixedInfo = (FIXED_INFO *) malloc (sizeof(FIXED_INFO));
   ulOutBufLen = sizeof (FIXED_INFO);
   
@@ -38,13 +41,9 @@ void getServer(std::vector<boost::asio::ip::address> &server) {
   dwRetVal = GetNetworkParams (pFixedInfo, &ulOutBufLen);
   if (dwRetVal == NO_ERROR) {
     
-    if (pFixedInfo->DnsServerList.IpAddress.String) {
-      server.push_back (boost::asio::ip::address::from_string (
-        pFixedInfo->DnsServerList.IpAddress.String));
-    } else {
-      printf("Aint shit\n");
-    }
-    
+    server.push_back (boost::asio::ip::address::from_string (
+      pFixedInfo->DnsServerList.IpAddress.String));
+
     pIPAddr = pFixedInfo->DnsServerList.Next;
     while (pIPAddr) {
       server.push_back (boost::asio::ip::address::from_string (
