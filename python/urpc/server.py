@@ -1,22 +1,36 @@
-import Log_pb2, uRPC_pb2
+import uRPC_pb2
 import zmq
 
-
-def main():
-  context = zmq.Context(1, 1)
-  socket = context.socket(zmq.REP)
-  socket.bind("tcp://127.0.0.1:5555")
-  
-  while True:
-    request = uRPC_pb2.Request()
-    msg = socket.recv()
-    request.ParseFromString(msg)
-    print request
+class SingleThreadServer(object):
+  def __init__(self, connection='tcp://127.0.0.1:5555'):
+    """ """
     
-    response = uRPC_pb2.Response()
-    response.message = "OK"
-    socket.send(response.SerializeToString())
-    print "sent OK"
-
-if __name__ == '__main__':
-  main()
+    self._context = zmq.Context()
+    self._socket = self._context.socket(zmq.REP)
+    self._socket.bind(connection)
+    print('bound to %s' % connection)
+  def processRequest(self, request):
+    """ """
+    
+    raise ("must be implemented")
+  def sendReply(self, reply, moreToCome=False):
+    """ """
+    
+    replyEnvelope = uRPC_pb2.ReplyEnvelope()
+    replyEnvelope.reply = reply.SerializeToString()
+    wireReplyEnvelope = replyEnvelope.SerializeToString()
+    
+    if moreToCome:
+      self._socket.send(wireReplyEnvelope, zmq.SNDMORE)
+    else:
+      self._socket.send(wireReplyEnvelope)
+      
+    print('SENT %d bytes' % len(wireReplyEnvelope))
+  def serve(self):
+    
+    while True:
+      requestEnvelope = uRPC_pb2.RequestEnvelope()
+      wireRequestEnvelope = self._socket.recv()
+      requestEnvelope.ParseFromString(wireRequestEnvelope)
+      self.processRequest(requestEnvelope)
+      
