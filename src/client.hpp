@@ -3,12 +3,9 @@
 
 #include <string>
 #include <boost/shared_ptr.hpp>
-#include "pb/Log.pb.h"
-#include "pb/uRPC.pb.h"
+#include <google/protobuf/message.h>
 #include "zmq.hpp"
 #include "dns/dns.hpp"
-#include "exception.hpp"
-#include "kerberos/kerberos.hpp"
 
 
 namespace urpc {

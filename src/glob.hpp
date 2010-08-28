@@ -7,8 +7,6 @@
 
 #include <fstream>
 #include <google/protobuf/message.h>
-#include "exception.hpp"
-
 
 namespace urpc {
 

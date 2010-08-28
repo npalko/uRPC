@@ -2,6 +2,10 @@
 //
 //
 
+#include "pb/Log.pb.h"
+#include "pb/uRPC.pb.h"
+#include "exception.hpp"
+#include "kerberos/kerberos.hpp"
 #include "client.hpp"
 
 namespace urpc {
@@ -17,8 +21,8 @@ Client::Client (const std::string &connection) {
   urpc::kerberos::submitSessionTicketToServer ();
   
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t(nIOThread));
-  socket = boost::shared_ptr<zmq::socket_t> (new zmq::socket_t(*context, 
-    ZMQ_REQ));
+  socket = boost::shared_ptr<zmq::socket_t> 
+    (new zmq::socket_t(*context, ZMQ_REQ));
   socket->connect (connection.c_str());
 }
 

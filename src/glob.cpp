@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include <vector>
+#include "exception.hpp"
 #include "glob.hpp"
 
 namespace urpc {

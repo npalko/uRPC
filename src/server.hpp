@@ -1,13 +1,13 @@
+// src/server.hpp
+//
+//
+
 #ifndef URPC_SERVER_HPP
 #define URPC_SERVER_HPP
 
+#include <string>
 #include <boost/shared_ptr.hpp>
-#include "pb/Log.pb.h"
-#include "pb/uRPC.pb.h"
 #include "zmq.hpp"
-#include "dns/dns.hpp"
-#include "kerberos/kerberos.hpp"
-#include "ldap/ldap.hpp"
 
 
 namespace urpc {
@@ -15,11 +15,14 @@ namespace urpc {
 class Server {
   public:
     Server ();
-    void start ();
-    void stop ();
+    ~Server ();
   private:
+    static const int nIOThread = 1;
+    std::string getClientConnectionString () const;
+    std::string getWorkerConnectionString () const;
     boost::shared_ptr<zmq::context_t> context;
-    boost::shared_ptr<zmq::socket_t> socket;
+    boost::shared_ptr<zmq::socket_t> clientSocket;
+    boost::shared_ptr<zmq::socket_t> workerSocket;
 };
 
 
