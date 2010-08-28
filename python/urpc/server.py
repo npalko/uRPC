@@ -16,21 +16,20 @@ class SingleThreadServer(object):
   def sendReply(self, reply, moreToCome=False):
     """ """
     
+    sendFlag = zmq.SNDMORE if moreToCome else 0
     replyEnvelope = uRPC_pb2.ReplyEnvelope()
     replyEnvelope.reply = reply.SerializeToString()
     wireReplyEnvelope = replyEnvelope.SerializeToString()
     
-    if moreToCome:
-      self._socket.send(wireReplyEnvelope, zmq.SNDMORE)
-    else:
-      self._socket.send(wireReplyEnvelope)
-      
+    self._socket.send(wireReplyEnvelope, sendFlag)
     print('SENT %d bytes' % len(wireReplyEnvelope))
   def serve(self):
+    """ """
     
     while True:
-      requestEnvelope = uRPC_pb2.RequestEnvelope()
       wireRequestEnvelope = self._socket.recv()
+    
+      requestEnvelope = uRPC_pb2.RequestEnvelope()
       requestEnvelope.ParseFromString(wireRequestEnvelope)
       self.processRequest(requestEnvelope)
       
