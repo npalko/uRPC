@@ -2,6 +2,7 @@
 *.user
 *.suo
 *.pfx
+*.bak
 build/
 
 Excel/AddIn/bin/
