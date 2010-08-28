@@ -27,11 +27,9 @@ TODO
     - change memory allocation to smart_ptr
    
   * Python (server)
-    - urpc namespace that gives basic functionality, or uses platform standard
-      modules if available
-    - kerberos plugin
-    - ldap plugin
-    - dns plugin
+    - write kerberos plugin
+    - write ldap plugin
+    - write dns plugin
       
   * CMake
     - change libraries linked to based on build type DCMAKE_BUILD_TYPE
