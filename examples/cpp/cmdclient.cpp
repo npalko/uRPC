@@ -1,7 +1,7 @@
 // Demonstration of a single-threaded client
 
 #include <cstdio>
-#include "randexample.pb.h"
+#include "randexample/randexample.pb.h"
 #include "client.hpp"
 
 int main(int argc, char **argv) {

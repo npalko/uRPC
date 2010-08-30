@@ -5,7 +5,7 @@
 #include "client.hpp"
 #include "mex.h"
 #include "matlabclient.hpp"
-#include "randexample.pb.h"
+#include "randexample/randexample.pb.h"
 
 
 EXPORTED_FUNCTION mxArray *request (const char * const service, int version, 
