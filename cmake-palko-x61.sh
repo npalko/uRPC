@@ -4,7 +4,7 @@ protoc --cpp_out=examples/cpp/randexample --python_out=examples/python --proto_p
 protoc --cpp_out=test/pb --proto_path=test/protobuf test/protobuf/*.proto
 cd build && cmake .. \
   -DCMAKE_MODULE_PATH="C:/Users/Nicholas Palko/Documents/Development/cmake-modules" \
-  -DBOOST_ROOT="C:/Users/Nicholas Palko/Documents/Development/boost_1_43_0" \
+  -DBOOST_ROOT="C:/Users/Nicholas Palko/Documents/Development/boost_1_44_0" \
   -DZMQ_INCLUDE_DIR="C:/Users/Nicholas Palko/Documents/Development/zeromq2/include" \
   -DZMQ_LIBRARY="C:/Users/Nicholas Palko/Documents/Development/zeromq2/lib" \
   -DPROTOBUF_INCLUDE_DIR="C:/Users/Nicholas Palko/Documents/Development/protobuf/src" \
