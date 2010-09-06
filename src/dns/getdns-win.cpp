@@ -22,11 +22,12 @@
 namespace urpc {
 namespace dns {
 
-void getServer(std::vector<boost::asio::ip::address> &server) {
+std::vector<boost::asio::ip::address> getServer() {
   FIXED_INFO *pFixedInfo;
   ULONG ulOutBufLen;
   DWORD dwRetVal;
   IP_ADDR_STRING *pIPAddr;
+  std::vector<boost::asio::ip::address> server;
   
   //boost::shared_ptr<FIXED_INFO> pFixedInfo (new(sizeof(FIXED_INFO));
   pFixedInfo = (FIXED_INFO *) malloc (sizeof(FIXED_INFO));
@@ -55,6 +56,8 @@ void getServer(std::vector<boost::asio::ip::address> &server) {
   }
 
   free (pFixedInfo);
+  
+  return server;
 }
 
 

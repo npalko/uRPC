@@ -13,9 +13,9 @@
 namespace urpc {
 namespace dns {
 
-void getServer(std::vector<boost::asio::ip::address> &server) {
+std::vector<boost::asio::ip::address> getServer() {
 
-
+  std::vector<boost::asio::ip::address> server;
   std::ofstream resolv;
   
   
@@ -28,6 +28,6 @@ void getServer(std::vector<boost::asio::ip::address> &server) {
   resolv.close();
   
   
-  
+  return server;
 }
 

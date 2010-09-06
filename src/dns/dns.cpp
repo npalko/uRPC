@@ -14,11 +14,10 @@ namespace dns {
 
 std::string getConnection() {
 
-  std::vector<boost::asio::ip::address> hostDnsServer;
   urpc::pb::ApplicationList list;
   std::string connection;
-
-  urpc::dns::getServer (hostDnsServer);
+  std::vector<boost::asio::ip::address> hostDnsServer = getServer()
+  
   std::vector<boost::asio::ip::address>::const_iterator addr = hostDnsServer.begin();
   for(; addr != hostDnsServer.end(); ++addr) {
     urpc::dns::appendListFromServer (*addr, list);

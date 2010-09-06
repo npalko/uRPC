@@ -11,9 +11,10 @@
 namespace urpc {
 namespace dns {
 
-void getServer(std::vector<boost::asio::ip::address> &server) {
+std::vector<boost::asio::ip::address> getServer() {
 
-
+  std::vector<boost::asio::ip::address> server;  
+  return server;
 }
 
 

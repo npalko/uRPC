@@ -37,9 +37,9 @@ void appendListFromServer (const boost::asio::ip::address &server,
                            urpc::pb::ApplicationList &list);
 
 /** Get DNS servers from host OS
-  *\param list of DNS servers obtained from host OS
+  *\return list of DNS servers obtained from host OS
   */
-void getServer (std::vector<boost::asio::ip::address> &server);
+std::vector<boost::asio::ip::address>  getServer ();
 
 }
 }
