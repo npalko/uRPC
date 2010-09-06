@@ -28,25 +28,35 @@ Server::Server () {
   clientSocket = boost::shared_ptr<zmq::socket_t> 
     (new zmq::socket_t (*context, ZMQ_XREQ));
     
-  workerSocket->bind (getWorkerConnectionString ().c_str ());
-  clientSocket->bind (getClientConnectionString ().c_str ());
-
+    
+  // bare minimum:
+  //  create threadpool in constructor, cancell all threads in destructor
+  
 
   // create a thread pool
   // each thread passed context, 
   // boost::thread threadName (boost::ref(x)
-
-
-  // does this block?!?
+  
+    
+  workerSocket->bind (getWorkerConnectionString ().c_str ());
+  clientSocket->bind (getClientConnectionString ().c_str ());
+  
+  // this should be put into its own thread so we can
   zmq::device (ZMQ_QUEUE, clientSocket.get (), workerSocket.get ()); 
-}
-Server::~Server () {
 
+  // map<std::string, function> make sense? 
+  //  should this map be passed to server on construction?
+  //  constructor with many parameters an ok form?
+  // are multipart requests and responses handeled by the zmq framework?
+  // 
+
+
+  
 }
-std::string Server::getClientConnectionString () {
+std::string Server::getClientConnectionString () const {
   return "tcp://lo:5555";
 }
-std::string Server::getWorkerConnectionString () {
+std::string Server::getWorkerConnectionString () const {
   return "inproc://workers";
 }
 
