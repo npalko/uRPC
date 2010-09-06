@@ -32,11 +32,8 @@ bool iglob::read (google::protobuf::Message &message) {
 
   std::vector<char> buffer (length);
   file.read (&buffer[0], length);
-  if (file.gcount() != length) {
-    throw urpc::GlobError ("Could not read bytes specified by offset");
-  }
-
   parseSuccess = message.ParseFromArray (&buffer[0], length);
+  
   if (!parseSuccess) {
     throw urpc::GlobError ("ParseFromArray failure");
   }
