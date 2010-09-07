@@ -16,7 +16,6 @@ class glob {
     glob ();
   protected:
     std::fstream file;
-    static const int IntSize = 4;
 };
 
 class iglob : private glob {

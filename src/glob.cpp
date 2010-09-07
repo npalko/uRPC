@@ -11,7 +11,6 @@ namespace urpc {
 
 glob::glob() {
   using namespace std;
-  assert (sizeof(int) == IntSize);
   file.exceptions (ifstream::failbit | ifstream::badbit);
 }
 
@@ -23,9 +22,9 @@ iglob::iglob (const std::string &filename) {
 bool iglob::read (google::protobuf::Message &message) {
 
   bool parseSuccess;
-  int length;
+  __int32 length;
   
-  file.read (reinterpret_cast<char*>(&length), IntSize);
+  file.read (reinterpret_cast<char*>(&length), sizeof(length));
   if (file.eof()) {
     return false;
   }
@@ -49,10 +48,10 @@ oglob::oglob (const std::string &filename) {
 void oglob::write (const google::protobuf::Message &message) {
 
   bool serializeSuccess;
-  int length;
+  __int32 length;
 
   length = message.ByteSize ();
-  file.write (reinterpret_cast<char*>(&length), IntSize);
+  file.write (reinterpret_cast<char*>(&length), sizeof(length));
   serializeSuccess = message.SerializeToOstream (&file);
 
   if (!serializeSuccess) {
