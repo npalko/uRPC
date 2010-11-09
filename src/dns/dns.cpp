@@ -16,7 +16,7 @@ std::string getConnection() {
 
   urpc::pb::ApplicationList list;
   std::string connection;
-  std::vector<boost::asio::ip::address> hostDnsServer = getServer()
+  std::vector<boost::asio::ip::address> hostDnsServer = getServer();
   
   std::vector<boost::asio::ip::address>::const_iterator addr = hostDnsServer.begin();
   for(; addr != hostDnsServer.end(); ++addr) {

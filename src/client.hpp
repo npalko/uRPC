@@ -3,19 +3,19 @@
 
 #include <string>
 #include <boost/shared_ptr.hpp>
+#include <boost/noncopyable.hpp>
 #include <google/protobuf/message.h>
 #include "zmq.hpp"
-#include "dns/dns.hpp"
 
 
 namespace urpc {
 
-class Client {
+class Client : private boost::noncopyable {
   public:
     /** Create a connection to a service
       * \param connection ZMQ connection string
       */ 
-    Client (const std::string &connection = urpc::dns::getConnection ());
+    Client (const std::string &connection);
 
     /** Send a request to a service
       * \param service name of the service requested

@@ -18,6 +18,13 @@ add_executable (readglob ${readGlobSource})
 add_dependencies (readglob glob)
 target_link_libraries (readglob ${EXTRA_LIBS})
 
+# Thread testing
+file (GLOB threadSource threadtest.*)
+add_library (threadTest STATIC ${threadSource})
+
+add_executable (boosttest boosttest.cpp)
+target_link_libraries (boosttest ${EXTRA_LIBS})
+
 # multithread server w/client
 #add_executable (client client.cpp)
 #target_link_libraries (client ${EXTRA_LIBS})

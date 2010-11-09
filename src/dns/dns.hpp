@@ -39,7 +39,7 @@ void appendListFromServer (const boost::asio::ip::address &server,
 /** Get DNS servers from host OS
   *\return list of DNS servers obtained from host OS
   */
-std::vector<boost::asio::ip::address>  getServer ();
+std::vector<boost::asio::ip::address> getServer ();
 
 }
 }

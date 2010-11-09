@@ -3,24 +3,29 @@
 //
 
 
-#include <boost/thread.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/bind.hpp>
 
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
 #include "dns/dns.hpp"
 #include "kerberos/kerberos.hpp"
 #include "ldap/ldap.hpp"
+#include "service.hpp"
 
 #include "server.hpp"
 
-
 namespace urpc {
 
-// goal is to write this so that we can plug in map from api
+void deleteEnvelope (void *data, void *hint) {
+  delete [] data;
+}
 
-
-
-Server::Server () {
+Server::Server (int nIOThread_, const std::string &clientConn, 
+                const std::string &workerConn) : 
+                nIOThread(1),
+                clientConn("tcp://localhost:5555"), 
+                workerConn("inproc://workers") {
 
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
   workerSocket = boost::shared_ptr<zmq::socket_t> 
@@ -28,37 +33,56 @@ Server::Server () {
   clientSocket = boost::shared_ptr<zmq::socket_t> 
     (new zmq::socket_t (*context, ZMQ_XREQ));
     
-    
-  // bare minimum:
-  //  create threadpool in constructor, cancell all threads in destructor
-  
+  for (int i=0; i != 4; ++i) {
+    workerPool.add_thread (
+      new boost::thread(&urpc::Server::worker, boost::ref(this)));
+  }
+}
+Server::~Server () {
 
-  // create a thread pool
-  // each thread passed context, 
-  // boost::thread threadName (boost::ref(x)
-  
-    
-  workerSocket->bind (getWorkerConnectionString ().c_str ());
-  clientSocket->bind (getClientConnectionString ().c_str ());
-  
-  // this should be put into its own thread so we can
+}
+void Server::start() {
+  workerSocket->bind (workerConn.c_str ());
+  clientSocket->bind (clientConn.c_str ());
   zmq::device (ZMQ_QUEUE, clientSocket.get (), workerSocket.get ()); 
-
-  // map<std::string, function> make sense? 
-  //  should this map be passed to server on construction?
-  //  constructor with many parameters an ok form?
-  // are multipart requests and responses handeled by the zmq framework?
-  // 
-
-
+}
+void Server::worker () {
+  bool moreToReceive, moreToSend;
+  long long more;
+  size_t sz = sizeof (more);
   
-}
-std::string Server::getClientConnectionString () const {
-  return "tcp://lo:5555";
-}
-std::string Server::getWorkerConnectionString () const {
-  return "inproc://workers";
-}
+  urpc::pb::RequestEnvelope requestEnvelope;
+  urpc::pb::ReplyEnvelope replyEnvelope;
+  
+  zmq::socket_t socket (*context, ZMQ_REP);
+  socket.connect (workerConn.c_str ());
 
+  while (true) {
+    
+    
+    zmq::message_t request;
+    socket.recv (&request);
+    socket.getsockopt (ZMQ_RCVMORE, &more, &sz);
+    moreToReceive = (more != 0);
+    requestEnvelope.Clear ();
+    requestEnvelope.ParseFromArray (request.data(), request.size());
+      
+    urpc::service::IService sv =
+      urpc::service::factory (requestEnvelope.service() );
+    sv.processRequest (requestEnvelope, moreToReceive);
+
+    
+    replyEnvelope.Clear ();
+    moreToSend = sv.getReply (replyEnvelope);
+    int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
+
+    char *wireEnvelope = new char[replyEnvelope.ByteSize()];
+    replyEnvelope.SerializeToArray(wireEnvelope, replyEnvelope.ByteSize());
+    zmq::message_t reply (wireEnvelope, replyEnvelope.ByteSize(), 
+      deleteEnvelope, NULL);
+    socket.send (reply, sendFlag);
+ 
+  }
+}
 
 }

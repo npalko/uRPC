@@ -6,8 +6,15 @@ TODO
     - RTD COM plugin - this is a class created by excel right? What is the best
       way for the RtdServer to communicate with the plugin? 
   
-  * src/client.cpp
-    - use zero copy protobuf api
+  * src/server.cpp
+    - does the queue match connections? (e.g. allow us to keep state?)
+    - std::map to delegate API request to function?
+    - plugin arch for API functionality
+    - how best to seperate server from request processing?
+  * src/dns/getdns-win.cpp
+    - add error handling for when machine doesn't have DNS configured - WTF is
+      api returning when there is no IP address?
+    - change memory allocation to smart_ptr
   * src/dns/dns.cpp
     - ibusy DNS
   * src/kerberos/kerberos.cpp
@@ -15,23 +22,17 @@ TODO
   * src/ldap/ldap.cpp
     - need a gameplan here. what is the high level interface? how are we 
       looking to organize the authorization directory?
-  * src/server.cpp
-    - which threadpool implementation?
-    - how to handle stateful connections?
-    - abstract request proccessing (e.g. a particular message api call will
-      can be automatically deligated to a callback or something similar)
-    - (apicall, revision, payload) -> function3
-      (apicall, revision, payload) -> function4
-  * src/dns/getdns-win.cpp
-    - add error handling for when machine doesn't have DNS configured
-    - change memory allocation to smart_ptr
-   
-  * Python (server)
+  * src/client.cpp
+    - use zero copy protobuf api
+      
+  * python/urpc/{kerberos, ldap, dns}.py
     - write kerberos plugin
     - write ldap plugin
     - write dns plugin
       
   * CMake
+    - create build dir if it doesn't exist
+    - get 64 bit build on Windows to work
     - change libraries linked to based on build type DCMAKE_BUILD_TYPE
     - get protobufs generated
     - write Find scripts for Matlab, ZMQ, PB, Kerberos

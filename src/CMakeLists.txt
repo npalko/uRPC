@@ -12,7 +12,7 @@ add_dependencies (client dns kerberos)
 target_link_libraries (client ${EXTRA_LIBS})
 
 # Server
-file (GLOB serverSource server.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
+file (GLOB serverSource server.* service.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
 add_library (server STATIC ${serverSource})
 add_dependencies (server dns kerberos)
 target_link_libraries (server ${EXTRA_LIBS})

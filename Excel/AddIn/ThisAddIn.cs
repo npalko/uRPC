@@ -6,9 +6,13 @@ using Office = Microsoft.Office.Core;
 
 namespace AddIn {
   public partial class ThisAddIn {
+    // Functionality exposed to the Ribbon and TaskPlanes
     public void togglePaneVisibility() {
       pane.Visible = !pane.Visible;
     }
+
+
+    // Implementation details
     private UrpcControl urpcControl;
     private Microsoft.Office.Tools.CustomTaskPane pane; // application-level custom task plane
     private void ThisAddIn_Startup(object sender, System.EventArgs e) {

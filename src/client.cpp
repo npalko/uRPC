@@ -2,6 +2,7 @@
 //
 //
 
+#include "dns/dns.hpp"
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
 #include "exception.hpp"
@@ -10,22 +11,24 @@
 
 namespace urpc {
 
-void deleteEnvelope (void *, void *);
-void deleteEnvelope (void *data, void *hint) {
-  delete [] data;
-}
 
-Client::Client (const std::string &connection) {
+
+Client::Client (const std::string &connection) : 
+  connection(urpc::dns::getConnection ()) {
+
   const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
   
-  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t(nIOThread));
+  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
   socket = boost::shared_ptr<zmq::socket_t> 
-    (new zmq::socket_t(*context, ZMQ_REQ));
+   (new zmq::socket_t (*context, ZMQ_REQ));
   socket->connect (connection.c_str());
 }
 
+void deleteEnvelope (void *data, void *hint) {
+  delete [] data;
+}
 void Client::sendRequest (const std::string &service, int version, 
                           const google::protobuf::Message &request, 
                           bool moreToFollow) {
@@ -40,7 +43,7 @@ void Client::sendRequest (const std::string &service, int version,
   envelope.set_request (requestString);
 
   wireEnvelope = new char[envelope.ByteSize()];
-  envelope.SerializeToArray(wireEnvelope, envelope.ByteSize());
+  envelope.SerializeToArray (wireEnvelope, envelope.ByteSize());
   zmq::message_t message (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
 
   socket->send (message, sendFlag);
