@@ -10,24 +10,35 @@
 
 namespace urpc {
 
-
-class glob {
+class iglob {
   public:
-    glob ();
-  protected:
+    /** Open a glob file for reading
+      * \param filename file to open for reading
+      */ 
+    iglob (const std::string &);
+
+    /** Read a protobuf from the file
+      * \param message destination of data 
+      * \return TRUE if additional messages are available
+      */
+    bool read (google::protobuf::Message &);
+  private:
     std::fstream file;
 };
 
-class iglob : private glob {
+class oglob {
   public:
-    iglob (const std::string &);
-    bool read (google::protobuf::Message &);
-};
-
-class oglob : private glob {
-  public:
+    /** Open a file for writing
+      * \param filename file to write
+      */ 
     oglob (const std::string &);
+
+    /** Write a protobuf from the file
+      * \param message data to write
+      */
     void write (const google::protobuf::Message &);
+  private:
+    std::fstream file;
 };
 
 
