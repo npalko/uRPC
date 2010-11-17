@@ -189,8 +189,6 @@ struct StaticDescriptorInitializer_uRPC_2eproto {
 
 // ===================================================================
 
-const ::std::string RequestEnvelope::_default_service_;
-const ::std::string RequestEnvelope::_default_request_;
 #ifndef _MSC_VER
 const int RequestEnvelope::kServiceFieldNumber;
 const int RequestEnvelope::kVersionFieldNumber;
@@ -213,9 +211,9 @@ RequestEnvelope::RequestEnvelope(const RequestEnvelope& from)
 
 void RequestEnvelope::SharedCtor() {
   _cached_size_ = 0;
-  service_ = const_cast< ::std::string*>(&_default_service_);
+  service_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   version_ = 0;
-  request_ = const_cast< ::std::string*>(&_default_request_);
+  request_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -224,10 +222,10 @@ RequestEnvelope::~RequestEnvelope() {
 }
 
 void RequestEnvelope::SharedDtor() {
-  if (service_ != &_default_service_) {
+  if (service_ != &::google::protobuf::internal::kEmptyString) {
     delete service_;
   }
-  if (request_ != &_default_request_) {
+  if (request_ != &::google::protobuf::internal::kEmptyString) {
     delete request_;
   }
   if (this != default_instance_) {
@@ -256,14 +254,14 @@ RequestEnvelope* RequestEnvelope::New() const {
 
 void RequestEnvelope::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (service_ != &_default_service_) {
+    if (has_service()) {
+      if (service_ != &::google::protobuf::internal::kEmptyString) {
         service_->clear();
       }
     }
     version_ = 0;
-    if (_has_bit(2)) {
-      if (request_ != &_default_request_) {
+    if (has_request()) {
+      if (request_ != &::google::protobuf::internal::kEmptyString) {
         request_->clear();
       }
     }
@@ -302,7 +300,7 @@ bool RequestEnvelope::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &version_)));
-          _set_bit(1);
+          set_has_version();
         } else {
           goto handle_uninterpreted;
         }
@@ -343,7 +341,7 @@ bool RequestEnvelope::MergePartialFromCodedStream(
 void RequestEnvelope::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional string service = 1;
-  if (_has_bit(0)) {
+  if (has_service()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->service().data(), this->service().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -352,12 +350,12 @@ void RequestEnvelope::SerializeWithCachedSizes(
   }
   
   // optional int32 version = 2;
-  if (_has_bit(1)) {
+  if (has_version()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->version(), output);
   }
   
   // optional bytes request = 3;
-  if (_has_bit(2)) {
+  if (has_request()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
       3, this->request(), output);
   }
@@ -371,7 +369,7 @@ void RequestEnvelope::SerializeWithCachedSizes(
 ::google::protobuf::uint8* RequestEnvelope::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional string service = 1;
-  if (_has_bit(0)) {
+  if (has_service()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->service().data(), this->service().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -381,12 +379,12 @@ void RequestEnvelope::SerializeWithCachedSizes(
   }
   
   // optional int32 version = 2;
-  if (_has_bit(1)) {
+  if (has_version()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->version(), target);
   }
   
   // optional bytes request = 3;
-  if (_has_bit(2)) {
+  if (has_request()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         3, this->request(), target);
@@ -451,13 +449,13 @@ void RequestEnvelope::MergeFrom(const ::google::protobuf::Message& from) {
 void RequestEnvelope::MergeFrom(const RequestEnvelope& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_service()) {
       set_service(from.service());
     }
-    if (from._has_bit(1)) {
+    if (from.has_version()) {
       set_version(from.version());
     }
-    if (from._has_bit(2)) {
+    if (from.has_request()) {
       set_request(from.request());
     }
   }
@@ -503,7 +501,6 @@ void RequestEnvelope::Swap(RequestEnvelope* other) {
 
 // ===================================================================
 
-const ::std::string ReplyEnvelope::_default_reply_;
 #ifndef _MSC_VER
 const int ReplyEnvelope::kErrorFieldNumber;
 const int ReplyEnvelope::kReplyFieldNumber;
@@ -527,7 +524,7 @@ ReplyEnvelope::ReplyEnvelope(const ReplyEnvelope& from)
 void ReplyEnvelope::SharedCtor() {
   _cached_size_ = 0;
   error_ = false;
-  reply_ = const_cast< ::std::string*>(&_default_reply_);
+  reply_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -536,7 +533,7 @@ ReplyEnvelope::~ReplyEnvelope() {
 }
 
 void ReplyEnvelope::SharedDtor() {
-  if (reply_ != &_default_reply_) {
+  if (reply_ != &::google::protobuf::internal::kEmptyString) {
     delete reply_;
   }
   if (this != default_instance_) {
@@ -566,8 +563,8 @@ ReplyEnvelope* ReplyEnvelope::New() const {
 void ReplyEnvelope::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     error_ = false;
-    if (_has_bit(1)) {
-      if (reply_ != &_default_reply_) {
+    if (has_reply()) {
+      if (reply_ != &::google::protobuf::internal::kEmptyString) {
         reply_->clear();
       }
     }
@@ -590,7 +587,7 @@ bool ReplyEnvelope::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
                  input, &error_)));
-          _set_bit(0);
+          set_has_error();
         } else {
           goto handle_uninterpreted;
         }
@@ -646,12 +643,12 @@ bool ReplyEnvelope::MergePartialFromCodedStream(
 void ReplyEnvelope::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional bool error = 1;
-  if (_has_bit(0)) {
+  if (has_error()) {
     ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->error(), output);
   }
   
   // optional bytes reply = 2;
-  if (_has_bit(1)) {
+  if (has_reply()) {
     ::google::protobuf::internal::WireFormatLite::WriteBytes(
       2, this->reply(), output);
   }
@@ -671,12 +668,12 @@ void ReplyEnvelope::SerializeWithCachedSizes(
 ::google::protobuf::uint8* ReplyEnvelope::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional bool error = 1;
-  if (_has_bit(0)) {
+  if (has_error()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->error(), target);
   }
   
   // optional bytes reply = 2;
-  if (_has_bit(1)) {
+  if (has_reply()) {
     target =
       ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         2, this->reply(), target);
@@ -748,10 +745,10 @@ void ReplyEnvelope::MergeFrom(const ReplyEnvelope& from) {
   GOOGLE_CHECK_NE(&from, this);
   log_.MergeFrom(from.log_);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_error()) {
       set_error(from.error());
     }
-    if (from._has_bit(1)) {
+    if (from.has_reply()) {
       set_reply(from.reply());
     }
   }
@@ -818,8 +815,6 @@ const Application_Protocol Application::Protocol_MIN;
 const Application_Protocol Application::Protocol_MAX;
 const int Application::Protocol_ARRAYSIZE;
 #endif  // _MSC_VER
-const ::std::string Application::_default_service_;
-const ::std::string Application::_default_name_;
 #ifndef _MSC_VER
 const int Application::kServiceFieldNumber;
 const int Application::kProtocolFieldNumber;
@@ -846,9 +841,9 @@ Application::Application(const Application& from)
 
 void Application::SharedCtor() {
   _cached_size_ = 0;
-  service_ = const_cast< ::std::string*>(&_default_service_);
+  service_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   protocol_ = 1;
-  name_ = const_cast< ::std::string*>(&_default_name_);
+  name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   ttl_ = 0;
   priority_ = 0;
   weight_ = 0;
@@ -861,10 +856,10 @@ Application::~Application() {
 }
 
 void Application::SharedDtor() {
-  if (service_ != &_default_service_) {
+  if (service_ != &::google::protobuf::internal::kEmptyString) {
     delete service_;
   }
-  if (name_ != &_default_name_) {
+  if (name_ != &::google::protobuf::internal::kEmptyString) {
     delete name_;
   }
   if (this != default_instance_) {
@@ -893,14 +888,14 @@ Application* Application::New() const {
 
 void Application::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (service_ != &_default_service_) {
+    if (has_service()) {
+      if (service_ != &::google::protobuf::internal::kEmptyString) {
         service_->clear();
       }
     }
     protocol_ = 1;
-    if (_has_bit(2)) {
-      if (name_ != &_default_name_) {
+    if (has_name()) {
+      if (name_ != &::google::protobuf::internal::kEmptyString) {
         name_->clear();
       }
     }
@@ -981,7 +976,7 @@ bool Application::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &ttl_)));
-          _set_bit(3);
+          set_has_ttl();
         } else {
           goto handle_uninterpreted;
         }
@@ -997,7 +992,7 @@ bool Application::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &priority_)));
-          _set_bit(4);
+          set_has_priority();
         } else {
           goto handle_uninterpreted;
         }
@@ -1013,7 +1008,7 @@ bool Application::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &weight_)));
-          _set_bit(5);
+          set_has_weight();
         } else {
           goto handle_uninterpreted;
         }
@@ -1029,7 +1024,7 @@ bool Application::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &port_)));
-          _set_bit(6);
+          set_has_port();
         } else {
           goto handle_uninterpreted;
         }
@@ -1056,7 +1051,7 @@ bool Application::MergePartialFromCodedStream(
 void Application::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional string service = 1;
-  if (_has_bit(0)) {
+  if (has_service()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->service().data(), this->service().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1065,13 +1060,13 @@ void Application::SerializeWithCachedSizes(
   }
   
   // optional .urpc.pb.Application.Protocol protocol = 2;
-  if (_has_bit(1)) {
+  if (has_protocol()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->protocol(), output);
   }
   
   // optional string name = 3;
-  if (_has_bit(2)) {
+  if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1080,22 +1075,22 @@ void Application::SerializeWithCachedSizes(
   }
   
   // optional int32 ttl = 4;
-  if (_has_bit(3)) {
+  if (has_ttl()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->ttl(), output);
   }
   
   // optional int32 priority = 5;
-  if (_has_bit(4)) {
+  if (has_priority()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->priority(), output);
   }
   
   // optional int32 weight = 6;
-  if (_has_bit(5)) {
+  if (has_weight()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->weight(), output);
   }
   
   // optional int32 port = 7;
-  if (_has_bit(6)) {
+  if (has_port()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->port(), output);
   }
   
@@ -1108,7 +1103,7 @@ void Application::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Application::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional string service = 1;
-  if (_has_bit(0)) {
+  if (has_service()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->service().data(), this->service().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1118,13 +1113,13 @@ void Application::SerializeWithCachedSizes(
   }
   
   // optional .urpc.pb.Application.Protocol protocol = 2;
-  if (_has_bit(1)) {
+  if (has_protocol()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->protocol(), target);
   }
   
   // optional string name = 3;
-  if (_has_bit(2)) {
+  if (has_name()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->name().data(), this->name().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -1134,22 +1129,22 @@ void Application::SerializeWithCachedSizes(
   }
   
   // optional int32 ttl = 4;
-  if (_has_bit(3)) {
+  if (has_ttl()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->ttl(), target);
   }
   
   // optional int32 priority = 5;
-  if (_has_bit(4)) {
+  if (has_priority()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->priority(), target);
   }
   
   // optional int32 weight = 6;
-  if (_has_bit(5)) {
+  if (has_weight()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->weight(), target);
   }
   
   // optional int32 port = 7;
-  if (_has_bit(6)) {
+  if (has_port()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->port(), target);
   }
   
@@ -1239,25 +1234,25 @@ void Application::MergeFrom(const ::google::protobuf::Message& from) {
 void Application::MergeFrom(const Application& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_service()) {
       set_service(from.service());
     }
-    if (from._has_bit(1)) {
+    if (from.has_protocol()) {
       set_protocol(from.protocol());
     }
-    if (from._has_bit(2)) {
+    if (from.has_name()) {
       set_name(from.name());
     }
-    if (from._has_bit(3)) {
+    if (from.has_ttl()) {
       set_ttl(from.ttl());
     }
-    if (from._has_bit(4)) {
+    if (from.has_priority()) {
       set_priority(from.priority());
     }
-    if (from._has_bit(5)) {
+    if (from.has_weight()) {
       set_weight(from.weight());
     }
-    if (from._has_bit(6)) {
+    if (from.has_port()) {
       set_port(from.port());
     }
   }

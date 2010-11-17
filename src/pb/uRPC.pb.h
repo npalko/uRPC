@@ -123,6 +123,7 @@ class RequestEnvelope : public ::google::protobuf::Message {
   inline void set_service(const char* value);
   inline void set_service(const char* value, size_t size);
   inline ::std::string* mutable_service();
+  inline ::std::string* release_service();
   
   // optional int32 version = 2;
   inline bool has_version() const;
@@ -140,33 +141,29 @@ class RequestEnvelope : public ::google::protobuf::Message {
   inline void set_request(const char* value);
   inline void set_request(const void* value, size_t size);
   inline ::std::string* mutable_request();
+  inline ::std::string* release_request();
   
   // @@protoc_insertion_point(class_scope:urpc.pb.RequestEnvelope)
  private:
+  inline void set_has_service();
+  inline void clear_has_service();
+  inline void set_has_version();
+  inline void clear_has_version();
+  inline void set_has_request();
+  inline void clear_has_request();
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::std::string* service_;
-  static const ::std::string _default_service_;
-  ::google::protobuf::int32 version_;
   ::std::string* request_;
-  static const ::std::string _default_request_;
+  ::google::protobuf::int32 version_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static RequestEnvelope* default_instance_;
@@ -243,6 +240,7 @@ class ReplyEnvelope : public ::google::protobuf::Message {
   inline void set_reply(const char* value);
   inline void set_reply(const void* value, size_t size);
   inline ::std::string* mutable_reply();
+  inline ::std::string* release_reply();
   
   // repeated .urpc.pb.Log log = 3;
   inline int log_size() const;
@@ -258,29 +256,23 @@ class ReplyEnvelope : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:urpc.pb.ReplyEnvelope)
  private:
-  ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
+  inline void set_has_error();
+  inline void clear_has_error();
+  inline void set_has_reply();
+  inline void clear_has_reply();
   
-  bool error_;
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  
   ::std::string* reply_;
-  static const ::std::string _default_reply_;
   ::google::protobuf::RepeatedPtrField< ::urpc::pb::Log > log_;
+  bool error_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static ReplyEnvelope* default_instance_;
@@ -374,6 +366,7 @@ class Application : public ::google::protobuf::Message {
   inline void set_service(const char* value);
   inline void set_service(const char* value, size_t size);
   inline ::std::string* mutable_service();
+  inline ::std::string* release_service();
   
   // optional .urpc.pb.Application.Protocol protocol = 2;
   inline bool has_protocol() const;
@@ -391,6 +384,7 @@ class Application : public ::google::protobuf::Message {
   inline void set_name(const char* value);
   inline void set_name(const char* value, size_t size);
   inline ::std::string* mutable_name();
+  inline ::std::string* release_name();
   
   // optional int32 ttl = 4;
   inline bool has_ttl() const;
@@ -422,34 +416,37 @@ class Application : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:urpc.pb.Application)
  private:
+  inline void set_has_service();
+  inline void clear_has_service();
+  inline void set_has_protocol();
+  inline void clear_has_protocol();
+  inline void set_has_name();
+  inline void clear_has_name();
+  inline void set_has_ttl();
+  inline void clear_has_ttl();
+  inline void set_has_priority();
+  inline void clear_has_priority();
+  inline void set_has_weight();
+  inline void clear_has_weight();
+  inline void set_has_port();
+  inline void clear_has_port();
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::std::string* service_;
-  static const ::std::string _default_service_;
-  int protocol_;
   ::std::string* name_;
-  static const ::std::string _default_name_;
+  int protocol_;
   ::google::protobuf::int32 ttl_;
   ::google::protobuf::int32 priority_;
   ::google::protobuf::int32 weight_;
   ::google::protobuf::int32 port_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
+  
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(7 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static Application* default_instance_;
@@ -524,26 +521,17 @@ class ApplicationList : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:urpc.pb.ApplicationList)
  private:
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::google::protobuf::RepeatedPtrField< ::urpc::pb::Application > application_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
   friend void  protobuf_AddDesc_uRPC_2eproto();
   friend void protobuf_AssignDesc_uRPC_2eproto();
   friend void protobuf_ShutdownFile_uRPC_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static ApplicationList* default_instance_;
@@ -557,102 +545,140 @@ class ApplicationList : public ::google::protobuf::Message {
 
 // optional string service = 1;
 inline bool RequestEnvelope::has_service() const {
-  return _has_bit(0);
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void RequestEnvelope::set_has_service() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void RequestEnvelope::clear_has_service() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void RequestEnvelope::clear_service() {
-  if (service_ != &_default_service_) {
+  if (service_ != &::google::protobuf::internal::kEmptyString) {
     service_->clear();
   }
-  _clear_bit(0);
+  clear_has_service();
 }
 inline const ::std::string& RequestEnvelope::service() const {
   return *service_;
 }
 inline void RequestEnvelope::set_service(const ::std::string& value) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
 inline void RequestEnvelope::set_service(const char* value) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
 inline void RequestEnvelope::set_service(const char* value, size_t size) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* RequestEnvelope::mutable_service() {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   return service_;
 }
+inline ::std::string* RequestEnvelope::release_service() {
+  clear_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = service_;
+    service_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
 
 // optional int32 version = 2;
 inline bool RequestEnvelope::has_version() const {
-  return _has_bit(1);
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void RequestEnvelope::set_has_version() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void RequestEnvelope::clear_has_version() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void RequestEnvelope::clear_version() {
   version_ = 0;
-  _clear_bit(1);
+  clear_has_version();
 }
 inline ::google::protobuf::int32 RequestEnvelope::version() const {
   return version_;
 }
 inline void RequestEnvelope::set_version(::google::protobuf::int32 value) {
-  _set_bit(1);
+  set_has_version();
   version_ = value;
 }
 
 // optional bytes request = 3;
 inline bool RequestEnvelope::has_request() const {
-  return _has_bit(2);
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void RequestEnvelope::set_has_request() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void RequestEnvelope::clear_has_request() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void RequestEnvelope::clear_request() {
-  if (request_ != &_default_request_) {
+  if (request_ != &::google::protobuf::internal::kEmptyString) {
     request_->clear();
   }
-  _clear_bit(2);
+  clear_has_request();
 }
 inline const ::std::string& RequestEnvelope::request() const {
   return *request_;
 }
 inline void RequestEnvelope::set_request(const ::std::string& value) {
-  _set_bit(2);
-  if (request_ == &_default_request_) {
+  set_has_request();
+  if (request_ == &::google::protobuf::internal::kEmptyString) {
     request_ = new ::std::string;
   }
   request_->assign(value);
 }
 inline void RequestEnvelope::set_request(const char* value) {
-  _set_bit(2);
-  if (request_ == &_default_request_) {
+  set_has_request();
+  if (request_ == &::google::protobuf::internal::kEmptyString) {
     request_ = new ::std::string;
   }
   request_->assign(value);
 }
 inline void RequestEnvelope::set_request(const void* value, size_t size) {
-  _set_bit(2);
-  if (request_ == &_default_request_) {
+  set_has_request();
+  if (request_ == &::google::protobuf::internal::kEmptyString) {
     request_ = new ::std::string;
   }
   request_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* RequestEnvelope::mutable_request() {
-  _set_bit(2);
-  if (request_ == &_default_request_) {
+  set_has_request();
+  if (request_ == &::google::protobuf::internal::kEmptyString) {
     request_ = new ::std::string;
   }
   return request_;
+}
+inline ::std::string* RequestEnvelope::release_request() {
+  clear_has_request();
+  if (request_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = request_;
+    request_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
 }
 
 // -------------------------------------------------------------------
@@ -661,60 +687,82 @@ inline ::std::string* RequestEnvelope::mutable_request() {
 
 // optional bool error = 1;
 inline bool ReplyEnvelope::has_error() const {
-  return _has_bit(0);
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void ReplyEnvelope::set_has_error() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void ReplyEnvelope::clear_has_error() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void ReplyEnvelope::clear_error() {
   error_ = false;
-  _clear_bit(0);
+  clear_has_error();
 }
 inline bool ReplyEnvelope::error() const {
   return error_;
 }
 inline void ReplyEnvelope::set_error(bool value) {
-  _set_bit(0);
+  set_has_error();
   error_ = value;
 }
 
 // optional bytes reply = 2;
 inline bool ReplyEnvelope::has_reply() const {
-  return _has_bit(1);
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void ReplyEnvelope::set_has_reply() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void ReplyEnvelope::clear_has_reply() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void ReplyEnvelope::clear_reply() {
-  if (reply_ != &_default_reply_) {
+  if (reply_ != &::google::protobuf::internal::kEmptyString) {
     reply_->clear();
   }
-  _clear_bit(1);
+  clear_has_reply();
 }
 inline const ::std::string& ReplyEnvelope::reply() const {
   return *reply_;
 }
 inline void ReplyEnvelope::set_reply(const ::std::string& value) {
-  _set_bit(1);
-  if (reply_ == &_default_reply_) {
+  set_has_reply();
+  if (reply_ == &::google::protobuf::internal::kEmptyString) {
     reply_ = new ::std::string;
   }
   reply_->assign(value);
 }
 inline void ReplyEnvelope::set_reply(const char* value) {
-  _set_bit(1);
-  if (reply_ == &_default_reply_) {
+  set_has_reply();
+  if (reply_ == &::google::protobuf::internal::kEmptyString) {
     reply_ = new ::std::string;
   }
   reply_->assign(value);
 }
 inline void ReplyEnvelope::set_reply(const void* value, size_t size) {
-  _set_bit(1);
-  if (reply_ == &_default_reply_) {
+  set_has_reply();
+  if (reply_ == &::google::protobuf::internal::kEmptyString) {
     reply_ = new ::std::string;
   }
   reply_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* ReplyEnvelope::mutable_reply() {
-  _set_bit(1);
-  if (reply_ == &_default_reply_) {
+  set_has_reply();
+  if (reply_ == &::google::protobuf::internal::kEmptyString) {
     reply_ = new ::std::string;
   }
   return reply_;
+}
+inline ::std::string* ReplyEnvelope::release_reply() {
+  clear_has_reply();
+  if (reply_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = reply_;
+    reply_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
 }
 
 // repeated .urpc.pb.Log log = 3;
@@ -748,166 +796,228 @@ ReplyEnvelope::mutable_log() {
 
 // optional string service = 1;
 inline bool Application::has_service() const {
-  return _has_bit(0);
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Application::set_has_service() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Application::clear_has_service() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Application::clear_service() {
-  if (service_ != &_default_service_) {
+  if (service_ != &::google::protobuf::internal::kEmptyString) {
     service_->clear();
   }
-  _clear_bit(0);
+  clear_has_service();
 }
 inline const ::std::string& Application::service() const {
   return *service_;
 }
 inline void Application::set_service(const ::std::string& value) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
 inline void Application::set_service(const char* value) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(value);
 }
 inline void Application::set_service(const char* value, size_t size) {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   service_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Application::mutable_service() {
-  _set_bit(0);
-  if (service_ == &_default_service_) {
+  set_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
     service_ = new ::std::string;
   }
   return service_;
 }
+inline ::std::string* Application::release_service() {
+  clear_has_service();
+  if (service_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = service_;
+    service_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
 
 // optional .urpc.pb.Application.Protocol protocol = 2;
 inline bool Application::has_protocol() const {
-  return _has_bit(1);
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Application::set_has_protocol() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Application::clear_has_protocol() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Application::clear_protocol() {
   protocol_ = 1;
-  _clear_bit(1);
+  clear_has_protocol();
 }
 inline ::urpc::pb::Application_Protocol Application::protocol() const {
   return static_cast< ::urpc::pb::Application_Protocol >(protocol_);
 }
 inline void Application::set_protocol(::urpc::pb::Application_Protocol value) {
   GOOGLE_DCHECK(::urpc::pb::Application_Protocol_IsValid(value));
-  _set_bit(1);
+  set_has_protocol();
   protocol_ = value;
 }
 
 // optional string name = 3;
 inline bool Application::has_name() const {
-  return _has_bit(2);
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Application::set_has_name() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Application::clear_has_name() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Application::clear_name() {
-  if (name_ != &_default_name_) {
+  if (name_ != &::google::protobuf::internal::kEmptyString) {
     name_->clear();
   }
-  _clear_bit(2);
+  clear_has_name();
 }
 inline const ::std::string& Application::name() const {
   return *name_;
 }
 inline void Application::set_name(const ::std::string& value) {
-  _set_bit(2);
-  if (name_ == &_default_name_) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
 inline void Application::set_name(const char* value) {
-  _set_bit(2);
-  if (name_ == &_default_name_) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;
   }
   name_->assign(value);
 }
 inline void Application::set_name(const char* value, size_t size) {
-  _set_bit(2);
-  if (name_ == &_default_name_) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;
   }
   name_->assign(reinterpret_cast<const char*>(value), size);
 }
 inline ::std::string* Application::mutable_name() {
-  _set_bit(2);
-  if (name_ == &_default_name_) {
+  set_has_name();
+  if (name_ == &::google::protobuf::internal::kEmptyString) {
     name_ = new ::std::string;
   }
   return name_;
 }
+inline ::std::string* Application::release_name() {
+  clear_has_name();
+  if (name_ == &::google::protobuf::internal::kEmptyString) {
+    return NULL;
+  } else {
+    ::std::string* temp = name_;
+    name_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
+    return temp;
+  }
+}
 
 // optional int32 ttl = 4;
 inline bool Application::has_ttl() const {
-  return _has_bit(3);
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Application::set_has_ttl() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Application::clear_has_ttl() {
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline void Application::clear_ttl() {
   ttl_ = 0;
-  _clear_bit(3);
+  clear_has_ttl();
 }
 inline ::google::protobuf::int32 Application::ttl() const {
   return ttl_;
 }
 inline void Application::set_ttl(::google::protobuf::int32 value) {
-  _set_bit(3);
+  set_has_ttl();
   ttl_ = value;
 }
 
 // optional int32 priority = 5;
 inline bool Application::has_priority() const {
-  return _has_bit(4);
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Application::set_has_priority() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Application::clear_has_priority() {
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline void Application::clear_priority() {
   priority_ = 0;
-  _clear_bit(4);
+  clear_has_priority();
 }
 inline ::google::protobuf::int32 Application::priority() const {
   return priority_;
 }
 inline void Application::set_priority(::google::protobuf::int32 value) {
-  _set_bit(4);
+  set_has_priority();
   priority_ = value;
 }
 
 // optional int32 weight = 6;
 inline bool Application::has_weight() const {
-  return _has_bit(5);
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Application::set_has_weight() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Application::clear_has_weight() {
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline void Application::clear_weight() {
   weight_ = 0;
-  _clear_bit(5);
+  clear_has_weight();
 }
 inline ::google::protobuf::int32 Application::weight() const {
   return weight_;
 }
 inline void Application::set_weight(::google::protobuf::int32 value) {
-  _set_bit(5);
+  set_has_weight();
   weight_ = value;
 }
 
 // optional int32 port = 7;
 inline bool Application::has_port() const {
-  return _has_bit(6);
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Application::set_has_port() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Application::clear_has_port() {
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline void Application::clear_port() {
   port_ = 0;
-  _clear_bit(6);
+  clear_has_port();
 }
 inline ::google::protobuf::int32 Application::port() const {
   return port_;
 }
 inline void Application::set_port(::google::protobuf::int32 value) {
-  _set_bit(6);
+  set_has_port();
   port_ = value;
 }
 

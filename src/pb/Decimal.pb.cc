@@ -178,7 +178,7 @@ bool Decimal::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint64, ::google::protobuf::internal::WireFormatLite::TYPE_UINT64>(
                  input, &mantissa_msb_)));
-          _set_bit(0);
+          set_has_mantissa_msb();
         } else {
           goto handle_uninterpreted;
         }
@@ -194,7 +194,7 @@ bool Decimal::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &mantissa_lsb_)));
-          _set_bit(1);
+          set_has_mantissa_lsb();
         } else {
           goto handle_uninterpreted;
         }
@@ -210,7 +210,7 @@ bool Decimal::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_SINT32>(
                  input, &exponent_and_sign_)));
-          _set_bit(2);
+          set_has_exponent_and_sign();
         } else {
           goto handle_uninterpreted;
         }
@@ -237,17 +237,17 @@ bool Decimal::MergePartialFromCodedStream(
 void Decimal::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional uint64 mantissa_msb = 1;
-  if (_has_bit(0)) {
+  if (has_mantissa_msb()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt64(1, this->mantissa_msb(), output);
   }
   
   // optional uint32 mantissa_lsb = 2;
-  if (_has_bit(1)) {
+  if (has_mantissa_lsb()) {
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->mantissa_lsb(), output);
   }
   
   // required sint32 exponent_and_sign = 3;
-  if (_has_bit(2)) {
+  if (has_exponent_and_sign()) {
     ::google::protobuf::internal::WireFormatLite::WriteSInt32(3, this->exponent_and_sign(), output);
   }
   
@@ -260,17 +260,17 @@ void Decimal::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Decimal::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional uint64 mantissa_msb = 1;
-  if (_has_bit(0)) {
+  if (has_mantissa_msb()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt64ToArray(1, this->mantissa_msb(), target);
   }
   
   // optional uint32 mantissa_lsb = 2;
-  if (_has_bit(1)) {
+  if (has_mantissa_lsb()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->mantissa_lsb(), target);
   }
   
   // required sint32 exponent_and_sign = 3;
-  if (_has_bit(2)) {
+  if (has_exponent_and_sign()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteSInt32ToArray(3, this->exponent_and_sign(), target);
   }
   
@@ -333,13 +333,13 @@ void Decimal::MergeFrom(const ::google::protobuf::Message& from) {
 void Decimal::MergeFrom(const Decimal& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_mantissa_msb()) {
       set_mantissa_msb(from.mantissa_msb());
     }
-    if (from._has_bit(1)) {
+    if (from.has_mantissa_lsb()) {
       set_mantissa_lsb(from.mantissa_lsb());
     }
-    if (from._has_bit(2)) {
+    if (from.has_exponent_and_sign()) {
       set_exponent_and_sign(from.exponent_and_sign());
     }
   }

@@ -114,28 +114,25 @@ class Decimal : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:urpc.pb.Decimal)
  private:
+  inline void set_has_mantissa_msb();
+  inline void clear_has_mantissa_msb();
+  inline void set_has_mantissa_lsb();
+  inline void clear_has_mantissa_lsb();
+  inline void set_has_exponent_and_sign();
+  inline void clear_has_exponent_and_sign();
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::google::protobuf::uint64 mantissa_msb_;
   ::google::protobuf::uint32 mantissa_lsb_;
   ::google::protobuf::int32 exponent_and_sign_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
+  
   friend void  protobuf_AddDesc_Decimal_2eproto();
   friend void protobuf_AssignDesc_Decimal_2eproto();
   friend void protobuf_ShutdownFile_Decimal_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static Decimal* default_instance_;
@@ -149,49 +146,67 @@ class Decimal : public ::google::protobuf::Message {
 
 // optional uint64 mantissa_msb = 1;
 inline bool Decimal::has_mantissa_msb() const {
-  return _has_bit(0);
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Decimal::set_has_mantissa_msb() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Decimal::clear_has_mantissa_msb() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Decimal::clear_mantissa_msb() {
   mantissa_msb_ = GOOGLE_ULONGLONG(0);
-  _clear_bit(0);
+  clear_has_mantissa_msb();
 }
 inline ::google::protobuf::uint64 Decimal::mantissa_msb() const {
   return mantissa_msb_;
 }
 inline void Decimal::set_mantissa_msb(::google::protobuf::uint64 value) {
-  _set_bit(0);
+  set_has_mantissa_msb();
   mantissa_msb_ = value;
 }
 
 // optional uint32 mantissa_lsb = 2;
 inline bool Decimal::has_mantissa_lsb() const {
-  return _has_bit(1);
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Decimal::set_has_mantissa_lsb() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Decimal::clear_has_mantissa_lsb() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Decimal::clear_mantissa_lsb() {
   mantissa_lsb_ = 0u;
-  _clear_bit(1);
+  clear_has_mantissa_lsb();
 }
 inline ::google::protobuf::uint32 Decimal::mantissa_lsb() const {
   return mantissa_lsb_;
 }
 inline void Decimal::set_mantissa_lsb(::google::protobuf::uint32 value) {
-  _set_bit(1);
+  set_has_mantissa_lsb();
   mantissa_lsb_ = value;
 }
 
 // required sint32 exponent_and_sign = 3;
 inline bool Decimal::has_exponent_and_sign() const {
-  return _has_bit(2);
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Decimal::set_has_exponent_and_sign() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Decimal::clear_has_exponent_and_sign() {
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline void Decimal::clear_exponent_and_sign() {
   exponent_and_sign_ = 0;
-  _clear_bit(2);
+  clear_has_exponent_and_sign();
 }
 inline ::google::protobuf::int32 Decimal::exponent_and_sign() const {
   return exponent_and_sign_;
 }
 inline void Decimal::set_exponent_and_sign(::google::protobuf::int32 value) {
-  _set_bit(2);
+  set_has_exponent_and_sign();
   exponent_and_sign_ = value;
 }
 

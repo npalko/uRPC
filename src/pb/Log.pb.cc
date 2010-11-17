@@ -132,7 +132,6 @@ const Log_Level Log::Level_MIN;
 const Log_Level Log::Level_MAX;
 const int Log::Level_ARRAYSIZE;
 #endif  // _MSC_VER
-const ::std::string Log::_default_message_;
 #ifndef _MSC_VER
 const int Log::kMessageFieldNumber;
 const int Log::kLevelFieldNumber;
@@ -156,7 +155,7 @@ Log::Log(const Log& from)
 
 void Log::SharedCtor() {
   _cached_size_ = 0;
-  message_ = const_cast< ::std::string*>(&_default_message_);
+  message_ = const_cast< ::std::string*>(&::google::protobuf::internal::kEmptyString);
   level_ = 0;
   number_ = 0;
   time_ = GOOGLE_LONGLONG(0);
@@ -168,7 +167,7 @@ Log::~Log() {
 }
 
 void Log::SharedDtor() {
-  if (message_ != &_default_message_) {
+  if (message_ != &::google::protobuf::internal::kEmptyString) {
     delete message_;
   }
   if (this != default_instance_) {
@@ -197,8 +196,8 @@ Log* Log::New() const {
 
 void Log::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (_has_bit(0)) {
-      if (message_ != &_default_message_) {
+    if (has_message()) {
+      if (message_ != &::google::protobuf::internal::kEmptyString) {
         message_->clear();
       }
     }
@@ -261,7 +260,7 @@ bool Log::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &number_)));
-          _set_bit(2);
+          set_has_number();
         } else {
           goto handle_uninterpreted;
         }
@@ -277,7 +276,7 @@ bool Log::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &time_)));
-          _set_bit(3);
+          set_has_time();
         } else {
           goto handle_uninterpreted;
         }
@@ -304,7 +303,7 @@ bool Log::MergePartialFromCodedStream(
 void Log::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional string message = 1;
-  if (_has_bit(0)) {
+  if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -313,18 +312,18 @@ void Log::SerializeWithCachedSizes(
   }
   
   // optional .urpc.pb.Log.Level level = 2;
-  if (_has_bit(1)) {
+  if (has_level()) {
     ::google::protobuf::internal::WireFormatLite::WriteEnum(
       2, this->level(), output);
   }
   
   // optional int32 number = 3;
-  if (_has_bit(2)) {
+  if (has_number()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->number(), output);
   }
   
   // optional int64 time = 4;
-  if (_has_bit(3)) {
+  if (has_time()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt64(4, this->time(), output);
   }
   
@@ -337,7 +336,7 @@ void Log::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Log::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional string message = 1;
-  if (_has_bit(0)) {
+  if (has_message()) {
     ::google::protobuf::internal::WireFormat::VerifyUTF8String(
       this->message().data(), this->message().length(),
       ::google::protobuf::internal::WireFormat::SERIALIZE);
@@ -347,18 +346,18 @@ void Log::SerializeWithCachedSizes(
   }
   
   // optional .urpc.pb.Log.Level level = 2;
-  if (_has_bit(1)) {
+  if (has_level()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
       2, this->level(), target);
   }
   
   // optional int32 number = 3;
-  if (_has_bit(2)) {
+  if (has_number()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->number(), target);
   }
   
   // optional int64 time = 4;
-  if (_has_bit(3)) {
+  if (has_time()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(4, this->time(), target);
   }
   
@@ -427,16 +426,16 @@ void Log::MergeFrom(const ::google::protobuf::Message& from) {
 void Log::MergeFrom(const Log& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_message()) {
       set_message(from.message());
     }
-    if (from._has_bit(1)) {
+    if (from.has_level()) {
       set_level(from.level());
     }
-    if (from._has_bit(2)) {
+    if (from.has_number()) {
       set_number(from.number());
     }
-    if (from._has_bit(3)) {
+    if (from.has_time()) {
       set_time(from.time());
     }
   }
