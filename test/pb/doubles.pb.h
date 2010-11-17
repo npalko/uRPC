@@ -106,26 +106,17 @@ class Array : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:urpc.test.pb.Array)
  private:
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::google::protobuf::RepeatedField< double > r_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
   friend void  protobuf_AddDesc_doubles_2eproto();
   friend void protobuf_AssignDesc_doubles_2eproto();
   friend void protobuf_ShutdownFile_doubles_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static Array* default_instance_;
