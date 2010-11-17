@@ -197,7 +197,7 @@ bool Request::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nmessage_)));
-          _set_bit(0);
+          set_has_nmessage();
         } else {
           goto handle_uninterpreted;
         }
@@ -213,7 +213,7 @@ bool Request::MergePartialFromCodedStream(
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &nsample_)));
-          _set_bit(1);
+          set_has_nsample();
         } else {
           goto handle_uninterpreted;
         }
@@ -240,12 +240,12 @@ bool Request::MergePartialFromCodedStream(
 void Request::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // optional int32 nMessage = 1;
-  if (_has_bit(0)) {
+  if (has_nmessage()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->nmessage(), output);
   }
   
   // optional int32 nSample = 2;
-  if (_has_bit(1)) {
+  if (has_nsample()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->nsample(), output);
   }
   
@@ -258,12 +258,12 @@ void Request::SerializeWithCachedSizes(
 ::google::protobuf::uint8* Request::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // optional int32 nMessage = 1;
-  if (_has_bit(0)) {
+  if (has_nmessage()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->nmessage(), target);
   }
   
   // optional int32 nSample = 2;
-  if (_has_bit(1)) {
+  if (has_nsample()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->nsample(), target);
   }
   
@@ -319,10 +319,10 @@ void Request::MergeFrom(const ::google::protobuf::Message& from) {
 void Request::MergeFrom(const Request& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    if (from._has_bit(0)) {
+    if (from.has_nmessage()) {
       set_nmessage(from.nmessage());
     }
-    if (from._has_bit(1)) {
+    if (from.has_nsample()) {
       set_nsample(from.nsample());
     }
   }

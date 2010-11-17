@@ -7,6 +7,7 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
+
 DESCRIPTOR = descriptor.FileDescriptor(
   name='randexample.proto',
   package='randexample',
@@ -77,7 +78,8 @@ _REPLY = descriptor.Descriptor(
   serialized_end=98,
 )
 
-
+DESCRIPTOR.message_types_by_name['Request'] = _REQUEST
+DESCRIPTOR.message_types_by_name['Reply'] = _REPLY
 
 class Request(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType

@@ -107,27 +107,22 @@ class Request : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:randexample.Request)
  private:
+  inline void set_has_nmessage();
+  inline void clear_has_nmessage();
+  inline void set_has_nsample();
+  inline void clear_has_nsample();
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::google::protobuf::int32 nmessage_;
   ::google::protobuf::int32 nsample_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
+  
   friend void  protobuf_AddDesc_randexample_2eproto();
   friend void protobuf_AssignDesc_randexample_2eproto();
   friend void protobuf_ShutdownFile_randexample_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static Request* default_instance_;
@@ -202,26 +197,17 @@ class Reply : public ::google::protobuf::Message {
   
   // @@protoc_insertion_point(class_scope:randexample.Reply)
  private:
+  
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
-  mutable int _cached_size_;
   
   ::google::protobuf::RepeatedField< double > r_;
+  
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  
   friend void  protobuf_AddDesc_randexample_2eproto();
   friend void protobuf_AssignDesc_randexample_2eproto();
   friend void protobuf_ShutdownFile_randexample_2eproto();
-  
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
-  
-  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
-  inline bool _has_bit(int index) const {
-    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
-  }
-  inline void _set_bit(int index) {
-    _has_bits_[index / 32] |= (1u << (index % 32));
-  }
-  inline void _clear_bit(int index) {
-    _has_bits_[index / 32] &= ~(1u << (index % 32));
-  }
   
   void InitAsDefaultInstance();
   static Reply* default_instance_;
@@ -235,33 +221,45 @@ class Reply : public ::google::protobuf::Message {
 
 // optional int32 nMessage = 1;
 inline bool Request::has_nmessage() const {
-  return _has_bit(0);
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Request::set_has_nmessage() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Request::clear_has_nmessage() {
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline void Request::clear_nmessage() {
   nmessage_ = 0;
-  _clear_bit(0);
+  clear_has_nmessage();
 }
 inline ::google::protobuf::int32 Request::nmessage() const {
   return nmessage_;
 }
 inline void Request::set_nmessage(::google::protobuf::int32 value) {
-  _set_bit(0);
+  set_has_nmessage();
   nmessage_ = value;
 }
 
 // optional int32 nSample = 2;
 inline bool Request::has_nsample() const {
-  return _has_bit(1);
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Request::set_has_nsample() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Request::clear_has_nsample() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void Request::clear_nsample() {
   nsample_ = 0;
-  _clear_bit(1);
+  clear_has_nsample();
 }
 inline ::google::protobuf::int32 Request::nsample() const {
   return nsample_;
 }
 inline void Request::set_nsample(::google::protobuf::int32 value) {
-  _set_bit(1);
+  set_has_nsample();
   nsample_ = value;
 }
 
