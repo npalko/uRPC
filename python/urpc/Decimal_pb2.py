@@ -7,6 +7,7 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
+
 DESCRIPTOR = descriptor.FileDescriptor(
   name='Decimal.proto',
   package='urpc.pb',
@@ -56,7 +57,7 @@ _DECIMAL = descriptor.Descriptor(
   serialized_end=106,
 )
 
-
+DESCRIPTOR.message_types_by_name['Decimal'] = _DECIMAL
 
 class Decimal(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType

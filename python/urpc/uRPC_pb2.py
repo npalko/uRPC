@@ -7,6 +7,8 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
+import Log_pb2
+
 DESCRIPTOR = descriptor.FileDescriptor(
   name='uRPC.proto',
   package='urpc.pb',
@@ -218,12 +220,14 @@ _APPLICATIONLIST = descriptor.Descriptor(
   serialized_end=425,
 )
 
-import Log_pb2
-
 _REPLYENVELOPE.fields_by_name['log'].message_type = Log_pb2._LOG
 _APPLICATION.fields_by_name['protocol'].enum_type = _APPLICATION_PROTOCOL
 _APPLICATION_PROTOCOL.containing_type = _APPLICATION;
 _APPLICATIONLIST.fields_by_name['application'].message_type = _APPLICATION
+DESCRIPTOR.message_types_by_name['RequestEnvelope'] = _REQUESTENVELOPE
+DESCRIPTOR.message_types_by_name['ReplyEnvelope'] = _REPLYENVELOPE
+DESCRIPTOR.message_types_by_name['Application'] = _APPLICATION
+DESCRIPTOR.message_types_by_name['ApplicationList'] = _APPLICATIONLIST
 
 class RequestEnvelope(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType

@@ -7,6 +7,7 @@ from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 
+
 DESCRIPTOR = descriptor.FileDescriptor(
   name='Log.proto',
   package='urpc.pb',
@@ -101,9 +102,9 @@ _LOG = descriptor.Descriptor(
   serialized_end=183,
 )
 
-
 _LOG.fields_by_name['level'].enum_type = _LOG_LEVEL
 _LOG_LEVEL.containing_type = _LOG;
+DESCRIPTOR.message_types_by_name['Log'] = _LOG
 
 class Log(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
