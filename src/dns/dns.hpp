@@ -8,12 +8,8 @@
 #include <string>
 #include <vector>
 #include <boost/asio.hpp>
-#include <boost/lexical_cast.hpp>
-
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
-
-#include "exception.hpp"
 
 
 namespace urpc {

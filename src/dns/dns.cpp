@@ -6,7 +6,9 @@
 
 
 #include <cstdio>
+#include <boost/lexical_cast.hpp>
 #include "dns/dns.hpp"
+#include "exception.hpp"
 
 
 namespace urpc {
