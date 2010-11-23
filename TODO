@@ -36,9 +36,11 @@ TODO
     - change libraries linked to based on build type DCMAKE_BUILD_TYPE
     - get protobufs generated
     - write Find scripts for Matlab, ZMQ, PB, Kerberos
-    - cross platform testing (get compiled on FreeBSD image); do we need to 
-      set extra parameters to explicitly link boost on BSD?
+    - cross platform testing (get single cmake files that work the 3) 
     - bad form to use link_directories?
+    - not able to turn matlab off?!
+    - does windows need lib prefix added?
+
   * MATLAB
     - (?) automated, generic way to convert a probuf into an mxArray array of 
       structs, either by code generation or reflection
