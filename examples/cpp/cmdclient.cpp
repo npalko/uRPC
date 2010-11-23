@@ -1,6 +1,7 @@
 // Demonstration of a single-threaded client
 
 #include <cstdio>
+#include <boost/lexical_cast.hpp>
 #include "randexample/randexample.pb.h"
 #include "client.hpp"
 
@@ -9,20 +10,19 @@ int main(int argc, char **argv) {
     printf ("usage: %s <nMessage> <nSample>\n", "cmdclient");
     return 1;
   }
-  int nMessage = atoi(argv[1]); 
-  int nSample = atoi(argv[2]);
+  int nMessage = boost::lexical_cast<int>(argv[1]);
+  int nSample = boost::lexical_cast<int>(argv[2]);
 
-  urpc::Client client("tcp://127.0.0.1:5555");
+  urpc::Client client;
   randexample::Request request;
   randexample::Reply reply;
-  bool isMore;
-  
+ 
   request.set_nmessage(nMessage);
   request.set_nsample(nSample);
   client.sendRequest("RandExampleRequest", 1, request);
   printf("[RandExampleRequest] (nMesage=%d,nSample=%d)\n", nMessage, nSample);
 
-
+  bool isMore;
   do {
     isMore = client.getReply (reply);
 
@@ -32,7 +32,6 @@ int main(int argc, char **argv) {
     }
     reply.Clear();
   } while (isMore);
-
 
   return 0;
 }
