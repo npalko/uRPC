@@ -6,7 +6,7 @@
 #include <boost/noncopyable.hpp>
 #include <google/protobuf/message.h>
 #include "zmq.hpp"
-
+#include "dns/dns.hpp"
 
 namespace urpc {
 
@@ -14,8 +14,9 @@ class Client : private boost::noncopyable {
   public:
     /** Create a connection to a service
       * \param connection ZMQ connection string
+	  * \param nIOThread number of ZMQ IO threads
       */ 
-    Client (const std::string &connection);
+    Client(const std::string &connection="tcp://127.0.0.1:5555");
 
     /** Send a request to a service
       * \param service name of the service requested
@@ -34,6 +35,7 @@ class Client : private boost::noncopyable {
       */
     bool getReply (google::protobuf::Message &reply);
   private:
+    std::string connection;
     boost::shared_ptr<zmq::context_t> context;
     boost::shared_ptr<zmq::socket_t> socket;
 };

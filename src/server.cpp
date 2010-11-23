@@ -18,14 +18,14 @@
 namespace urpc {
 
 void deleteEnvelope (void *data, void *hint) {
-  delete [] data;
+  free(data);
 }
 
-Server::Server (int nIOThread_, const std::string &clientConn, 
-                const std::string &workerConn) : 
-                nIOThread(1),
-                clientConn("tcp://localhost:5555"), 
-                workerConn("inproc://workers") {
+Server::Server (const std::string &clientConn_) { 
+
+  const int nIOThread = 1;
+  workerConn = "inproc://workers";
+  clientConn = clientConn_;
 
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
   workerSocket = boost::shared_ptr<zmq::socket_t> 
@@ -76,7 +76,7 @@ void Server::worker () {
     moreToSend = sv.getReply (replyEnvelope);
     int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
 
-    char *wireEnvelope = new char[replyEnvelope.ByteSize()];
+    char *wireEnvelope = (char*) malloc(replyEnvelope.ByteSize());
     replyEnvelope.SerializeToArray(wireEnvelope, replyEnvelope.ByteSize());
     zmq::message_t reply (wireEnvelope, replyEnvelope.ByteSize(), 
       deleteEnvelope, NULL);

@@ -16,13 +16,12 @@ namespace urpc {
 
 class Server : private boost::noncopyable {
   public:
-    Server (int, const std::string &, const std::string &);
+    Server (const std::string &connection = "tcp://127.0.0.1:5555");
     ~Server ();
     void start ();
   private:
-    const int nIOThread;
-    const std::string clientConn;
-    const std::string workerConn;   
+    std::string clientConn;
+    std::string workerConn;   
     boost::shared_ptr<zmq::context_t> context;
     boost::shared_ptr<zmq::socket_t> clientSocket;
     boost::shared_ptr<zmq::socket_t> workerSocket;

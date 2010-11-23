@@ -2,20 +2,16 @@
 //
 //
 
-#include "dns/dns.hpp"
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
 #include "exception.hpp"
 #include "kerberos/kerberos.hpp"
 #include "client.hpp"
 
-namespace urpc {
+namespace urpc {	
+Client::Client (const std::string &connection_) {	
 
-
-
-Client::Client (const std::string &connection) : 
-  connection(urpc::dns::getConnection ()) {
-
+  connection = connection_;
   const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
@@ -27,7 +23,8 @@ Client::Client (const std::string &connection) :
 }
 
 void deleteEnvelope (void *data, void *hint) {
-  delete [] data;
+  free(data);
+  //delete [] data;
 }
 void Client::sendRequest (const std::string &service, int version, 
                           const google::protobuf::Message &request, 
@@ -42,7 +39,8 @@ void Client::sendRequest (const std::string &service, int version,
   envelope.set_version (version);
   envelope.set_request (requestString);
 
-  wireEnvelope = new char[envelope.ByteSize()];
+  //wireEnvelope = new char[envelope.ByteSize()];
+  wireEnvelope = (char*) malloc(envelope.ByteSize());
   envelope.SerializeToArray (wireEnvelope, envelope.ByteSize());
   zmq::message_t message (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
 
