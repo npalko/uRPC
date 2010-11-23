@@ -10,6 +10,8 @@ file (GLOB clientSource client.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
 add_library (client STATIC ${clientSource})
 add_dependencies (client dns kerberos)
 target_link_libraries (client ${EXTRA_LIBS})
+target_link_libraries (client ${Boost_SYSTEM_LIBRARY})
+
 
 # Server
 file (GLOB serverSource server.* service.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
