@@ -9,7 +9,7 @@ option (BUILD_MATLAB "Build the MATLAB C++ client plugin" ON)
 
 set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTITHREADED ON)
-find_package (Boost REQUIRED) #memory
+find_package (Boost COMPONENTS system REQUIRED)
 #find_package (Kerberos REQUIRED)
 #find_package (Matlab)
 #find_package (ProtocolBuffers REQUIRED)
@@ -26,18 +26,19 @@ if (WIN32)
 endif (WIN32)
 include_directories (${Boost_INCLUDE_DIRS})
 link_directories (${Boost_LIBRARY_DIRS})
+#add_library / set ?!!!
 
 # Google Protobuf
 include_directories (${PROTOBUF_INCLUDE_DIR})
 link_directories (${PROTOBUF_LIBRARY})
-add_library (libprotobuf${CMAKE_STATIC_LIBRARY_SUFFIX} STATIC IMPORTED)
-set (EXTRA_LIBS ${EXTRA_LIBS} libprotobuf)
+add_library (protobuf${CMAKE_STATIC_LIBRARY_SUFFIX} STATIC IMPORTED)
+set (EXTRA_LIBS ${EXTRA_LIBS} protobuf)
 
 # ZeroMQ
 include_directories (${ZMQ_INCLUDE_DIR})
 link_directories (${ZMQ_LIBRARY})
-add_library (libzmq${CMAKE_SHARED_LIBRARY_SUFFIX} SHARED IMPORTED)
-set (EXTRA_LIBS ${EXTRA_LIBS} libzmq)
+add_library (zmq${CMAKE_SHARED_LIBRARY_SUFFIX} SHARED IMPORTED)
+set (EXTRA_LIBS ${EXTRA_LIBS} zmq)
 
 # Matlab
 if (BUILD_MATLAB)
