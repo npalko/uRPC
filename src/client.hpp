@@ -1,9 +1,10 @@
 #ifndef URPC_CLIENT_HPP
 #define URPC_CLIENT_HPP
 
+//#include <memory>
 #include <string>
-#include <boost/shared_ptr.hpp>
 #include <boost/noncopyable.hpp>
+#include <boost/smart_ptr.hpp>
 #include <google/protobuf/message.h>
 #include "zmq.hpp"
 #include "dns/dns.hpp"

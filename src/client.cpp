@@ -18,19 +18,17 @@ Client::Client (const std::string &connection_) {
   
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
   socket = boost::shared_ptr<zmq::socket_t> 
-   (new zmq::socket_t (*context, ZMQ_REQ));
+    (new zmq::socket_t (*context, ZMQ_REQ));
   socket->connect (connection.c_str());
 }
 
 void deleteEnvelope (void *data, void *hint) {
   free(data);
-  //delete [] data;
 }
 void Client::sendRequest (const std::string &service, int version, 
                           const google::protobuf::Message &request, 
                           bool moreToFollow) {
   int sendFlag = moreToFollow ? ZMQ_SNDMORE : 0;
-  char *wireEnvelope;
   urpc::pb::RequestEnvelope envelope;
   std::string requestString;
   
@@ -39,10 +37,10 @@ void Client::sendRequest (const std::string &service, int version,
   envelope.set_version (version);
   envelope.set_request (requestString);
 
-  //wireEnvelope = new char[envelope.ByteSize()];
-  wireEnvelope = (char*) malloc(envelope.ByteSize());
+  char* wireEnvelope = static_cast<char*> (malloc(envelope.ByteSize()));
   envelope.SerializeToArray (wireEnvelope, envelope.ByteSize());
-  zmq::message_t message (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
+  zmq::message_t message 
+    (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
 
   socket->send (message, sendFlag);
 }
