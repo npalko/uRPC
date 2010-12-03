@@ -11,14 +11,14 @@ int main(int argc, char **argv) {
     return 1;
   }
   int nMessage = boost::lexical_cast<int>(argv[1]);
-  int nSample = boost::lexical_cast<int>(argv[2]);
+  int nSample  = boost::lexical_cast<int>(argv[2]);
 
   urpc::Client client;
   randexample::Request request;
   randexample::Reply reply;
  
-  request.set_nmessage(nMessage);
-  request.set_nsample(nSample);
+  request.set_nmessage (nMessage);
+  request.set_nsample (nSample);
   client.sendRequest("RandExampleRequest", 1, request);
   printf("[RandExampleRequest] (nMesage=%d,nSample=%d)\n", nMessage, nSample);
 
