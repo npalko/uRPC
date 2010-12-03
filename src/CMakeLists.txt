@@ -9,12 +9,17 @@
 file (GLOB clientSource client.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
 add_library (client STATIC ${clientSource})
 add_dependencies (client dns kerberos)
-target_link_libraries (client ${EXTRA_LIBS})
-target_link_libraries (client ${Boost_SYSTEM_LIBRARY})
-
+target_link_libraries (client 
+  ${EXTRA_LIBS}
+  ${Boost_SYSTEM_LIBRARY}
+)
 
 # Server
-file (GLOB serverSource server.* service.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
+file (GLOB serverSource server.* exception.* pb/uRPC.pb.* pb/Log.pb.*)
 add_library (server STATIC ${serverSource})
 add_dependencies (server dns kerberos)
-target_link_libraries (server ${EXTRA_LIBS})
+target_link_libraries (server 
+  ${EXTRA_LIBS}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+)

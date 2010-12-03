@@ -2,49 +2,83 @@
 //
 //
 
-
+#include <iostream>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/bind.hpp>
-
-#include "pb/Log.pb.h"
-#include "pb/uRPC.pb.h"
 #include "dns/dns.hpp"
 #include "kerberos/kerberos.hpp"
 #include "ldap/ldap.hpp"
-#include "service.hpp"
 
 #include "server.hpp"
 
 namespace urpc {
+  
+  
+// NotImplemented. This is only IService defined by default to exist in the 
+// service map. We simply log the error that the service wasn't found and 
+// continue on our merry way.
 
-void deleteEnvelope (void *data, void *hint) {
-  free(data);
-}
+class NotImplemented : public IService {
+  public:
+    std::string getService () { return "NotImplemented"; }
+    void processRequest (const urpc::pb::RequestEnvelope &request, 
+      bool isMore) {
+      
+      std::cout << request.service() << std::endl;
+    }
+    bool getReply (urpc::pb::ReplyEnvelope &) {
+      return false;
+    }
+};  
 
-Server::Server (const std::string &clientConn_) { 
+urpc::IService *fNotImplemented () { return new NotImplemented; }
+  
 
+// Server
+  
+  
+void deleteEnvelope (void *data, void *hint) { free (data); }
+
+Server::Server () { 
+    
   const int nIOThread = 1;
   workerConn = "inproc://workers";
-  clientConn = clientConn_;
+  clientConn = "tcp://127.0.0.1:5555";
 
   context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
   workerSocket = boost::shared_ptr<zmq::socket_t> 
     (new zmq::socket_t (*context, ZMQ_XREQ));
   clientSocket = boost::shared_ptr<zmq::socket_t> 
     (new zmq::socket_t (*context, ZMQ_XREQ));
-    
-  for (int i=0; i != 4; ++i) {
-    workerPool.add_thread (
-      new boost::thread(&urpc::Server::worker, boost::ref(this)));
-  }
+  
 }
 Server::~Server () {
-
+  
+  // TODO: kill threads here
 }
+void Server::addService (urpc::IService *pIService) {  
+  
+  boost::shared_ptr<urpc::IService> service (pIService);
+  serviceMap[service->getService()] = service;
+}
+void Server::removeService (const std::string &serviceLabel) {
+  
+  // TODO
+}
+std::vector<std::string> Server::getServiceList () const {
+  
+}  
 void Server::start() {
+  
   workerSocket->bind (workerConn.c_str ());
   clientSocket->bind (clientConn.c_str ());
-  zmq::device (ZMQ_QUEUE, clientSocket.get (), workerSocket.get ()); 
+  
+  for (int i=1; i != 4; ++i) {
+    workerPool.add_thread (
+      new boost::thread(&urpc::Server::worker, boost::ref(this)));
+  }	
+  
+  zmq::device (ZMQ_QUEUE, *clientSocket, *workerSocket); 
 }
 void Server::worker () {
   bool moreToReceive, moreToSend;
@@ -54,11 +88,13 @@ void Server::worker () {
   urpc::pb::RequestEnvelope requestEnvelope;
   urpc::pb::ReplyEnvelope replyEnvelope;
   
+  boost::shared_ptr<urpc::NotImplemented> 
+    serviceNotImplemented(new NotImplemented);
+  
   zmq::socket_t socket (*context, ZMQ_REP);
   socket.connect (workerConn.c_str ());
 
   while (true) {
-    
     
     zmq::message_t request;
     socket.recv (&request);
@@ -66,22 +102,28 @@ void Server::worker () {
     moreToReceive = (more != 0);
     requestEnvelope.Clear ();
     requestEnvelope.ParseFromArray (request.data(), request.size());
-      
-    urpc::service::IService sv =
-      urpc::service::factory (requestEnvelope.service() );
-    sv.processRequest (requestEnvelope, moreToReceive);
-
     
+    TServiceMap::iterator it = serviceMap.find (requestEnvelope.service());
+    bool serviceNotInMap = (it == serviceMap.end());
+      
+    // THIS IS INCORRECT !!! Need to create a new object to handle each
+    // request
+    // construct object to handle each request
+    
+    
+    boost::shared_ptr<urpc::IService> sv = 
+      serviceNotInMap ? serviceNotImplemented : it->second;  
+      
+    sv->processRequest (requestEnvelope, moreToReceive);
     replyEnvelope.Clear ();
-    moreToSend = sv.getReply (replyEnvelope);
+    moreToSend = sv->getReply (replyEnvelope);
     int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
 
-    char *wireEnvelope = (char*) malloc(replyEnvelope.ByteSize());
+    char *wireEnvelope = static_cast<char*> (malloc(replyEnvelope.ByteSize()));
     replyEnvelope.SerializeToArray(wireEnvelope, replyEnvelope.ByteSize());
-    zmq::message_t reply (wireEnvelope, replyEnvelope.ByteSize(), 
-      deleteEnvelope, NULL);
+    zmq::message_t reply 
+      (wireEnvelope, replyEnvelope.ByteSize(), deleteEnvelope, NULL);
     socket.send (reply, sendFlag);
- 
   }
 }
 

@@ -5,11 +5,11 @@
 cmake_minimum_required (VERSION 2.8)
 project (uRPC)
 
-option (BUILD_MATLAB "Build the MATLAB C++ client plugin" ON) 
+option (BUILD_MATLAB "Build the MATLAB C++ client plugin" OFF) 
 
 set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTITHREADED ON)
-find_package (Boost COMPONENTS system REQUIRED)
+find_package (Boost COMPONENTS system thread REQUIRED)
 #find_package (Kerberos REQUIRED)
 #find_package (Matlab)
 #find_package (ProtocolBuffers REQUIRED)
@@ -26,7 +26,6 @@ if (WIN32)
 endif (WIN32)
 include_directories (${Boost_INCLUDE_DIRS})
 link_directories (${Boost_LIBRARY_DIRS})
-#add_library / set ?!!!
 
 # Google Protobuf
 include_directories (${PROTOBUF_INCLUDE_DIR})
@@ -52,6 +51,7 @@ include_directories (src)
 
 # DNS 
 add_subdirectory (src/dns)
+# should be able to move this down to src/dns/CMake !!!
 set (EXTRA_LIBS ${EXTRA_LIBS} dns)
 if (WIN32)
   set (EXTRA_LIBS ${EXTRA_LIBS} IPHlpAPI)
