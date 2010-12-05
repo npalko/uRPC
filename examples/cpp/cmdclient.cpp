@@ -19,8 +19,8 @@ int main(int argc, char **argv) {
  
   request.set_nmessage (nMessage);
   request.set_nsample (nSample);
-  client.sendRequest("RandExampleRequest", 1, request);
-  printf("[RandExampleRequest] (nMesage=%d,nSample=%d)\n", nMessage, nSample);
+  client.sendRequest("Rand", 1, request);
+  printf("[Rand] (nMesage=%d,nSample=%d)\n", nMessage, nSample);
 
   bool isMore;
   do {
