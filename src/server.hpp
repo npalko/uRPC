@@ -17,83 +17,7 @@
 #include "pb/uRPC.pb.h"
 
 
-/*
- multithreaded server should be able to be kept under 300 lines; rest put into
- IService implemention
- 
- 
- 
- Need of way of pooling reasources - things that should be created only once
- and exist over the lifetime of the server
-  - database 
-  - memcache 
-  - other zeromq?
-  - mongodb? (key value storage?)
- 
- 
- 
- 
- 
- 
- way for IService to access this reasources
- IService register pool component when added?
- different connection strings - connect to multiple db, etc
- 
- 
- 
- urpc::IPool
- 
- server.addPool ();
- 
- 
- class IPool {
-   public:
-     vitual ~IPool () {}
- 
- 
- 
- class Mongo : public IPool {
- class Memcache : public IPool {
- class LiteSQL : public IPool {
- 
- 
- 
- 
- -- market data upload
- ctor:
-    conn = getConnectionFromPool("sql parameters")
-    start transaction
- .setRequest - called multiple times
-    conn.upload()
- .getReply - called once
-    conn.commit transaction
-    return successful / not successful
- 
- -- market data download
- ctor:
-    conn = getConnsetionFromPool("sql parameters")
- .setRequest - called once
-    execute query
- .getReply - called multiple times
-    get next 10,000 rows
- 
- 
- 
- 
- */
-
-
 namespace urpc {
-  
-class IPool {
-  /** Reasources which are expensive to initialize (and consequently wouldn't
-    * make sense to create each time a service is requested) are created once
-    * and shared with IService through this interface
-    */
-  
-  public:
-    virtual ~IPool () {}
-};
   
 class IService {
   /** Every service offered by Server implements IService. An IService exists
@@ -105,7 +29,6 @@ class IService {
     virtual ~IService () {}
     virtual std::string getService () const = 0;
     virtual int getVersion () const = 0;
-    
     /** Called multiple times in the event of a multi-part request.
       * \param envelope
       * \param isMore TRUE if setRequest will be called again in multi-part 
@@ -113,7 +36,6 @@ class IService {
       */
     virtual void setRequest (const pb::RequestEnvelope &envelope, 
                              bool isMore) = 0;
-    
     /** Called multiple times in the event of a multi-part response.
       * \param envelope
       * \return TRUE if more data is available in a multi-part response
@@ -126,16 +48,12 @@ typedef std::map <std::string, boost::function<IService* (void)> > TServiceMap;
   
 class Server : private boost::noncopyable {
   public:
-    Server (const std::string &connection);
+    Server (const std::string &clientConn);
     ~Server ();
-  
-    /** Add a service for the server to server
+    /** Add a service for the server to serve
       * \param service object implementing IService
       */
     void addService (boost::function<IService* (void)>);
-  
-    //void addPool (urpc::IPool *reasource);
-  
     /** Start serving
       */
     void start ();
