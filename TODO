@@ -7,10 +7,7 @@ TODO
       way for the RtdServer to communicate with the plugin? 
   
   * src/server.cpp
-    - does the queue match connections? (e.g. allow us to keep state?)
-    - std::map to delegate API request to function?
-    - plugin arch for API functionality
-    - how best to seperate server from request processing?
+    - bring in kerberos, ldap functionality
   * src/dns/getdns-win.cpp
     - add error handling for when machine doesn't have DNS configured - WTF is
       api returning when there is no IP address?
@@ -22,8 +19,6 @@ TODO
   * src/ldap/ldap.cpp
     - need a gameplan here. what is the high level interface? how are we 
       looking to organize the authorization directory?
-  * src/client.cpp
-    - use zero copy protobuf api
       
   * python/urpc/{kerberos, ldap, dns}.py
     - write kerberos plugin
@@ -38,7 +33,6 @@ TODO
     - write Find scripts for Matlab, ZMQ, PB, Kerberos
     - cross platform testing (get single cmake files that work the 3) 
     - bad form to use link_directories?
-    - not able to turn matlab off?!
     - does windows need lib prefix added?
 
   * MATLAB
