@@ -1,7 +1,6 @@
 #ifndef URPC_CLIENT_HPP
 #define URPC_CLIENT_HPP
 
-//#include <memory>
 #include <string>
 #include <boost/noncopyable.hpp>
 #include <boost/smart_ptr.hpp>
@@ -15,9 +14,9 @@ class Client : private boost::noncopyable {
   public:
     /** Create a connection to a service
       * \param connection ZMQ connection string
-	  * \param nIOThread number of ZMQ IO threads
+	    * \param nIOThread number of ZMQ IO threads
       */ 
-    Client(const std::string &connection="tcp://127.0.0.1:5555");
+    Client(const std::string &connection);
 
     /** Send a request to a service
       * \param service name of the service requested

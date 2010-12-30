@@ -9,9 +9,8 @@
 #include "client.hpp"
 
 namespace urpc {	
-Client::Client (const std::string &connection_) {	
+Client::Client (const std::string &connection) : connection(connection) {	
 
-  connection = connection_;
   const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
@@ -22,9 +21,8 @@ Client::Client (const std::string &connection_) {
   socket->connect (connection.c_str());
 }
 
-void deleteEnvelope (void *data, void *hint) {
-  free(data);
-}
+void freeWire (void *data, void *hint) { free (data); }
+
 void Client::sendRequest (const std::string &service, int version, 
                           const google::protobuf::Message &request, 
                           bool moreToFollow) {
@@ -37,10 +35,9 @@ void Client::sendRequest (const std::string &service, int version,
   envelope.set_version (version);
   envelope.set_request (requestString);
 
-  char* wireEnvelope = static_cast<char*> (malloc(envelope.ByteSize()));
-  envelope.SerializeToArray (wireEnvelope, envelope.ByteSize());
-  zmq::message_t message 
-    (wireEnvelope, envelope.ByteSize(), deleteEnvelope, NULL);
+  char *wire = static_cast<char*> (malloc (envelope.ByteSize()));
+  envelope.SerializeToArray (wire, envelope.ByteSize());
+  zmq::message_t message (wire, envelope.ByteSize(), freeWire, NULL);
 
   socket->send (message, sendFlag);
 }
