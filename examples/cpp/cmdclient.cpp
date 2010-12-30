@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   int nMessage = boost::lexical_cast<int>(argv[1]);
   int nSample  = boost::lexical_cast<int>(argv[2]);
 
-  urpc::Client client;
+  urpc::Client client ("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Reply reply;
  
