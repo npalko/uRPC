@@ -4,6 +4,7 @@
 
 #include <cassert>
 #include <vector>
+#include <boost/cstdint.hpp>
 #include "exception.hpp"
 #include "glob.hpp"
 
@@ -17,14 +18,14 @@ iglob::iglob (const std::string &filename) {
 }
 bool iglob::read (google::protobuf::Message &message) {
 
-  unsigned int length;
+  uint32_t length;
   
   file.read (reinterpret_cast<char*>(&length), sizeof(length));
   if (file.eof()) {
     return false;
   }
 
-  std::vector<char> buffer (length);
+  std::vector<char> buffer (length); 
   file.read (&buffer[0], length);
   bool parseSuccess = message.ParseFromArray (&buffer[0], length);
   
@@ -43,7 +44,7 @@ oglob::oglob (const std::string &filename) {
 }
 void oglob::write (const google::protobuf::Message &message) {
 
-  unsigned int length = message.ByteSize ();
+  uint32_t length = message.ByteSize ();
 
   //std::vector<char> line(3);
   //memcpy (&length, &line[0], 4);
