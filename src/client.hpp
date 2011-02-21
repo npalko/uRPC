@@ -2,7 +2,6 @@
 #define URPC_CLIENT_HPP
 
 #include <string>
-#include <boost/noncopyable.hpp>
 #include <boost/smart_ptr.hpp>
 #include <google/protobuf/message.h>
 #include "zmq.hpp"
@@ -10,7 +9,7 @@
 
 namespace urpc {
 
-class Client : private boost::noncopyable {
+class Client {
   public:
     /** Create a connection to a service
       * \param connection ZMQ connection string
@@ -36,8 +35,8 @@ class Client : private boost::noncopyable {
     bool getReply (google::protobuf::Message &reply);
   private:
     std::string connection;
-    boost::shared_ptr<zmq::context_t> context;
-    boost::shared_ptr<zmq::socket_t> socket;
+    boost::scoped_ptr<zmq::context_t> context;
+    boost::scoped_ptr<zmq::socket_t> socket;
 };
 
 

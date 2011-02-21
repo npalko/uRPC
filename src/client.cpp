@@ -9,15 +9,15 @@
 #include "client.hpp"
 
 namespace urpc {	
+  
 Client::Client (const std::string &connection) : connection(connection) {	
 
   const int nIOThread = 1;
   urpc::kerberos::requestSessionTicket ();
   urpc::kerberos::submitSessionTicketToServer ();
   
-  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
-  socket = boost::shared_ptr<zmq::socket_t> 
-    (new zmq::socket_t (*context, ZMQ_REQ));
+  context.reset (new zmq::context_t (nIOThread));
+  socket.reset (new zmq::socket_t (*context, ZMQ_REQ));
   socket->connect (connection.c_str());
 }
 

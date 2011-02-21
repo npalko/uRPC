@@ -11,7 +11,6 @@
 #include <boost/function.hpp>
 #include <boost/smart_ptr.hpp>
 #include <boost/thread.hpp>
-#include <boost/noncopyable.hpp>
 #include "zmq.hpp"
 #include "pb/Log.pb.h"
 #include "pb/uRPC.pb.h"
@@ -43,27 +42,27 @@ class IService {
     virtual bool getReply (pb::ReplyEnvelope &envelope) = 0;
 };
 
-
-typedef std::map <std::string, boost::function<IService* (void)> > TServiceMap;
   
-class Server : private boost::noncopyable {
+class Server {
   public:
+    typedef boost::function<IService* (void)> TService;
     Server (const std::string &clientConn);
     ~Server ();
     /** Add a service for the server to serve
       * \param service object implementing IService
       */
-    void addService (boost::function<IService* (void)>);
+    void addService (TService);
     /** Start serving
       */
     void start ();
   private:
+    typedef std::map <std::string, TService> TServiceMap;
     std::string clientConn;
     std::string workerConn;
     TServiceMap serviceMap;
-    boost::shared_ptr<zmq::context_t> context;
-    boost::shared_ptr<zmq::socket_t> clientSocket;
-    boost::shared_ptr<zmq::socket_t> workerSocket;
+    boost::scoped_ptr<zmq::context_t> context;
+    boost::scoped_ptr<zmq::socket_t> clientSocket;
+    boost::scoped_ptr<zmq::socket_t> workerSocket;
     boost::thread_group workerPool;
     void worker (int);
     bool getRequest (zmq::socket_t &, pb::RequestEnvelope &);

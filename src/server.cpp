@@ -29,25 +29,23 @@ class NotImplemented : public IService {
   
 void freeWire (void *data, void *hint) { free (data); }
 
-Server::Server (const std::string &clientConn) : clientConn(clientConn) { 
+Server::Server (const std::string &clientConn) 
+    	: clientConn(clientConn) { 
     
   const int nIOThread = 1;
   workerConn = "inproc://workers";
-
-  context = boost::shared_ptr<zmq::context_t> (new zmq::context_t (nIOThread));
-  workerSocket = boost::shared_ptr<zmq::socket_t> 
-    (new zmq::socket_t (*context, ZMQ_XREQ));
-  clientSocket = boost::shared_ptr<zmq::socket_t> 
-    (new zmq::socket_t (*context, ZMQ_XREQ));
+  context.reset (new zmq::context_t (nIOThread));
+  workerSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
+  clientSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
 }
 Server::~Server () {
   
   // TODO: kill threads here
 }
-void Server::addService (boost::function<IService* (void)> factory) {  
+void Server::addService (TService factory) {  
   
-  boost::shared_ptr<urpc::IService> service (factory ());
-  serviceMap [service->getService ()] = factory;
+  boost::scoped_ptr<urpc::IService> service (factory ());
+  serviceMap[service->getService ()] = factory;
 }
 void Server::start () {
   
@@ -77,7 +75,7 @@ void Server::worker (int id) {
     // creating appropriate service to handle request
     TServiceMap::iterator it = serviceMap.find (requestEnvelope.service ());
     bool notInServiceMap = (it == serviceMap.end());
-    boost::shared_ptr<urpc::IService> service 
+    boost::scoped_ptr<urpc::IService> service 
       (notInServiceMap ? new NotImplemented : it->second ());  
     
     std::cout << id << ": " << requestEnvelope.service () << " -> " << 
