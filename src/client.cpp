@@ -18,38 +18,37 @@ Client::Client (const std::string &connection) : connection(connection) {
 }
 void freeWire (void *data, void *hint) { free (data); }
 void Client::sendRequest (const std::string &service, 
-													int version, 
+                          int version, 
                           const google::protobuf::Message &request, 
                           bool moreToFollow) {
-  int sendFlag = moreToFollow ? ZMQ_SNDMORE : 0;
-  urpc::pb::RequestEnvelope envelope;
-  std::string requestString;
+  std::string serializedRequest;
+  request.SerializeToString (&serializedRequest);
   
-  request.SerializeToString (&requestString);
+  urpc::pb::RequestEnvelope envelope;
   envelope.set_service (service);
   envelope.set_version (version);
-  envelope.set_request (requestString);
-
+  envelope.set_request (serializedRequest);
   char *wire = static_cast<char*> (malloc (envelope.ByteSize()));
   envelope.SerializeToArray (wire, envelope.ByteSize());
   zmq::message_t message (wire, envelope.ByteSize(), freeWire, NULL);
-
+  
+  int sendFlag = moreToFollow ? ZMQ_SNDMORE : 0;
   socket->send (message, sendFlag);
 }
 bool Client::getReply (google::protobuf::Message &reply) {
   long long more;
   size_t sz = sizeof (more);
-  urpc::pb::ReplyEnvelope envelope;
   zmq::message_t message;
-
   socket->recv (&message);
   socket->getsockopt (ZMQ_RCVMORE, &more, &sz);
-
+  bool isMoreToProcess = more != 0;
   //printf("recieved %d bytes\n", message.size());
+  
+  urpc::pb::ReplyEnvelope envelope;
   envelope.ParseFromArray (message.data(), message.size());
   reply.ParseFromString (envelope.reply());
-  return (more != 0);
+  
+  return isMoreToProcess;
 }
-
 
 }

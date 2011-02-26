@@ -20,6 +20,10 @@ extern "C" {
 #endif
 
 EXPORTED_FUNCTION mxArray *request(const char * const, int, int, int);
+  
+
+// Small demos of functionality
+// rough replica of MATLAB zeros() function
 EXPORTED_FUNCTION mxArray *zeros(int, int);
 
 #ifdef __cplusplus

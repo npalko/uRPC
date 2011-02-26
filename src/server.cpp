@@ -12,23 +12,21 @@
 
 
 namespace urpc {
-  
+
 class NotImplemented : public IService {
 /** The default IService used if a service is not found in the serviceMap.
-	* We simply log the event and continue.
-	*/
+  * We simply log the event and continue.
+  */
  public:
-	std::string getService () const { return "NotImplemented"; }
-	int getVersion () const { return 0; }
-	void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
-		std::cout << envelope.service() << std::endl;
-	}
-	bool getReply (pb::ReplyEnvelope &envelope) { return false; }
+  std::string getService () const { return "NotImplemented"; }
+  int getVersion () const { return 0; }
+  void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
+    std::cout << envelope.service() << std::endl;
+  }
+  bool getReply (pb::ReplyEnvelope &envelope) { return false; }
 };
   
   
-void freeWire (void *data, void *hint) { free (data); }
-
 Server::Server (const std::string &clientConn) : clientConn(clientConn) { 
   const int nIOThread = 1;
   workerConn = "inproc://workers";
@@ -52,8 +50,8 @@ void Server::start () {
   zmq::device (ZMQ_QUEUE, *clientSocket, *workerSocket); 
 }
 void Server::worker (int id) {
-	using namespace boost;
-	
+  using namespace boost;
+  
   bool moreToReceive;
   bool moreToSend;
   pb::RequestEnvelope requestEnvelope;
@@ -61,10 +59,10 @@ void Server::worker (int id) {
   zmq::socket_t socket (*context, ZMQ_REP);
   
   socket.connect (workerConn.c_str ());
-
+  
   while (true) {    
     moreToReceive = getRequest (socket, requestEnvelope);
-
+    
     // creating appropriate service to handle request
     TServiceMap::iterator it = serviceMap.find (requestEnvelope.service ());
     bool notInMap = (it == serviceMap.end());
@@ -95,15 +93,15 @@ bool Server::getRequest (zmq::socket_t &socket, pb::RequestEnvelope &envelope) {
   
   socket.recv (&request);
   socket.getsockopt (ZMQ_RCVMORE, &more, &sz);
+  bool isAnotherRequest = more != 0;
   envelope.ParseFromArray (request.data(), request.size());
   
-  return (more != 0);
+  return isAnotherRequest;
 }
+void freeWire (void *data, void *hint) { free (data); }
 void Server::sendReply (zmq::socket_t &socket, 
-												const pb::ReplyEnvelope &envelope, 
-												bool moreToSend) {
-  int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
-  
+                        const pb::ReplyEnvelope &envelope, 
+                        bool moreToSend) {
   // We have a potential memory leak here in the event of a thread cancelation 
   // or exception, but this seems to be only way to interface with the ZMQ 
   // library while avoiding memory copying.
@@ -111,6 +109,8 @@ void Server::sendReply (zmq::socket_t &socket,
   char *wire = static_cast<char*> (malloc (envelope.ByteSize ()));
   envelope.SerializeToArray (wire, envelope.ByteSize());
   zmq::message_t reply (wire, envelope.ByteSize(), freeWire, NULL);
+  
+  int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
   socket.send (reply, sendFlag);
 }
 
