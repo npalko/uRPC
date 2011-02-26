@@ -11,19 +11,14 @@
 namespace urpc {	
   
 Client::Client (const std::string &connection) : connection(connection) {	
-
   const int nIOThread = 1;
-  urpc::kerberos::requestSessionTicket ();
-  urpc::kerberos::submitSessionTicketToServer ();
-  
   context.reset (new zmq::context_t (nIOThread));
   socket.reset (new zmq::socket_t (*context, ZMQ_REQ));
   socket->connect (connection.c_str());
 }
-
 void freeWire (void *data, void *hint) { free (data); }
-
-void Client::sendRequest (const std::string &service, int version, 
+void Client::sendRequest (const std::string &service, 
+													int version, 
                           const google::protobuf::Message &request, 
                           bool moreToFollow) {
   int sendFlag = moreToFollow ? ZMQ_SNDMORE : 0;
@@ -41,7 +36,6 @@ void Client::sendRequest (const std::string &service, int version,
 
   socket->send (message, sendFlag);
 }
-
 bool Client::getReply (google::protobuf::Message &reply) {
   long long more;
   size_t sz = sizeof (more);

@@ -14,41 +14,33 @@
 namespace urpc {
   
 class NotImplemented : public IService {
-  /** The default IService used if a service is not found in the serviceMap.
-    * We simply log the event and continue.
-    */
-  public:
-    std::string getService () const { return "NotImplemented"; }
-    int getVersion () const { return 0; }
-    void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
-      std::cout << envelope.service() << std::endl;
-    }
-    bool getReply (pb::ReplyEnvelope &envelope) { return false; }
+/** The default IService used if a service is not found in the serviceMap.
+	* We simply log the event and continue.
+	*/
+ public:
+	std::string getService () const { return "NotImplemented"; }
+	int getVersion () const { return 0; }
+	void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
+		std::cout << envelope.service() << std::endl;
+	}
+	bool getReply (pb::ReplyEnvelope &envelope) { return false; }
 };
   
   
 void freeWire (void *data, void *hint) { free (data); }
 
-Server::Server (const std::string &clientConn) 
-    	: clientConn(clientConn) { 
-    
+Server::Server (const std::string &clientConn) : clientConn(clientConn) { 
   const int nIOThread = 1;
   workerConn = "inproc://workers";
   context.reset (new zmq::context_t (nIOThread));
   workerSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
   clientSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
 }
-Server::~Server () {
-  
-  // TODO: kill threads here
-}
 void Server::addService (TService factory) {  
-  
   boost::scoped_ptr<urpc::IService> service (factory ());
   serviceMap[service->getService ()] = factory;
 }
 void Server::start () {
-  
   workerSocket->bind (workerConn.c_str ());
   clientSocket->bind (clientConn.c_str ());
   
@@ -60,7 +52,8 @@ void Server::start () {
   zmq::device (ZMQ_QUEUE, *clientSocket, *workerSocket); 
 }
 void Server::worker (int id) {
-  
+	using namespace boost;
+	
   bool moreToReceive;
   bool moreToSend;
   pb::RequestEnvelope requestEnvelope;
@@ -74,9 +67,8 @@ void Server::worker (int id) {
 
     // creating appropriate service to handle request
     TServiceMap::iterator it = serviceMap.find (requestEnvelope.service ());
-    bool notInServiceMap = (it == serviceMap.end());
-    boost::scoped_ptr<urpc::IService> service 
-      (notInServiceMap ? new NotImplemented : it->second ());  
+    bool notInMap = (it == serviceMap.end());
+    scoped_ptr<IService> service (notInMap ? new NotImplemented : it->second ());  
     
     std::cout << id << ": " << requestEnvelope.service () << " -> " << 
       service->getService () << std::endl;
@@ -96,9 +88,7 @@ void Server::worker (int id) {
     } while (moreToSend);
   }
 }
-bool Server::getRequest (zmq::socket_t &socket, 
-                         pb::RequestEnvelope &envelope) {
- 
+bool Server::getRequest (zmq::socket_t &socket, pb::RequestEnvelope &envelope) {
   long long more;
   size_t sz = sizeof (more);
   zmq::message_t request;
@@ -110,8 +100,8 @@ bool Server::getRequest (zmq::socket_t &socket,
   return (more != 0);
 }
 void Server::sendReply (zmq::socket_t &socket, 
-                        const pb::ReplyEnvelope &envelope, bool moreToSend) {
-  
+												const pb::ReplyEnvelope &envelope, 
+												bool moreToSend) {
   int sendFlag = moreToSend ? ZMQ_SNDMORE : 0;
   
   // We have a potential memory leak here in the event of a thread cancelation 
