@@ -9,19 +9,9 @@
 
 namespace urpc {
 
-class NoDnsServerFound : public std::runtime_error {
-  public:
-    explicit NoDnsServerFound (const std::string& what)
-      : std::runtime_error (what) {}
-};
-class NoSrvRecordFound : public std::runtime_error {
-  public:
-    explicit NoSrvRecordFound (const std::string& what)
-      : std::runtime_error (what) {}
-};
 class GlobError : public std::runtime_error {
-  public:
-    explicit GlobError (const std::string& what)
+ public:
+  explicit GlobError (const std::string& what)
       : std::runtime_error (what) {}
 };
 
