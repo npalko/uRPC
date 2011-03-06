@@ -12,6 +12,9 @@
 
 
 namespace urpc {
+  
+using namespace boost;
+  
 
 class NotImplemented : public IService {
 /** The default IService used if a service is not found in the serviceMap.
@@ -21,21 +24,22 @@ class NotImplemented : public IService {
   std::string getService () const { return "NotImplemented"; }
   int getVersion () const { return 0; }
   void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
-    std::cout << envelope.service() << std::endl;
+    std::cout << envelope.service() << "\n";
   }
   bool getReply (pb::ReplyEnvelope &envelope) { return false; }
 };
   
   
-Server::Server (const std::string &clientConn) : clientConn(clientConn) { 
-  const int nIOThread = 1;
-  workerConn = "inproc://workers";
-  context.reset (new zmq::context_t (nIOThread));
-  workerSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
-  clientSocket.reset (new zmq::socket_t (*context, ZMQ_XREQ));
+Server::Server (const std::string &clientConn) 
+    : nIOThread(1),
+      clientConn(clientConn),
+      workerConn("inproc://workers"),
+      context(new zmq::context_t (nIOThread)),
+      clientSocket(new zmq::socket_t (*context, ZMQ_XREQ)),
+      workerSocket(new zmq::socket_t (*context, ZMQ_XREQ)) {
 }
 void Server::addService (TService factory) {  
-  boost::scoped_ptr<urpc::IService> service (factory ());
+  scoped_ptr<IService> service (factory ());
   serviceMap[service->getService ()] = factory;
 }
 void Server::start () {
@@ -43,15 +47,12 @@ void Server::start () {
   clientSocket->bind (clientConn.c_str ());
   
   for (int i = 0; i != 3; ++i) {
-    workerPool.add_thread (
-      new boost::thread (&Server::worker, boost::ref(this), i));
+    workerPool.add_thread (new thread (&Server::worker, ref(this), i));
   }	
   
   zmq::device (ZMQ_QUEUE, *clientSocket, *workerSocket); 
 }
 void Server::worker (int id) {
-  using namespace boost;
-  
   bool moreToReceive;
   bool moreToSend;
   pb::RequestEnvelope requestEnvelope;
@@ -69,7 +70,7 @@ void Server::worker (int id) {
     scoped_ptr<IService> service (notInMap ? new NotImplemented : it->second ());  
     
     std::cout << id << ": " << requestEnvelope.service () << " -> " << 
-      service->getService () << std::endl;
+      service->getService () << "\n";
     service->setRequest (requestEnvelope, moreToReceive);
     requestEnvelope.Clear ();
     

@@ -34,7 +34,8 @@ class Client {
     */
   bool getReply (google::protobuf::Message &reply);
  private:
-  std::string connection;
+  const int nIOThread;
+  const std::string connection;
   boost::scoped_ptr<zmq::context_t> context;
   boost::scoped_ptr<zmq::socket_t> socket;
 };

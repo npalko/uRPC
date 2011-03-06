@@ -10,10 +10,12 @@
 
 namespace urpc {	
   
-Client::Client (const std::string &connection) : connection(connection) {	
-  const int nIOThread = 1;
-  context.reset (new zmq::context_t (nIOThread));
-  socket.reset (new zmq::socket_t (*context, ZMQ_REQ));
+Client::Client (const std::string &connection) : 
+    nIOThread(1),
+    connection(connection),
+    context(new zmq::context_t (nIOThread)),
+    socket(new zmq::socket_t (*context, ZMQ_REQ)) {
+      
   socket->connect (connection.c_str());
 }
 void freeWire (void *data, void *hint) { free (data); }

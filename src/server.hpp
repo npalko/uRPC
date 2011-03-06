@@ -56,13 +56,14 @@ class Server {
   void start ();
  private:
   typedef std::map <std::string, TService> TServiceMap;
-  std::string clientConn;
-  std::string workerConn;
-  TServiceMap serviceMap;
+  const int nIOThread;
+  const std::string clientConn;
+  const std::string workerConn;
   boost::scoped_ptr<zmq::context_t> context;
   boost::scoped_ptr<zmq::socket_t> clientSocket;
   boost::scoped_ptr<zmq::socket_t> workerSocket;
   boost::thread_group workerPool;
+  TServiceMap serviceMap;
   void worker (int);
   bool getRequest (zmq::socket_t &, pb::RequestEnvelope &);
   void sendReply (zmq::socket_t &, const pb::ReplyEnvelope &, bool);
