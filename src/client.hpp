@@ -23,7 +23,8 @@ class Client {
     * \param moreToFollow TRUE if is request is not the last part of a 
     * multi-part request. 
     */
-  void sendRequest (const std::string &service, int version,
+  void sendRequest (const std::string &service,
+                    int version,
                     const google::protobuf::Message &request,
                     bool moreToFollow = false);
   /** Get reply from a sent request
