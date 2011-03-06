@@ -10,16 +10,16 @@ class SingleThreadClient(object):
 
   def sendRequest(self, service, version, request):
 
-    requestEnvelope = uRPC_pb2.RequestEnvelope()
-    requestEnvelope.service = service
-    requestEnvelope.version = version
-    requestEnvelope.request = request.SerializeToString()
+    envelope = uRPC_pb2.RequestEnvelope()
+    envelope.service = service
+    envelope.version = version
+    envelope.request = request.SerializeToString()
 
-    self._socket.send(requestEnvelope.SerializeToString())
+    self._socket.send(envelope.SerializeToString())
   def getReply(self):
 
 
-    replyEnvelope = uRPC_pb2.ReplyEnvelope()
-    replyEnvelope.ParseFromString(self._socket.recv())
+    envelope = uRPC_pb2.ReplyEnvelope()
+    envelope.ParseFromString(self._socket.recv())
 
-    return replyEnvelope.reply
+    return envelope.reply
