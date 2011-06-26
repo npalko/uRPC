@@ -7,49 +7,45 @@
 #include "dns/dns.hpp"
 #include "kerberos/kerberos.hpp"
 #include "ldap/ldap.hpp"
-
 #include "server.hpp"
+
+using namespace boost;
 
 
 namespace urpc {
-  
-using namespace boost;
-  
 
 class NotImplemented : public IService {
-/** The default IService used if a service is not found in the serviceMap.
-  * We simply log the event and continue.
+/** Default IService used if a service is not found in the serviceMap.
   */
  public:
-  std::string getService () const { return "NotImplemented"; }
-  int getVersion () const { return 0; }
-  void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {
-    std::cout << envelope.service() << "\n";
-  }
-  bool getReply (pb::ReplyEnvelope &envelope) { return false; }
+  NotImplemented () : name("NotImplemented"),version(0) {}
+  void setRequest (const pb::RequestEnvelope &envelope, bool isMore) {}
+  bool getReply (pb::ReplyEnvelope &envelope) { return false;}
 };
   
   
-Server::Server (const std::string &clientConn) 
+Server::Server () 
     : nIOThread(1),
-      clientConn(clientConn),
+      nWorkerTread(3),
       workerConn("inproc://workers"),
       context(new zmq::context_t (nIOThread)),
       clientSocket(new zmq::socket_t (*context, ZMQ_XREQ)),
       workerSocket(new zmq::socket_t (*context, ZMQ_XREQ)) {
+  workerSocket->bind (workerConn.c_str ());
+
+  for (int i = 0; i != nWorkerTread; ++i) {
+    workerPool.add_thread (new thread (&Server::worker, ref(this), i));
+  }
 }
-void Server::addService (TService factory) {  
+int Server::bind (std::string connection) {
+  clientSocket->bind (connection.c_str ());
+  return 0;
+}
+void Server::registerService (TService factory) {  
   scoped_ptr<IService> service (factory ());
   serviceMap[service->getService ()] = factory;
 }
 void Server::start () {
-  workerSocket->bind (workerConn.c_str ());
-  clientSocket->bind (clientConn.c_str ());
-  
-  for (int i = 0; i != 3; ++i) {
-    workerPool.add_thread (new thread (&Server::worker, ref(this), i));
-  }	
-  
   zmq::device (ZMQ_QUEUE, *clientSocket, *workerSocket); 
 }
 void Server::worker (int id) {
@@ -60,7 +56,6 @@ void Server::worker (int id) {
   zmq::socket_t socket (*context, ZMQ_REP);
   
   socket.connect (workerConn.c_str ());
-  
   while (true) {    
     moreToReceive = getRequest (socket, requestEnvelope);
     
@@ -99,7 +94,9 @@ bool Server::getRequest (zmq::socket_t &socket, pb::RequestEnvelope &envelope) {
   
   return isAnotherRequest;
 }
-void freeWire (void *data, void *hint) { free (data); }
+void freeWire (void *data, void *hint) { 
+  free (data); 
+}
 void Server::sendReply (zmq::socket_t &socket, 
                         const pb::ReplyEnvelope &envelope, 
                         bool moreToSend) {

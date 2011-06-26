@@ -11,11 +11,12 @@ namespace urpc {
 
 class Client {
  public:
-  /** Create a connection to a service
+  Client();
+  /** Connect to a service
     * \param connection ZMQ connection string
     * \param nIOThread number of ZMQ IO threads
     */ 
-  Client(const std::string &connection);
+  int connect (const std::string &connection);
   /** Send a request to a service
     * \param service name of the service requested
     * \param version service version
@@ -35,7 +36,6 @@ class Client {
   bool getReply (google::protobuf::Message &reply);
  private:
   const int nIOThread;
-  const std::string connection;
   boost::scoped_ptr<zmq::context_t> context;
   boost::scoped_ptr<zmq::socket_t> socket;
 };

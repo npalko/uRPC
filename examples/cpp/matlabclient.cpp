@@ -12,7 +12,8 @@ EXPORTED_FUNCTION mxArray *request (const char * const service,
                                     int version,
                                     int nMessage,
                                     int nSample) {
-  urpc::Client client("tcp://127.0.0.1:5555");
+  urpc::Client client;
+  client.connect ("tcp://127.0.0.1:5555");
   randexample::Request request;
   randexample::Reply reply;
   

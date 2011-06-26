@@ -26,8 +26,8 @@ class IService {
   */
  public:
   virtual ~IService () {}
-  virtual std::string getService () const = 0;
-  virtual int getVersion () const = 0;
+  std::string Name () { return name; }
+  int Version () { return version; }
   /** Called multiple times in the event of a multi-part request.
     * \param envelope
     * \param isMore TRUE if setRequest will be called again in multi-part 
@@ -40,24 +40,28 @@ class IService {
     * \return TRUE if more data is available in a multi-part response
     */
   virtual bool getReply (pb::ReplyEnvelope &envelope) = 0;
+ private:
+  const std::string name;
+  const int version;
 };
 
   
 class Server {
  public:
   typedef boost::function<IService* (void)> TService;
-  Server (const std::string &clientConn);
+  Server ();
+  void bind (const std::string &connection);
   /** Add a service for the server to serve
     * \param service object implementing IService
     */
-  void addService (TService);
+  void Register (TService);
   /** Start serving
     */
-  void start ();
+  void Start ();
  private:
   typedef std::map <std::string, TService> TServiceMap;
   const int nIOThread;
-  const std::string clientConn;
+  const int nWorkerThread;
   const std::string workerConn;
   boost::scoped_ptr<zmq::context_t> context;
   boost::scoped_ptr<zmq::socket_t> clientSocket;
